@@ -5,82 +5,418 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Papiros: papelería moderna con útiles escolares, oficina, impresión y diseño."
+      content="Papiros Papelería: artículos de oficina, tecnología, scrapbooking y miscelánea."
     />
     <title>Papiros | Papelería</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <a class="brand" href="#inicio">
-        <span class="brand-mark">P</span>
-        <span class="brand-copy">
-          <strong>Papiros</strong>
-          <small>Papelería</small>
-        </span>
-      </a>
-      <nav class="nav">
-        <a href="#catalogo">Catálogo</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </header>
+    <nav class="pp-nav" id="pp-nav">
+      <div class="pp-nav-inner">
+        <a href="#inicio" class="pp-logo">
+          <span class="pp-logo-main">PAPIROS</span>
+          <span class="pp-logo-sub">Papelería</span>
+        </a>
 
-    <main id="inicio" class="layout">
-      <section class="hero panel">
-        <p class="eyebrow">Papelería · diseño · oficina</p>
-        <h1>Todo lo que tu escritorio y tu creatividad necesitan.</h1>
-        <p class="lead">
-          Una base en HTML puro, limpia y lista para crecer como sitio oficial de la papelería.
-        </p>
-        <div class="actions">
-          <a class="button primary" href="#catalogo">Ver catálogo</a>
-          <a class="button secondary" href="#contacto">Hablemos</a>
-        </div>
-      </section>
-
-      <section id="catalogo" class="grid">
-        <article class="card panel">
-          <span class="card-tag">Escolar</span>
-          <h2>Útiles para estudiar</h2>
-          <p>Cuadernos, lápices, colores, carpetas y todo para acompañar el regreso a clases.</p>
-        </article>
-
-        <article class="card panel">
-          <span class="card-tag">Oficina</span>
-          <h2>Soluciones para el día a día</h2>
-          <p>Archivadores, papeles, impresión y accesorios para una rutina más organizada.</p>
-        </article>
-
-        <article class="card panel">
-          <span class="card-tag">Creativo</span>
-          <h2>Diseño y decoración</h2>
-          <p>Un espacio listo para promocionar productos creativos, manualidades y detalles especiales.</p>
-        </article>
-      </section>
-
-      <section id="servicios" class="services panel">
-        <div>
-          <p class="eyebrow">Servicios</p>
-          <h2>Preparado para crecer contigo</h2>
-        </div>
-        <ul>
-          <li>Pedidos por WhatsApp</li>
-          <li>Catálogo digital</li>
-          <li>Promociones destacadas</li>
-          <li>Formulario conectado a Supabase</li>
+        <ul class="pp-nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#categorias">Categorías</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#ofertas">Ofertas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
         </ul>
-      </section>
 
-      <section id="contacto" class="contact panel">
-        <div>
-          <p class="eyebrow">Contacto</p>
-          <h2>Listo para enlazar canales reales</h2>
+        <a
+          href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
+          class="pp-nav-cta"
+          target="_blank"
+          rel="noopener"
+        >
+          Ir a la tienda
+        </a>
+
+        <button class="pp-hamburger" id="pp-hamburger" aria-label="Abrir menú" type="button">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="pp-mobile-menu" id="pp-mobile-menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#categorias">Categorías</a>
+      <a href="#productos">Productos</a>
+      <a href="#ofertas">Ofertas</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+
+    <section class="pp-hero" id="inicio">
+      <div class="pp-hero-inner">
+        <div class="pp-reveal">
+          <p class="pp-hero-kicker">Papelería · Usaquén · Bogotá D.C.</p>
+          <h1 class="pp-hero-title">Todo lo que <em>necesitas crear.</em></h1>
+          <p class="pp-hero-sub">
+            Artículos de oficina, tecnología, scrapbooking y miscelánea. En Usaquén y con envíos a toda Bogotá.
+          </p>
+          <div class="pp-hero-actions">
+            <a
+              href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
+              class="pp-btn-primary"
+              target="_blank"
+              rel="noopener"
+            >
+              Explorar tienda
+            </a>
+            <a
+              href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc"
+              class="pp-btn-secondary"
+              target="_blank"
+              rel="noopener"
+            >
+              Pedir por Rappi
+            </a>
+          </div>
         </div>
-        <p>
-          En el siguiente paso podemos conectar WhatsApp, Instagram, correo o pedidos desde Supabase.
-        </p>
-      </section>
-    </main>
+
+        <div class="pp-hero-visual pp-reveal">
+          <div class="pp-hero-img-wrap">
+            <img
+              src="https://static.wixstatic.com/media/ad000c_d3043c9522cd41239028bc3d39daf499~mv2.png/v1/fill/w_600,h_450,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ad000c_d3043c9522cd41239028bc3d39daf499~mv2.png"
+              alt="Papiros Papelería - productos destacados"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="pp-hero-badge">
+            <span class="pp-hero-badge-num">8+</span>
+            <span class="pp-hero-badge-txt">Categorías</span>
+          </div>
+          <div class="pp-hero-float">Envíos Bogotá</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pp-ticker-wrap" aria-hidden="true">
+      <div class="pp-ticker-track">
+        <span>Artículos de oficina</span><span class="dot">·</span>
+        <span>Tecnología</span><span class="dot">·</span>
+        <span>Scrapbooking</span><span class="dot">·</span>
+        <span>Miscelánea</span><span class="dot">·</span>
+        <span>Papelería escolar</span><span class="dot">·</span>
+        <span>Colores y marcadores</span><span class="dot">·</span>
+        <span>Impresión</span><span class="dot">·</span>
+        <span>Accesorios</span><span class="dot">·</span>
+        <span>Artículos de oficina</span><span class="dot">·</span>
+        <span>Tecnología</span><span class="dot">·</span>
+        <span>Scrapbooking</span><span class="dot">·</span>
+        <span>Miscelánea</span><span class="dot">·</span>
+        <span>Papelería escolar</span><span class="dot">·</span>
+        <span>Colores y marcadores</span><span class="dot">·</span>
+        <span>Impresión</span><span class="dot">·</span>
+        <span>Accesorios</span><span class="dot">·</span>
+      </div>
+    </div>
+
+    <section class="pp-section pp-cats" id="categorias">
+      <div class="pp-container">
+        <div class="pp-section-header pp-reveal">
+          <span class="pp-section-kicker">Explora</span>
+          <h2 class="pp-section-title">Nuestras <em>categorías</em></h2>
+          <p class="pp-section-sub">
+            Encuentra todo lo que necesitas para la oficina, el estudio y tu creatividad.
+          </p>
+        </div>
+
+        <div class="pp-cats-grid">
+          <a href="#productos" class="pp-cat-card pp-reveal">
+            <div class="pp-cat-icon c1">📎</div>
+            <span class="pp-cat-name">Artículos de oficina</span>
+            <span class="pp-cat-count">Archivos, papeles y más</span>
+          </a>
+          <a href="#productos" class="pp-cat-card pp-reveal">
+            <div class="pp-cat-icon c2">📱</div>
+            <span class="pp-cat-name">Tecnología</span>
+            <span class="pp-cat-count">Accesorios y periféricos</span>
+          </a>
+          <a href="#productos" class="pp-cat-card pp-reveal">
+            <div class="pp-cat-icon c3">✂️</div>
+            <span class="pp-cat-name">Scrapbooking</span>
+            <span class="pp-cat-count">Creatividad y manualidades</span>
+          </a>
+          <a href="#productos" class="pp-cat-card pp-reveal">
+            <div class="pp-cat-icon c4">🎨</div>
+            <span class="pp-cat-name">Colores y arte</span>
+            <span class="pp-cat-count">Marcadores, pinturas y más</span>
+          </a>
+          <a href="#productos" class="pp-cat-card pp-reveal">
+            <div class="pp-cat-icon c5">🖨️</div>
+            <span class="pp-cat-name">Impresión</span>
+            <span class="pp-cat-count">Tintas y consumibles</span>
+          </a>
+          <a href="#productos" class="pp-cat-card pp-reveal">
+            <div class="pp-cat-icon c6">📦</div>
+            <span class="pp-cat-name">Miscelánea</span>
+            <span class="pp-cat-count">Productos sorpresa</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pp-section pp-products" id="productos">
+      <div class="pp-container">
+        <div class="pp-products-header pp-reveal">
+          <div>
+            <span class="pp-section-kicker">Colección</span>
+            <h2 class="pp-section-title">Nuestros <em>productos</em></h2>
+          </div>
+          <a
+            href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
+            class="pp-section-link"
+            target="_blank"
+            rel="noopener"
+          >
+            Ver todo →
+          </a>
+        </div>
+
+        <div class="pp-products-grid">
+          <a
+            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/colores-faber-castell-x-24"
+            class="pp-product-card pp-reveal"
+          >
+            <div class="pp-product-img">
+              <img
+                src="https://static.wixstatic.com/media/ad000c_593b2c00dd834e218290476e388a8c56~mv2.png/v1/fill/w_600,h_450,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ad000c_593b2c00dd834e218290476e388a8c56~mv2.png"
+                alt="Colores Faber-Castell x24"
+                loading="lazy"
+              />
+              <span class="pp-badge pp-badge-new">Nuevo</span>
+            </div>
+            <div class="pp-product-body">
+              <span class="pp-product-name">Colores Faber-Castell x 24</span>
+              <div class="pp-product-price">$8.000 COP</div>
+              <span class="pp-product-action">Ver producto →</span>
+            </div>
+          </a>
+
+          <a
+            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/resaltadores-color-pastel-pague-6x5"
+            class="pp-product-card pp-reveal"
+          >
+            <div class="pp-product-img">
+              <img
+                src="https://static.wixstatic.com/media/ad000c_28577a2288574d2a8d93aada2afd0a26~mv2.png/v1/fill/w_600,h_450,al_c,q_85,enc_avif,quality_auto/ad000c_28577a2288574d2a8d93aada2afd0a26~mv2.png"
+                alt="Resaltadores color pastel"
+                loading="lazy"
+              />
+              <span class="pp-badge pp-badge-off">Promo 6x5</span>
+            </div>
+            <div class="pp-product-body">
+              <span class="pp-product-name">Resaltadores color pastel</span>
+              <div class="pp-product-price">$40.000 COP</div>
+              <span class="pp-product-action">Ver producto →</span>
+            </div>
+          </a>
+
+          <a
+            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/aud%C3%ADfonos-de-diadema-nia"
+            class="pp-product-card pp-reveal"
+          >
+            <div class="pp-product-img">
+              <img
+                src="https://static.wixstatic.com/media/ad000c_0d292e6874b549e884d24f3eb45c52fa~mv2.png/v1/fill/w_600,h_552,al_c,q_85,enc_avif,quality_auto/ad000c_0d292e6874b549e884d24f3eb45c52fa~mv2.png"
+                alt="Audífonos de diadema NIA"
+                loading="lazy"
+              />
+            </div>
+            <div class="pp-product-body">
+              <span class="pp-product-name">Audífonos de diadema NIA</span>
+              <div class="pp-product-price">$15.000 COP</div>
+              <span class="pp-product-action">Ver producto →</span>
+            </div>
+          </a>
+
+          <a
+            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/set-de-walkie-talkie"
+            class="pp-product-card pp-reveal"
+          >
+            <div class="pp-product-img">
+              <img
+                src="https://static.wixstatic.com/media/ad000c_70dcee54ea3e45bb8d2b6e92988b1ba8~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ad000c_70dcee54ea3e45bb8d2b6e92988b1ba8~mv2.jpg"
+                alt="Set de walkie-talkie"
+                loading="lazy"
+              />
+              <span class="pp-badge pp-badge-top">Más vendido</span>
+            </div>
+            <div class="pp-product-body">
+              <span class="pp-product-name">Set de walkie-talkie</span>
+              <div class="pp-product-price">$10.000 COP</div>
+              <span class="pp-product-action">Ver producto →</span>
+            </div>
+          </a>
+
+          <a
+            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/tinta-original-para-impresora-epson"
+            class="pp-product-card pp-reveal"
+          >
+            <div class="pp-product-img">
+              <img
+                src="https://static.wixstatic.com/media/ad000c_c93debb9aff7451b809e1aba36353768~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/ad000c_c93debb9aff7451b809e1aba36353768~mv2.jpg"
+                alt="Tinta original EPSON"
+                loading="lazy"
+              />
+            </div>
+            <div class="pp-product-body">
+              <span class="pp-product-name">Tinta original para impresora EPSON</span>
+              <div class="pp-product-price">$85.000 COP</div>
+              <span class="pp-product-action">Ver producto →</span>
+            </div>
+          </a>
+
+          <a
+            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/dispensador-de-cinta-tama%C3%B1o-48-mm-gruesa"
+            class="pp-product-card pp-reveal"
+          >
+            <div class="pp-product-img">
+              <img
+                src="https://static.wixstatic.com/media/ad000c_c93debb9aff7471b809e1aba36353768~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/ad000c_c93debb9aff7471b809e1aba36353768~mv2.jpg"
+                alt="Dispensador de cinta 48 mm"
+                loading="lazy"
+              />
+            </div>
+            <div class="pp-product-body">
+              <span class="pp-product-name">Dispensador de cinta 48 mm</span>
+              <div class="pp-product-price">$25.000 COP</div>
+              <span class="pp-product-action">Ver producto →</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="pp-center-cta pp-reveal">
+          <a
+            href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
+            class="pp-btn-primary"
+            target="_blank"
+            rel="noopener"
+          >
+            Ver todos los productos →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pp-deals" id="ofertas">
+      <div class="pp-deals-inner">
+        <div class="pp-reveal">
+          <span class="pp-deals-kicker">Oferta exclusiva</span>
+          <h2 class="pp-deals-title">Descuentos <em>imperdibles</em> en Rappi</h2>
+          <p class="pp-deals-sub">
+            Descubre las promociones exclusivas que tenemos para ti. Aprovecha esta oportunidad única para adquirir
+            productos de calidad a precios increíbles.
+          </p>
+          <div class="pp-deals-actions">
+            <a
+              href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc"
+              class="pp-btn-rappi"
+              target="_blank"
+              rel="noopener"
+            >
+              Pedir en Rappi
+            </a>
+            <a
+              href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
+              class="pp-btn-outline"
+              target="_blank"
+              rel="noopener"
+            >
+              Ver tienda completa
+            </a>
+          </div>
+        </div>
+
+        <div class="pp-deals-visual pp-reveal">
+          <div class="pp-deals-stat">
+            <span class="pp-deals-stat-num">%</span>
+            <span class="pp-deals-stat-lbl">Descuentos activos</span>
+          </div>
+          <div class="pp-deals-stat">
+            <span class="pp-deals-stat-num">🛵</span>
+            <span class="pp-deals-stat-lbl">Envío rápido</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pp-section pp-contact" id="contacto">
+      <div class="pp-container">
+        <div class="pp-section-header pp-reveal">
+          <span class="pp-section-kicker">Contacto</span>
+          <h2 class="pp-section-title">Listo para <em>crecer</em> contigo</h2>
+          <p class="pp-section-sub">
+            Esta base ya está adaptada al repo y lista para seguir evolucionando con WhatsApp, formulario o Supabase.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        var nav = document.getElementById("pp-nav");
+        var btn = document.getElementById("pp-hamburger");
+        var menu = document.getElementById("pp-mobile-menu");
+        var reveals = document.querySelectorAll(".pp-reveal");
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            nav.classList.toggle("scrolled", window.scrollY > 20);
+          },
+          { passive: true }
+        );
+
+        btn.addEventListener("click", function () {
+          menu.classList.toggle("open");
+        });
+
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.05 }
+        );
+
+        reveals.forEach(function (el) {
+          io.observe(el);
+        });
+
+        setTimeout(function () {
+          reveals.forEach(function (el) {
+            el.classList.add("visible");
+          });
+        }, 6000);
+
+        function notifyHeight() {
+          if (window.parent !== window) {
+            window.parent.postMessage(
+              { action: "pp-height", height: document.documentElement.scrollHeight },
+              "*"
+            );
+          }
+        }
+
+        window.addEventListener("load", notifyHeight);
+        window.addEventListener("resize", notifyHeight);
+      })();
+    </script>
   </body>
 </html>
