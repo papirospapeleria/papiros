@@ -1,42 +1,85 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Papiros: papelería moderna con útiles escolares, oficina, impresión y diseño."
+    />
     <title>Papiros | Papelería</title>
-    <meta name="description" content="Papelería Papiros: útiles escolares, oficina, impresión y diseño para tu día a día." />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="page-shell">
-      <section class="hero">
-        <p class="eyebrow">Papelería Papiros</p>
-        <h1>Diseño limpio, útil y listo para crecer con la papelería.</h1>
-        <p class="lead">Base inicial en HTML puro para construir una landing moderna, clara y fácil de mantener.</p>
+    <header class="topbar">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark">P</span>
+        <span class="brand-copy">
+          <strong>Papiros</strong>
+          <small>Papelería</small>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <main id="inicio" class="layout">
+      <section class="hero panel">
+        <p class="eyebrow">Papelería · diseño · oficina</p>
+        <h1>Todo lo que tu escritorio y tu creatividad necesitan.</h1>
+        <p class="lead">
+          Una base en HTML puro, limpia y lista para crecer como sitio oficial de la papelería.
+        </p>
         <div class="actions">
           <a class="button primary" href="#catalogo">Ver catálogo</a>
-          <a class="button secondary" href="#contacto">Contactar</a>
+          <a class="button secondary" href="#contacto">Hablemos</a>
         </div>
       </section>
 
       <section id="catalogo" class="grid">
-        <article class="card">
-          <h2>Útiles escolares</h2>
-          <p>Cuadernos, carpetas, colores, lápices y todo lo que necesitan estudiantes y familias.</p>
+        <article class="card panel">
+          <span class="card-tag">Escolar</span>
+          <h2>Útiles para estudiar</h2>
+          <p>Cuadernos, lápices, colores, carpetas y todo para acompañar el regreso a clases.</p>
         </article>
-        <article class="card">
-          <h2>Oficina</h2>
-          <p>Papelería, impresión, elementos de archivo y soluciones para el trabajo diario.</p>
+
+        <article class="card panel">
+          <span class="card-tag">Oficina</span>
+          <h2>Soluciones para el día a día</h2>
+          <p>Archivadores, papeles, impresión y accesorios para una rutina más organizada.</p>
         </article>
-        <article class="card">
-          <h2>Diseño</h2>
-          <p>Espacio listo para incorporar productos, servicios y promociones con una estructura sólida.</p>
+
+        <article class="card panel">
+          <span class="card-tag">Creativo</span>
+          <h2>Diseño y decoración</h2>
+          <p>Un espacio listo para promocionar productos creativos, manualidades y detalles especiales.</p>
         </article>
       </section>
 
-      <section id="contacto" class="contact">
-        <h2>Contacto</h2>
-        <p>Este punto de partida está listo para conectar WhatsApp, Instagram o Supabase cuando quieras.</p>
+      <section id="servicios" class="services panel">
+        <div>
+          <p class="eyebrow">Servicios</p>
+          <h2>Preparado para crecer contigo</h2>
+        </div>
+        <ul>
+          <li>Pedidos por WhatsApp</li>
+          <li>Catálogo digital</li>
+          <li>Promociones destacadas</li>
+          <li>Formulario conectado a Supabase</li>
+        </ul>
+      </section>
+
+      <section id="contacto" class="contact panel">
+        <div>
+          <p class="eyebrow">Contacto</p>
+          <h2>Listo para enlazar canales reales</h2>
+        </div>
+        <p>
+          En el siguiente paso podemos conectar WhatsApp, Instagram, correo o pedidos desde Supabase.
+        </p>
       </section>
     </main>
   </body>
