@@ -1,422 +1,1467 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Papiros Papelería: artículos de oficina, tecnología, scrapbooking y miscelánea."
-    />
-    <title>Papiros | Papelería</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <nav class="pp-nav" id="pp-nav">
-      <div class="pp-nav-inner">
-        <a href="#inicio" class="pp-logo">
-          <span class="pp-logo-main">PAPIROS</span>
-          <span class="pp-logo-sub">Papelería</span>
-        </a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Papiros Papelería — Artículos de oficina, tecnología, miscelánea y más en Usaquén, Bogotá. Domicilios por Rappi, DiDi Food y Mercado Libre.">
+<title>Papiros Papelería | Usaquén, Bogotá</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  --bg:          #fffaf7;
+  --bg-2:        #f5ede4;
+  --white:       #ffffff;
+  --ink:         #1a0e05;
+  --ink-soft:    #3d2a1a;
+  --ink-mute:    #7a6455;
+  --orange:      #f05a00;
+  --orange-h:    #d44e00;
+  --orange-pale: #fff0e8;
+  --yellow:      #ffb800;
+  --green-wa:    #25D366;
+  --line:        rgba(26,14,5,.10);
+  --f-display:   'Playfair Display', Georgia, serif;
+  --f-body:      'Inter', system-ui, sans-serif;
+  --r:           12px;
+  --r-lg:        20px;
+  --ease:        cubic-bezier(.22,.1,.36,1);
+  --ease-out:    cubic-bezier(0.16,1,0.3,1);
+  --ease-soft:   cubic-bezier(0.25,0.46,0.45,0.94);
+}
 
-        <ul class="pp-nav-links">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#categorias">Categorías</a></li>
-          <li><a href="#productos">Productos</a></li>
-          <li><a href="#ofertas">Ofertas</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,svg{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}
+p{text-wrap:pretty}
+h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
+::selection{background:var(--orange);color:#fff}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
+.skip-link{position:fixed;top:-100px;left:1rem;padding:.6rem 1rem;background:var(--orange);color:#fff;z-index:9999;border-radius:8px;font-weight:600;transition:top .2s}
+.skip-link:focus{top:1rem}
 
-        <a
-          href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
-          class="pp-nav-cta"
-          target="_blank"
-          rel="noopener"
-        >
-          Ir a la tienda
-        </a>
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.pp-section{padding:clamp(60px,8vw,100px) clamp(16px,4vw,48px)}
+.pp-container{max-width:1200px;margin:0 auto}
+.pp-kicker{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;display:block}
+.pp-title{font-family:var(--f-display);font-size:clamp(28px,3.5vw,44px);font-weight:700;line-height:1.12;color:var(--ink)}
+.pp-title em{font-style:italic;color:var(--orange)}
+.pp-sub{font-size:15px;font-weight:300;line-height:1.6;color:var(--ink-mute);margin-top:12px;max-width:520px}
+[data-reveal]{opacity:0;transform:translateY(32px);transition:opacity .75s var(--ease-soft),transform .75s var(--ease-soft)}
+[data-reveal].is-revealed{opacity:1;transform:none}
 
-        <button class="pp-hamburger" id="pp-hamburger" aria-label="Abrir menú" type="button">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
+/* ============================================================
+   NAV
+   ============================================================ */
+.pp-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(16px,4vw,48px);transition:background .35s var(--ease),box-shadow .35s var(--ease)}
+.pp-nav.scrolled{background:rgba(255,250,247,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
+.pp-nav-inner{max-width:1200px;margin:0 auto;height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.pp-logo{text-decoration:none;display:flex;flex-direction:column;line-height:1.1}
+.pp-logo-main{font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--orange);letter-spacing:.04em}
+.pp-logo-sub{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-top:1px}
+.pp-nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.pp-nav-links a{font-size:13.5px;font-weight:500;letter-spacing:.02em;color:var(--ink-soft);position:relative;transition:color .2s}
+.pp-nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.pp-nav-links a:hover{color:var(--orange)}
+.pp-nav-links a:hover::after{transform:scaleX(1)}
+.pp-nav-right{display:flex;align-items:center;gap:12px}
+.pp-nav-cart{position:relative;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);color:var(--ink-soft);transition:border-color .2s,color .2s;font-size:18px;cursor:pointer}
+.pp-nav-cart:hover{border-color:var(--orange);color:var(--orange)}
+.pp-cart-badge{position:absolute;top:-4px;right:-4px;background:var(--orange);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0);transition:opacity .2s,transform .3s var(--ease-out)}
+.pp-cart-badge.visible{opacity:1;transform:scale(1)}
+.pp-cart-badge.bounce{animation:cartBounce .4s var(--ease-out)}
+@keyframes cartBounce{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
+.pp-nav-wa{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:100px;background:var(--green-wa);color:#fff;font-size:13px;font-weight:600;transition:opacity .2s,transform .2s}
+.pp-nav-wa:hover{opacity:.9;transform:translateY(-1px)}
+.pp-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.pp-hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
 
-    <div class="pp-mobile-menu" id="pp-mobile-menu">
-      <a href="#inicio">Inicio</a>
-      <a href="#categorias">Categorías</a>
-      <a href="#productos">Productos</a>
-      <a href="#ofertas">Ofertas</a>
-      <a href="#contacto">Contacto</a>
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+.pp-mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:199;background:rgba(255,250,247,.98);backdrop-filter:blur(20px);padding:20px clamp(16px,4vw,48px) 28px;flex-direction:column;gap:4px;border-bottom:1px solid var(--line)}
+.pp-mobile-menu.open{display:flex}
+.pp-mobile-menu a{font-size:16px;font-weight:500;color:var(--ink-soft);padding:12px 0;border-bottom:1px solid var(--line)}
+.pp-mobile-menu a:last-child{border:none}
+
+/* ============================================================
+   CART DRAWER
+   ============================================================ */
+.pp-cart-overlay{position:fixed;inset:0;background:rgba(26,14,5,.45);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
+.pp-cart-overlay.open{opacity:1;pointer-events:auto}
+.pp-cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--white);z-index:301;transform:translateX(100%);transition:transform .4s var(--ease-out);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(26,14,5,.12)}
+.pp-cart-drawer.open{transform:translateX(0)}
+.pp-cart-head{display:flex;align-items:center;justify-content:space-between;padding:24px;border-bottom:1px solid var(--line)}
+.pp-cart-head h2{font-family:var(--f-display);font-size:20px;font-weight:700}
+.pp-cart-close{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:border-color .2s,background .2s}
+.pp-cart-close:hover{border-color:var(--orange);background:var(--orange-pale)}
+.pp-cart-items{flex:1;overflow-y:auto;padding:16px 24px}
+.pp-cart-empty{text-align:center;padding:60px 0;color:var(--ink-mute)}
+.pp-cart-empty-icon{font-size:48px;margin-bottom:12px}
+.pp-cart-empty p{font-size:14px}
+.pp-cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.pp-cart-item:last-child{border:none}
+.pp-cart-item-img{width:60px;height:60px;border-radius:10px;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;overflow:hidden}
+.pp-cart-item-img img{width:100%;height:100%;object-fit:cover}
+.pp-cart-item-info{flex:1;min-width:0}
+.pp-cart-item-name{font-size:13px;font-weight:600;line-height:1.35;color:var(--ink)}
+.pp-cart-item-price{font-size:14px;font-weight:700;color:var(--orange);margin-top:4px}
+.pp-cart-item-controls{display:flex;align-items:center;gap:8px;margin-top:8px}
+.pp-qty-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:border-color .2s,background .2s;font-weight:700}
+.pp-qty-btn:hover{border-color:var(--orange);background:var(--orange-pale)}
+.pp-qty-num{font-size:13px;font-weight:600;min-width:20px;text-align:center}
+.pp-cart-remove{margin-left:auto;font-size:16px;color:var(--ink-mute);cursor:pointer;transition:color .2s;padding:4px}
+.pp-cart-remove:hover{color:#c0392b}
+.pp-cart-foot{padding:20px 24px;border-top:1px solid var(--line)}
+.pp-cart-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.pp-cart-total-label{font-size:14px;color:var(--ink-mute)}
+.pp-cart-total-val{font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--orange)}
+.pp-cart-checkout{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border-radius:100px;background:var(--orange);color:#fff;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:background .2s,transform .2s,box-shadow .2s}
+.pp-cart-checkout:hover{background:var(--orange-h);transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,90,0,.35)}
+.pp-cart-wa-hint{text-align:center;font-size:12px;color:var(--ink-mute);margin-top:10px}
+
+/* ============================================================
+   PAYMENT MODAL
+   ============================================================ */
+.pp-pay-overlay{position:fixed;inset:0;background:rgba(26,14,5,.6);z-index:400;display:none;align-items:center;justify-content:center;padding:16px}
+.pp-pay-overlay.open{display:flex}
+.pp-pay-modal{background:var(--white);border-radius:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 30px 80px rgba(26,14,5,.25)}
+.pp-pay-head{padding:24px 28px 0;display:flex;align-items:center;justify-content:space-between}
+.pp-pay-head h2{font-family:var(--f-display);font-size:20px;font-weight:700}
+.pp-pay-close{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;flex-shrink:0}
+.pp-pay-progress{display:flex;gap:6px;padding:20px 28px 0}
+.pp-pay-step-dot{flex:1;height:4px;border-radius:2px;background:var(--bg-2);transition:background .3s}
+.pp-pay-step-dot.active{background:var(--orange)}
+.pp-pay-step-dot.done{background:#2a6e4a}
+.pp-pay-body{padding:24px 28px 28px}
+.pp-pay-step{display:none}
+.pp-pay-step.active{display:block}
+.pp-pay-step-title{font-family:var(--f-display);font-size:17px;font-weight:700;margin-bottom:16px}
+.pp-pay-summary-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.pp-pay-summary-item:last-child{border:none}
+.pp-pay-summary-total{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;font-weight:700;font-size:16px}
+.pp-pay-summary-total span:last-child{color:var(--orange);font-size:18px}
+.pp-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.pp-field label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute)}
+.pp-field input,.pp-field select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s}
+.pp-field input:focus,.pp-field select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(240,90,0,.12)}
+.pp-field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pp-pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.pp-pay-method{border:2px solid var(--line);border-radius:12px;padding:14px 12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color .2s,background .2s;text-align:center}
+.pp-pay-method:hover{border-color:var(--orange);background:var(--orange-pale)}
+.pp-pay-method.selected{border-color:var(--orange);background:var(--orange-pale)}
+.pp-pay-method-icon{font-size:28px}
+.pp-pay-method-name{font-size:12px;font-weight:600;color:var(--ink-soft)}
+.pp-pay-actions{display:flex;gap:10px;margin-top:20px}
+.pp-pay-back{flex:1;padding:13px;border-radius:100px;border:1.5px solid var(--line);color:var(--ink-soft);font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s}
+.pp-pay-back:hover{border-color:var(--orange);color:var(--orange)}
+.pp-pay-next{flex:2;padding:13px;border-radius:100px;background:var(--orange);color:#fff;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:background .2s,transform .2s}
+.pp-pay-next:hover{background:var(--orange-h);transform:translateY(-2px)}
+.pp-pay-success{text-align:center;padding:20px 0}
+.pp-pay-success-icon{font-size:64px;margin-bottom:16px}
+.pp-pay-success h3{font-family:var(--f-display);font-size:22px;font-weight:700;margin-bottom:8px}
+.pp-pay-success p{font-size:14px;color:var(--ink-mute);line-height:1.6;max-width:320px;margin:0 auto 20px}
+.pp-pay-success-order{background:var(--bg-2);border-radius:12px;padding:12px 16px;font-size:13px;margin-bottom:20px;color:var(--ink-soft)}
+.pp-pay-success-wa{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:100px;background:var(--green-wa);color:#fff;font-size:14px;font-weight:700;cursor:pointer;border:none;width:100%;justify-content:center;transition:opacity .2s}
+.pp-pay-success-wa:hover{opacity:.9}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.pp-hero{min-height:100vh;padding-top:68px;background:var(--bg);display:flex;align-items:center;padding-inline:clamp(16px,4vw,48px);position:relative;overflow:hidden}
+.pp-hero::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:linear-gradient(140deg,#f5ede4 0%,#f0dfd0 100%);clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);z-index:0}
+.pp-hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;padding-block:clamp(60px,8vh,100px)}
+.pp-hero-kicker{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
+.pp-hero-title{font-family:var(--f-display);font-size:clamp(38px,5.5vw,72px);font-weight:700;line-height:1.06;color:var(--ink);margin-bottom:20px}
+.pp-hero-title em{font-style:italic;color:var(--orange)}
+.pp-hero-sub{font-size:clamp(15px,1.4vw,17px);font-weight:300;line-height:1.65;color:var(--ink-soft);max-width:440px;margin-bottom:36px}
+.pp-hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.pp-btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:100px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;letter-spacing:.03em;text-decoration:none;transition:background .2s,transform .25s var(--ease),box-shadow .25s}
+.pp-btn-primary:hover{background:var(--orange-h);transform:translateY(-3px);box-shadow:0 10px 28px rgba(240,90,0,.32)}
+.pp-btn-secondary{display:inline-flex;align-items:center;gap:6px;padding:14px 22px;border-radius:100px;border:1.5px solid var(--line);color:var(--ink-soft);font-size:14px;font-weight:500;text-decoration:none;background:transparent;transition:border-color .2s,color .2s,transform .2s}
+.pp-btn-secondary:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-2px)}
+.pp-hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.pp-hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;max-width:440px}
+.pp-hero-tile{aspect-ratio:1;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:clamp(28px,4vw,40px);background:var(--white);border:1px solid var(--line);transition:transform .4s var(--ease),box-shadow .4s;animation:tileFloat var(--dur,3s) ease-in-out infinite;animation-delay:var(--del,0s)}
+.pp-hero-tile:hover{transform:scale(1.08);box-shadow:0 12px 30px rgba(240,90,0,.18)}
+@keyframes tileFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.pp-hero-badge{position:absolute;bottom:-12px;left:-12px;background:var(--orange);color:#fff;padding:16px 20px;border-radius:16px;box-shadow:0 12px 32px rgba(240,90,0,.35);text-align:center;line-height:1.2;z-index:2}
+.pp-hero-badge-num{font-family:var(--f-display);font-size:26px;font-weight:700;display:block}
+.pp-hero-badge-txt{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.pp-hero-float{position:absolute;top:12px;right:-8px;background:var(--yellow);color:var(--ink);padding:9px 14px;border-radius:50px;font-size:12px;font-weight:700;box-shadow:0 8px 20px rgba(255,184,0,.4)}
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.pp-ticker-wrap{background:var(--orange);padding:13px 0;overflow:hidden}
+.pp-ticker-track{display:flex;width:max-content;animation:pp-marquee 30s linear infinite}
+.pp-ticker-track span{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.9);white-space:nowrap;padding:0 24px}
+@keyframes pp-marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.pp-ticker-track{animation:none}}
+
+/* ============================================================
+   DELIVERY PLATFORMS
+   ============================================================ */
+.pp-delivery{background:linear-gradient(135deg,#1a0e05 0%,#2d1800 100%);padding:clamp(60px,7vw,90px) clamp(16px,4vw,48px)}
+.pp-delivery-inner{max-width:1200px;margin:0 auto}
+.pp-delivery-header{text-align:center;margin-bottom:48px}
+.pp-delivery-kicker{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:14px;display:block}
+.pp-delivery-title{font-family:var(--f-display);font-size:clamp(26px,3.5vw,44px);font-weight:700;color:#fff;line-height:1.1}
+.pp-delivery-title em{font-style:italic;color:var(--orange)}
+.pp-delivery-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,.6);margin-top:10px}
+.pp-platform-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:56px}
+.pp-platform-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:16px;transition:background .25s,border-color .25s,transform .3s var(--ease)}
+.pp-platform-card:hover{background:rgba(255,255,255,.11);border-color:rgba(240,90,0,.4);transform:translateY(-6px)}
+.pp-platform-icon{font-size:42px}
+.pp-platform-name{font-family:var(--f-display);font-size:22px;font-weight:700;color:#fff}
+.pp-platform-tag{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
+.pp-platform-desc{font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;flex:1}
+.pp-platform-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:100px;background:var(--orange);color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s,transform .2s;align-self:flex-start;margin-top:auto}
+.pp-platform-btn:hover{background:var(--orange-h);transform:translateY(-2px)}
+.pp-delivery-steps{border-top:1px solid rgba(255,255,255,.1);padding-top:48px}
+.pp-delivery-steps-title{font-family:var(--f-display);font-size:22px;font-weight:600;color:#fff;text-align:center;margin-bottom:36px}
+.pp-delivery-steps-title em{font-style:italic;color:var(--orange)}
+.pp-steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.pp-step{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+.pp-step-num{width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pp-step-icon{font-size:24px}
+.pp-step-txt{font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.5}
+.pp-step-txt strong{color:#fff}
+
+/* ============================================================
+   CATEGORIES
+   ============================================================ */
+.pp-cats{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pp-cats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:40px}
+.pp-cat-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 14px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;transition:transform .28s var(--ease),box-shadow .28s,border-color .2s}
+.pp-cat-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(240,90,0,.14);border-color:#ffd4b8}
+.pp-cat-card.active-filter{border-color:var(--orange);background:var(--orange-pale)}
+.pp-cat-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ic1{background:var(--orange-pale)}.ic2{background:#fff8e0}.ic3{background:#e8f5ee}.ic4{background:#f5e8f0}.ic5{background:#f0f5e8}.ic6{background:#e8f0f5}.ic7{background:#fce8e8}.ic8{background:#e8f0fc}
+.pp-cat-name{font-size:12.5px;font-weight:600;text-align:center;color:var(--ink-soft)}
+
+/* ============================================================
+   CATALOG
+   ============================================================ */
+.pp-catalog{background:var(--bg)}
+.pp-catalog-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:32px}
+.pp-filter-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.pp-filter-pill{padding:8px 18px;border-radius:100px;border:1.5px solid var(--line);font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:border-color .2s,background .2s,color .2s;background:transparent}
+.pp-filter-pill:hover{border-color:var(--orange);color:var(--orange)}
+.pp-filter-pill.active{background:var(--orange);border-color:var(--orange);color:#fff}
+.pp-prods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+.pp-prod-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s;cursor:pointer}
+.pp-prod-card[hidden]{display:none}
+.pp-prod-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(26,14,5,.12)}
+.pp-prod-img{aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--bg-2)}
+.pp-prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.pp-prod-card:hover .pp-prod-img img{transform:scale(1.07)}
+.pp-prod-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:52px}
+.pp-prod-badge{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.pp-badge-papeleria{background:var(--orange-pale);color:var(--orange)}
+.pp-badge-tecnologia{background:#e8f0f5;color:#1a5276}
+.pp-badge-jugueteria{background:#e8f5ee;color:#1a6a3e}
+.pp-badge-miscelanea{background:#f5e8f0;color:#6c3483}
+.pp-badge-fiesta{background:#fce8e8;color:#c0392b}
+.pp-badge-libros{background:#fff8e0;color:#7d6608}
+.pp-badge-dulceria{background:#fde8e8;color:#922b21}
+.pp-badge-navidad{background:#e8f5ee;color:#1a6a3e}
+.pp-prod-body{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column;gap:6px}
+.pp-prod-name{font-size:14px;font-weight:600;line-height:1.35;color:var(--ink)}
+.pp-prod-price{font-family:var(--f-display);font-size:17px;font-weight:700;color:var(--orange);margin-top:auto;padding-top:8px}
+.pp-prod-add{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:100px;background:var(--orange-pale);color:var(--orange);font-size:12px;font-weight:600;border:none;cursor:pointer;transition:background .2s,color .2s;align-self:flex-start;margin-top:10px}
+.pp-prod-add:hover{background:var(--orange);color:#fff}
+.pp-catalog-cta{text-align:center;margin-top:48px}
+.pp-btn-orange{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:100px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:background .2s,transform .25s var(--ease),box-shadow .25s;border:none;cursor:pointer}
+.pp-btn-orange:hover{background:var(--orange-h);transform:translateY(-3px);box-shadow:0 10px 28px rgba(240,90,0,.35)}
+
+/* ============================================================
+   INSTAGRAM
+   ============================================================ */
+.pp-insta{background:var(--bg-2);border-top:1px solid var(--line);padding:clamp(60px,7vw,90px) clamp(16px,4vw,48px);text-align:center}
+.pp-insta-inner{max-width:800px;margin:0 auto}
+.pp-insta-title{font-family:var(--f-display);font-size:clamp(24px,3vw,38px);font-weight:700;color:var(--ink);margin-bottom:12px}
+.pp-insta-title em{font-style:italic;color:var(--orange)}
+.pp-insta-sub{font-size:15px;font-weight:300;color:var(--ink-mute);margin-bottom:36px}
+.pp-insta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:36px;border-radius:16px;overflow:hidden}
+.pp-insta-tile{aspect-ratio:1;overflow:hidden;position:relative}
+.pp-insta-tile img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.pp-insta-tile:hover img{transform:scale(1.08)}
+.pp-insta-tile-ph{width:100%;height:100%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:36px}
+.pp-insta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.pp-btn-ig{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;background:linear-gradient(135deg,#f05a00 0%,#e61e71 100%);color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:opacity .2s,transform .2s}
+.pp-btn-ig:hover{opacity:.9;transform:translateY(-2px)}
+.pp-btn-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:100px;border:1.5px solid var(--line);color:var(--ink-soft);font-size:14px;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
+.pp-btn-outline:hover{border-color:var(--orange);color:var(--orange)}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.pp-contact{background:var(--bg);border-top:1px solid var(--line)}
+.pp-contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.pp-contact-info{display:flex;flex-direction:column;gap:16px}
+.pp-contact-item{display:flex;align-items:flex-start;gap:14px}
+.pp-contact-item-icon{width:42px;height:42px;border-radius:12px;background:var(--orange-pale);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.pp-contact-item-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:3px}
+.pp-contact-item-value{font-size:14px;font-weight:500;color:var(--ink)}
+.pp-contact-item-value a{color:var(--orange)}
+.pp-contact-item-value a:hover{text-decoration:underline}
+.pp-hours{margin-top:24px;padding:20px;background:var(--bg-2);border-radius:14px;border:1px solid var(--line)}
+.pp-hours-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:12px}
+.pp-hours-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
+.pp-hours-row:last-child{border:none}
+.pp-hours-day{font-size:13px;font-weight:500;color:var(--ink-soft)}
+.pp-hours-time{font-size:13px;font-weight:600;color:var(--orange)}
+.pp-map{margin-top:20px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.pp-map iframe{display:block;width:100%;height:220px;border:0}
+.pp-form-wrap{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:36px 32px;box-shadow:0 8px 32px rgba(26,14,5,.06)}
+.pp-form-title{font-family:var(--f-display);font-size:20px;font-weight:700;margin-bottom:4px}
+.pp-form-title em{font-style:italic;color:var(--orange)}
+.pp-form-sub{font-size:13px;color:var(--ink-mute);margin-bottom:24px}
+.pp-form{display:flex;flex-direction:column;gap:14px}
+.pp-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pp-form-submit{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:100px;background:var(--orange);color:#fff;font-family:var(--f-body);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:background .2s,transform .25s var(--ease),box-shadow .25s;width:100%;margin-top:4px}
+.pp-form-submit:hover{background:var(--orange-h);transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,90,0,.35)}
+.pp-form-note{font-size:12px;color:var(--ink-mute);text-align:center}
+.pp-form-note a{color:var(--orange);font-weight:600}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.pp-footer{background:var(--ink);padding:clamp(50px,6vw,80px) clamp(16px,4vw,48px) 0}
+.pp-footer-inner{max-width:1200px;margin:0 auto}
+.pp-footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
+.pp-footer-brand-name{font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--orange)}
+.pp-footer-brand-sub{font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:2px}
+.pp-footer-desc{font-size:13px;font-weight:300;line-height:1.65;color:rgba(255,255,255,.5);margin-top:12px;max-width:260px}
+.pp-footer-social{display:flex;gap:8px;margin-top:18px}
+.pp-footer-social a{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:15px;text-decoration:none;color:rgba(255,255,255,.65);transition:border-color .2s,background .2s,color .2s}
+.pp-footer-social a:hover{border-color:var(--orange);background:var(--orange);color:#fff}
+.pp-footer-col-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px}
+.pp-footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.pp-footer-col ul li a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.pp-footer-col ul li a:hover{color:var(--orange)}
+.pp-footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:18px 0}
+.pp-footer-copy{font-size:12px;color:rgba(255,255,255,.3)}
+.pp-footer-links{display:flex;gap:14px;flex-wrap:wrap}
+.pp-footer-links a{font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.pp-footer-links a:hover{color:var(--orange)}
+
+/* ============================================================
+   WHATSAPP FAB
+   ============================================================ */
+.pp-wa-fab{position:fixed;bottom:24px;right:24px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.pp-wa-btn{width:56px;height:56px;border-radius:50%;background:var(--green-wa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.45);transition:transform .25s var(--ease),box-shadow .25s;position:relative}
+.pp-wa-btn:hover{transform:scale(1.1);box-shadow:0 10px 28px rgba(37,211,102,.55)}
+.pp-wa-pulse{position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--green-wa);animation:waPulse 2s ease-out infinite}
+@keyframes waPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
+.pp-wa-tooltip{background:var(--ink);color:#fff;font-size:12px;font-weight:600;padding:6px 12px;border-radius:8px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .2s;pointer-events:none}
+.pp-wa-fab:hover .pp-wa-tooltip{opacity:1;transform:translateX(0)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:960px){
+  .pp-nav-links,.pp-nav-wa{display:none}
+  .pp-hamburger{display:flex}
+  .pp-hero-inner{grid-template-columns:1fr;gap:28px;padding-block:clamp(40px,5vh,60px)}
+  .pp-hero{min-height:auto}
+  .pp-hero::before{width:100%;height:40%;top:auto;bottom:0;clip-path:none;opacity:.5}
+  .pp-hero-visual{order:-1}
+  .pp-hero-grid{max-width:100%;grid-template-columns:repeat(5,1fr);gap:8px}
+  .pp-hero-tile{border-radius:12px;font-size:clamp(20px,5vw,28px)}
+  .pp-hero-badge{bottom:-8px;left:-8px;padding:10px 14px}
+  .pp-hero-badge-num{font-size:20px}
+  .pp-contact-inner{grid-template-columns:1fr;gap:36px}
+  .pp-footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .pp-dom-inner{grid-template-columns:1fr;gap:36px}
+}
+@media(max-width:600px){
+  .pp-prods-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .pp-cats-grid{grid-template-columns:repeat(3,1fr)}
+  .pp-footer-top{grid-template-columns:1fr;gap:24px}
+  .pp-footer-bottom{flex-direction:column;align-items:flex-start}
+  .pp-form-row{grid-template-columns:1fr}
+  .pp-insta-btns{flex-direction:column;align-items:center}
+  .pp-hero-grid{grid-template-columns:repeat(2,1fr)}
+  .pp-pay-methods{grid-template-columns:1fr 1fr}
+  .pp-field-row{grid-template-columns:1fr}
+}
+@media(max-width:380px){
+  .pp-prods-grid{grid-template-columns:1fr}
+  .pp-cats-grid{grid-template-columns:repeat(2,1fr)}
+  .pp-platform-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<a href="#catalogo" class="skip-link">Saltar al contenido</a>
+
+<!-- ═══ WHATSAPP FAB ══════════════════════════ -->
+<div class="pp-wa-fab" aria-label="Contactar por WhatsApp">
+  <span class="pp-wa-tooltip">¡Escríbenos!</span>
+  <a href="https://wa.me/573188682376" target="_blank" rel="noopener noreferrer" class="pp-wa-btn" aria-label="WhatsApp">
+    <span class="pp-wa-pulse"></span>
+    💬
+  </a>
+</div>
+
+<!-- ═══ NAV ══════════════════════════════════ -->
+<nav class="pp-nav" id="pp-nav" aria-label="Navegación principal">
+  <div class="pp-nav-inner">
+    <a href="#inicio" class="pp-logo" aria-label="Papiros Papelería — inicio">
+      <span class="pp-logo-main">PAPIROS</span>
+      <span class="pp-logo-sub">Papelería</span>
+    </a>
+    <ul class="pp-nav-links" role="list">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#pp-domicilios">Domicilios</a></li>
+      <li><a href="#pp-contacto">Contacto</a></li>
+    </ul>
+    <div class="pp-nav-right">
+      <button class="pp-nav-cart" id="pp-cart-btn" aria-label="Ver carrito" title="Carrito de compras">
+        🛒
+        <span class="pp-cart-badge" id="pp-cart-badge" aria-live="polite">0</span>
+      </button>
+      <a href="https://wa.me/573188682376" target="_blank" rel="noopener" class="pp-nav-wa">
+        💬 WhatsApp
+      </a>
+      <button class="pp-hamburger" id="pp-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </div>
+</nav>
 
-    <section class="pp-hero" id="inicio">
-      <div class="pp-hero-inner">
-        <div class="pp-reveal">
-          <p class="pp-hero-kicker">Papelería · Usaquén · Bogotá D.C.</p>
-          <h1 class="pp-hero-title">Todo lo que <em>necesitas crear.</em></h1>
-          <p class="pp-hero-sub">
-            Artículos de oficina, tecnología, scrapbooking y miscelánea. En Usaquén y con envíos a toda Bogotá.
-          </p>
-          <div class="pp-hero-actions">
-            <a
-              href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
-              class="pp-btn-primary"
-              target="_blank"
-              rel="noopener"
-            >
-              Explorar tienda
-            </a>
-            <a
-              href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc"
-              class="pp-btn-secondary"
-              target="_blank"
-              rel="noopener"
-            >
-              Pedir por Rappi
-            </a>
-          </div>
+<!-- ═══ MOBILE MENU ═══════════════════════════ -->
+<div class="pp-mobile-menu" id="pp-mobile-menu" role="navigation" aria-label="Menú móvil">
+  <a href="#inicio" onclick="closeMobileMenu()">Inicio</a>
+  <a href="#catalogo" onclick="closeMobileMenu()">Catálogo</a>
+  <a href="#pp-domicilios" onclick="closeMobileMenu()">Domicilios</a>
+  <a href="#pp-contacto" onclick="closeMobileMenu()">Contacto</a>
+  <a href="https://wa.me/573188682376" target="_blank" rel="noopener" style="margin-top:8px;background:var(--green-wa);color:#fff;text-align:center;border-radius:100px;padding:13px 20px;font-weight:600">💬 WhatsApp</a>
+</div>
+
+<!-- ═══ CART OVERLAY ══════════════════════════ -->
+<div class="pp-cart-overlay" id="pp-cart-overlay" aria-hidden="true"></div>
+
+<!-- ═══ CART DRAWER ═══════════════════════════ -->
+<aside class="pp-cart-drawer" id="pp-cart-drawer" aria-label="Carrito de compras" aria-hidden="true">
+  <div class="pp-cart-head">
+    <h2>Tu Carrito 🛒</h2>
+    <button class="pp-cart-close" id="pp-cart-close" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div class="pp-cart-items" id="pp-cart-items">
+    <div class="pp-cart-empty" id="pp-cart-empty">
+      <div class="pp-cart-empty-icon">🛒</div>
+      <p>Tu carrito está vacío.</p>
+      <p style="margin-top:6px;font-size:12px">¡Agrega productos para empezar!</p>
+    </div>
+  </div>
+  <div class="pp-cart-foot" id="pp-cart-foot" style="display:none">
+    <div class="pp-cart-total-row">
+      <span class="pp-cart-total-label">Subtotal</span>
+      <span class="pp-cart-total-val" id="pp-cart-total">$0</span>
+    </div>
+    <button class="pp-cart-checkout" id="pp-cart-checkout">
+      Ir a Pagar &nbsp;→
+    </button>
+    <p class="pp-cart-wa-hint">También puedes pedir por <a href="https://wa.me/573188682376" style="color:var(--orange);font-weight:600">WhatsApp</a></p>
+  </div>
+</aside>
+
+<!-- ═══ PAYMENT MODAL ══════════════════════════ -->
+<div class="pp-pay-overlay" id="pp-pay-overlay" role="dialog" aria-modal="true" aria-label="Portal de pago">
+  <div class="pp-pay-modal" id="pp-pay-modal">
+    <div class="pp-pay-head">
+      <h2>Finalizar Compra</h2>
+      <button class="pp-pay-close" id="pp-pay-close" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="pp-pay-progress" id="pp-pay-progress">
+      <div class="pp-pay-step-dot active" data-step="0"></div>
+      <div class="pp-pay-step-dot" data-step="1"></div>
+      <div class="pp-pay-step-dot" data-step="2"></div>
+      <div class="pp-pay-step-dot" data-step="3"></div>
+    </div>
+    <div class="pp-pay-body">
+      <!-- Step 0: Summary -->
+      <div class="pp-pay-step active" id="pay-step-0">
+        <p class="pp-pay-step-title">📋 Resumen del Pedido</p>
+        <div id="pp-pay-summary-items"></div>
+        <div class="pp-pay-summary-total">
+          <span>Total</span>
+          <span id="pp-pay-total-val">$0</span>
         </div>
-
-        <div class="pp-hero-visual pp-reveal">
-          <div class="pp-hero-img-wrap">
-            <img
-              src="https://static.wixstatic.com/media/ad000c_d3043c9522cd41239028bc3d39daf499~mv2.png/v1/fill/w_600,h_450,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ad000c_d3043c9522cd41239028bc3d39daf499~mv2.png"
-              alt="Papiros Papelería - productos destacados"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-          <div class="pp-hero-badge">
-            <span class="pp-hero-badge-num">8+</span>
-            <span class="pp-hero-badge-txt">Categorías</span>
-          </div>
-          <div class="pp-hero-float">Envíos Bogotá</div>
+        <div class="pp-pay-actions">
+          <button class="pp-pay-next" onclick="payNext()">Continuar →</button>
         </div>
       </div>
-    </section>
-
-    <div class="pp-ticker-wrap" aria-hidden="true">
-      <div class="pp-ticker-track">
-        <span>Artículos de oficina</span><span class="dot">·</span>
-        <span>Tecnología</span><span class="dot">·</span>
-        <span>Scrapbooking</span><span class="dot">·</span>
-        <span>Miscelánea</span><span class="dot">·</span>
-        <span>Papelería escolar</span><span class="dot">·</span>
-        <span>Colores y marcadores</span><span class="dot">·</span>
-        <span>Impresión</span><span class="dot">·</span>
-        <span>Accesorios</span><span class="dot">·</span>
-        <span>Artículos de oficina</span><span class="dot">·</span>
-        <span>Tecnología</span><span class="dot">·</span>
-        <span>Scrapbooking</span><span class="dot">·</span>
-        <span>Miscelánea</span><span class="dot">·</span>
-        <span>Papelería escolar</span><span class="dot">·</span>
-        <span>Colores y marcadores</span><span class="dot">·</span>
-        <span>Impresión</span><span class="dot">·</span>
-        <span>Accesorios</span><span class="dot">·</span>
+      <!-- Step 1: Shipping -->
+      <div class="pp-pay-step" id="pay-step-1">
+        <p class="pp-pay-step-title">🚚 Datos de Envío</p>
+        <div class="pp-field">
+          <label for="pay-nombre">Nombre completo</label>
+          <input type="text" id="pay-nombre" placeholder="Tu nombre">
+        </div>
+        <div class="pp-field-row">
+          <div class="pp-field">
+            <label for="pay-tel">Teléfono</label>
+            <input type="tel" id="pay-tel" placeholder="300 000 0000">
+          </div>
+          <div class="pp-field">
+            <label for="pay-ciudad">Ciudad</label>
+            <input type="text" id="pay-ciudad" placeholder="Bogotá" value="Bogotá">
+          </div>
+        </div>
+        <div class="pp-field">
+          <label for="pay-dir">Dirección</label>
+          <input type="text" id="pay-dir" placeholder="Calle / Carrera / Apto">
+        </div>
+        <div class="pp-pay-actions">
+          <button class="pp-pay-back" onclick="payBack()">← Volver</button>
+          <button class="pp-pay-next" onclick="payNext()">Continuar →</button>
+        </div>
+      </div>
+      <!-- Step 2: Payment method -->
+      <div class="pp-pay-step" id="pay-step-2">
+        <p class="pp-pay-step-title">💳 Método de Pago</p>
+        <div class="pp-pay-methods">
+          <div class="pp-pay-method" onclick="selectMethod(this,'nequi')">
+            <span class="pp-pay-method-icon">📱</span>
+            <span class="pp-pay-method-name">Nequi</span>
+          </div>
+          <div class="pp-pay-method" onclick="selectMethod(this,'daviplata')">
+            <span class="pp-pay-method-icon">💜</span>
+            <span class="pp-pay-method-name">Daviplata</span>
+          </div>
+          <div class="pp-pay-method" onclick="selectMethod(this,'pse')">
+            <span class="pp-pay-method-icon">🏦</span>
+            <span class="pp-pay-method-name">PSE</span>
+          </div>
+          <div class="pp-pay-method" onclick="selectMethod(this,'contraentrega')">
+            <span class="pp-pay-method-icon">💵</span>
+            <span class="pp-pay-method-name">Contraentrega</span>
+          </div>
+          <div class="pp-pay-method" onclick="selectMethod(this,'tarjeta')">
+            <span class="pp-pay-method-icon">💳</span>
+            <span class="pp-pay-method-name">Tarjeta</span>
+          </div>
+          <div class="pp-pay-method" onclick="selectMethod(this,'rappi')">
+            <span class="pp-pay-method-icon">🛵</span>
+            <span class="pp-pay-method-name">Rappi Pay</span>
+          </div>
+        </div>
+        <div class="pp-pay-actions">
+          <button class="pp-pay-back" onclick="payBack()">← Volver</button>
+          <button class="pp-pay-next" onclick="payConfirm()">Confirmar Pago ✓</button>
+        </div>
+      </div>
+      <!-- Step 3: Confirmation -->
+      <div class="pp-pay-step" id="pay-step-3">
+        <div class="pp-pay-success">
+          <div class="pp-pay-success-icon">✅</div>
+          <h3>¡Pedido Recibido!</h3>
+          <p>Tu pedido fue registrado. Te contactaremos al WhatsApp para confirmar y coordinar la entrega.</p>
+          <div class="pp-pay-success-order" id="pp-pay-order-num">Pedido #PP-0000</div>
+          <button class="pp-pay-success-wa" id="pp-pay-wa-btn">
+            💬 Confirmar por WhatsApp
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <section class="pp-section pp-cats" id="categorias">
-      <div class="pp-container">
-        <div class="pp-section-header pp-reveal">
-          <span class="pp-section-kicker">Explora</span>
-          <h2 class="pp-section-title">Nuestras <em>categorías</em></h2>
-          <p class="pp-section-sub">
-            Encuentra todo lo que necesitas para la oficina, el estudio y tu creatividad.
-          </p>
+<!-- ═══ HERO ══════════════════════════════════ -->
+<section class="pp-hero" id="inicio" aria-label="Inicio">
+  <div class="pp-hero-inner">
+    <div>
+      <p class="pp-hero-kicker" data-reveal>✦ Papelería · Usaquén · Bogotá D.C.</p>
+      <h1 class="pp-hero-title" data-reveal style="transition-delay:.1s">
+        Todo lo que<br><em>necesitas crear.</em>
+      </h1>
+      <p class="pp-hero-sub" data-reveal style="transition-delay:.2s">
+        Papelería, tecnología y miscelánea en Usaquén.<br>
+        Domicilios a toda Bogotá por Rappi, DiDi y Mercado Libre.
+      </p>
+      <div class="pp-hero-actions" data-reveal style="transition-delay:.3s">
+        <a href="#catalogo" class="pp-btn-primary">Ver Catálogo →</a>
+        <a href="#pp-domicilios" class="pp-btn-secondary">Pedir domicilio 🛵</a>
+      </div>
+    </div>
+    <div class="pp-hero-visual" data-reveal style="transition-delay:.2s">
+      <div class="pp-hero-grid">
+        <div class="pp-hero-tile" style="--dur:3.2s;--del:0s">🖍️</div>
+        <div class="pp-hero-tile" style="--dur:2.8s;--del:.3s">📱</div>
+        <div class="pp-hero-tile" style="--dur:3.5s;--del:.6s">🎨</div>
+        <div class="pp-hero-tile" style="--dur:3.0s;--del:.2s">📚</div>
+        <div class="pp-hero-tile" style="--dur:2.6s;--del:.5s">✂️</div>
+        <div class="pp-hero-tile" style="--dur:3.3s;--del:.1s">🖊️</div>
+        <div class="pp-hero-tile" style="--dur:2.9s;--del:.4s">🎲</div>
+        <div class="pp-hero-tile" style="--dur:3.1s;--del:.7s">🎉</div>
+        <div class="pp-hero-tile" style="--dur:2.7s;--del:.35s">📎</div>
+      </div>
+      <div class="pp-hero-badge">
+        <span class="pp-hero-badge-num">+5000</span>
+        <span class="pp-hero-badge-txt">Productos</span>
+      </div>
+      <div class="pp-hero-float">🛵 Bogotá</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TICKER ════════════════════════════════ -->
+<div class="pp-ticker-wrap" aria-hidden="true">
+  <div class="pp-ticker-track">
+    <span>✦ Artículos de Oficina</span><span>·</span>
+    <span>✦ Tecnología</span><span>·</span>
+    <span>✦ Juguetería</span><span>·</span>
+    <span>✦ Miscelánea</span><span>·</span>
+    <span>✦ Papelería Escolar</span><span>·</span>
+    <span>✦ Colores &amp; Arte</span><span>·</span>
+    <span>✦ Domicilios Bogotá</span><span>·</span>
+    <span>✦ Scrapbooking</span><span>·</span>
+    <span>✦ Artículos de Oficina</span><span>·</span>
+    <span>✦ Tecnología</span><span>·</span>
+    <span>✦ Juguetería</span><span>·</span>
+    <span>✦ Miscelánea</span><span>·</span>
+    <span>✦ Papelería Escolar</span><span>·</span>
+    <span>✦ Colores &amp; Arte</span><span>·</span>
+    <span>✦ Domicilios Bogotá</span><span>·</span>
+    <span>✦ Scrapbooking</span><span>·</span>
+  </div>
+</div>
+
+<!-- ═══ DELIVERY PLATFORMS ════════════════════ -->
+<section class="pp-delivery" id="pp-domicilios" aria-label="Plataformas de domicilio">
+  <div class="pp-delivery-inner">
+    <div class="pp-delivery-header" data-reveal>
+      <span class="pp-delivery-kicker">✦ Domicilios</span>
+      <h2 class="pp-delivery-title">Lleva Papiros<br>hasta tu <em>puerta</em></h2>
+      <p class="pp-delivery-sub">Pide desde tu plataforma favorita — entregamos a toda Bogotá.</p>
+    </div>
+    <div class="pp-platform-grid">
+      <div class="pp-platform-card" data-reveal>
+        <div class="pp-platform-icon">🛵</div>
+        <div>
+          <p class="pp-platform-name">Rappi</p>
+          <p class="pp-platform-tag">Entrega en minutos</p>
         </div>
-
-        <div class="pp-cats-grid">
-          <a href="#productos" class="pp-cat-card pp-reveal">
-            <div class="pp-cat-icon c1">📎</div>
-            <span class="pp-cat-name">Artículos de oficina</span>
-            <span class="pp-cat-count">Archivos, papeles y más</span>
-          </a>
-          <a href="#productos" class="pp-cat-card pp-reveal">
-            <div class="pp-cat-icon c2">📱</div>
-            <span class="pp-cat-name">Tecnología</span>
-            <span class="pp-cat-count">Accesorios y periféricos</span>
-          </a>
-          <a href="#productos" class="pp-cat-card pp-reveal">
-            <div class="pp-cat-icon c3">✂️</div>
-            <span class="pp-cat-name">Scrapbooking</span>
-            <span class="pp-cat-count">Creatividad y manualidades</span>
-          </a>
-          <a href="#productos" class="pp-cat-card pp-reveal">
-            <div class="pp-cat-icon c4">🎨</div>
-            <span class="pp-cat-name">Colores y arte</span>
-            <span class="pp-cat-count">Marcadores, pinturas y más</span>
-          </a>
-          <a href="#productos" class="pp-cat-card pp-reveal">
-            <div class="pp-cat-icon c5">🖨️</div>
-            <span class="pp-cat-name">Impresión</span>
-            <span class="pp-cat-count">Tintas y consumibles</span>
-          </a>
-          <a href="#productos" class="pp-cat-card pp-reveal">
-            <div class="pp-cat-icon c6">📦</div>
-            <span class="pp-cat-name">Miscelánea</span>
-            <span class="pp-cat-count">Productos sorpresa</span>
-          </a>
+        <p class="pp-platform-desc">Pide tus artículos en minutos. Seguimiento en tiempo real y pago seguro dentro de la app.</p>
+        <a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener noreferrer" class="pp-platform-btn">
+          Abrir en Rappi →
+        </a>
+      </div>
+      <div class="pp-platform-card" data-reveal style="transition-delay:.1s">
+        <div class="pp-platform-icon">🚗</div>
+        <div>
+          <p class="pp-platform-name">DiDi Food</p>
+          <p class="pp-platform-tag">Pide desde la app</p>
+        </div>
+        <p class="pp-platform-desc">Ordena desde DiDi Food y recibe tus productos de papelería cómodamente en casa u oficina.</p>
+        <a href="https://didi-food.com/es-CO/store/pc/order" target="_blank" rel="noopener noreferrer" class="pp-platform-btn">
+          Abrir en DiDi →
+        </a>
+      </div>
+      <div class="pp-platform-card" data-reveal style="transition-delay:.2s">
+        <div class="pp-platform-icon">🛒</div>
+        <div>
+          <p class="pp-platform-name">Mercado Libre</p>
+          <p class="pp-platform-tag">Compra online segura</p>
+        </div>
+        <p class="pp-platform-desc">Compra con garantía Mercado Libre. Paga con tarjeta, efectivo o PSE y recibe en tu puerta.</p>
+        <a href="https://www.mercadolibre.com.co/publicaciones#label=active" target="_blank" rel="noopener noreferrer" class="pp-platform-btn">
+          Ver en MercadoLibre →
+        </a>
+      </div>
+    </div>
+    <div class="pp-delivery-steps" data-reveal>
+      <p class="pp-delivery-steps-title">¿Cómo pedir tu <em>domicilio</em>?</p>
+      <div class="pp-steps-grid">
+        <div class="pp-step">
+          <div class="pp-step-num">1</div>
+          <div class="pp-step-icon">📱</div>
+          <p class="pp-step-txt">Abre <strong>Rappi, DiDi Food</strong> o Mercado Libre en tu celular o computador.</p>
+        </div>
+        <div class="pp-step">
+          <div class="pp-step-num">2</div>
+          <div class="pp-step-icon">🔍</div>
+          <p class="pp-step-txt">Busca <strong>Papiros Papelería</strong> o haz clic en los botones de arriba.</p>
+        </div>
+        <div class="pp-step">
+          <div class="pp-step-num">3</div>
+          <div class="pp-step-icon">🛒</div>
+          <p class="pp-step-txt">Elige tus productos, agrégalos al carrito y <strong>confirma tu dirección</strong>.</p>
+        </div>
+        <div class="pp-step">
+          <div class="pp-step-num">4</div>
+          <div class="pp-step-icon">🎉</div>
+          <p class="pp-step-txt"><strong>¡Listo!</strong> Tu pedido llega directo a tu puerta. Rastrear en tiempo real.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="pp-section pp-products" id="productos">
-      <div class="pp-container">
-        <div class="pp-products-header pp-reveal">
+<!-- ═══ CATEGORIES ════════════════════════════ -->
+<section class="pp-section pp-cats" aria-label="Categorías">
+  <div class="pp-container">
+    <div data-reveal>
+      <span class="pp-kicker">✦ Explora</span>
+      <h2 class="pp-title">Nuestras <em>categorías</em></h2>
+      <p class="pp-sub">Encuentra todo lo que necesitas para la oficina, el estudio y tu creatividad.</p>
+    </div>
+    <div class="pp-cats-grid" role="list" aria-label="Filtrar por categoría">
+      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('all')" data-filter="all">
+        <div class="pp-cat-icon ic1">🏪</div>
+        <span class="pp-cat-name">Todos</span>
+      </div>
+      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('papeleria')" data-filter="papeleria">
+        <div class="pp-cat-icon ic2">📎</div>
+        <span class="pp-cat-name">Papelería</span>
+      </div>
+      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('tecnologia')" data-filter="tecnologia">
+        <div class="pp-cat-icon ic6">📱</div>
+        <span class="pp-cat-name">Tecnología</span>
+      </div>
+      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('jugueteria')" data-filter="jugueteria">
+        <div class="pp-cat-icon ic3">🎲</div>
+        <span class="pp-cat-name">Juguetería</span>
+      </div>
+      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('miscelanea')" data-filter="miscelanea">
+        <div class="pp-cat-icon ic4">🎨</div>
+        <span class="pp-cat-name">Miscelánea</span>
+      </div>
+      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('fiesta')" data-filter="fiesta">
+        <div class="pp-cat-icon ic7">🎉</div>
+        <span class="pp-cat-name">Fiesta</span>
+      </div>
+      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('libros')" data-filter="libros">
+        <div class="pp-cat-icon ic8">📚</div>
+        <span class="pp-cat-name">Libros</span>
+      </div>
+      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('dulceria')" data-filter="dulceria">
+        <div class="pp-cat-icon ic5">🍬</div>
+        <span class="pp-cat-name">Dulcería</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CATALOG ═══════════════════════════════ -->
+<section class="pp-section pp-catalog" id="catalogo" aria-label="Catálogo de productos">
+  <div class="pp-container">
+    <div class="pp-catalog-header" data-reveal>
+      <div>
+        <span class="pp-kicker">✦ Inventario</span>
+        <h2 class="pp-title">Catálogo de <em>Productos</em></h2>
+      </div>
+      <a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;color:var(--orange);border-bottom:1.5px solid currentColor;padding-bottom:1px">Ver tienda completa →</a>
+    </div>
+    <div class="pp-filter-wrap" role="group" aria-label="Filtros de categoría">
+      <button class="pp-filter-pill active" onclick="filterCatalog('all')" data-pill="all">🏪 Todos</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('papeleria')" data-pill="papeleria">📎 Papelería</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('tecnologia')" data-pill="tecnologia">📱 Tecnología</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('jugueteria')" data-pill="jugueteria">🎲 Juguetería</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('miscelanea')" data-pill="miscelanea">🎨 Miscelánea</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('fiesta')" data-pill="fiesta">🎉 Fiesta</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('libros')" data-pill="libros">📚 Libros</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('dulceria')" data-pill="dulceria">🍬 Dulcería</button>
+    </div>
+    <div class="pp-prods-grid" id="pp-prods-grid" aria-live="polite">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="pp-catalog-cta" data-reveal>
+      <a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener" class="pp-btn-orange">
+        Ver todos los productos en Rappi &nbsp;→
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INSTAGRAM ═════════════════════════════ -->
+<section class="pp-insta pp-section" aria-label="Instagram">
+  <div class="pp-insta-inner" data-reveal>
+    <span class="pp-kicker" style="display:block;text-align:center">✦ Síguenos</span>
+    <h2 class="pp-insta-title">Estamos en <em>Instagram</em></h2>
+    <p class="pp-insta-sub">Conoce nuestros productos, promociones y novedades. ¡Únete a nuestra comunidad!</p>
+    <div class="pp-insta-grid" aria-hidden="true">
+      <div class="pp-insta-tile"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&h=300&fit=crop" alt="Arte y papelería" loading="lazy" onerror="this.parentNode.innerHTML='<div class=pp-insta-tile-ph>🎨</div>'"></div>
+      <div class="pp-insta-tile"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300&h=300&fit=crop" alt="Acuarelas" loading="lazy" onerror="this.parentNode.innerHTML='<div class=pp-insta-tile-ph>🖌️</div>'"></div>
+      <div class="pp-insta-tile"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop" alt="Tecnología" loading="lazy" onerror="this.parentNode.innerHTML='<div class=pp-insta-tile-ph>🎧</div>'"></div>
+      <div class="pp-insta-tile"><img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=300&h=300&fit=crop" alt="Juguetes" loading="lazy" onerror="this.parentNode.innerHTML='<div class=pp-insta-tile-ph>♟️</div>'"></div>
+      <div class="pp-insta-tile"><img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=300&fit=crop" alt="Agendas" loading="lazy" onerror="this.parentNode.innerHTML='<div class=pp-insta-tile-ph>📓</div>'"></div>
+      <div class="pp-insta-tile"><img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=300&h=300&fit=crop" alt="Papelería" loading="lazy" onerror="this.parentNode.innerHTML='<div class=pp-insta-tile-ph>✏️</div>'"></div>
+    </div>
+    <div class="pp-insta-btns">
+      <a href="https://www.instagram.com/papirospapeleria" target="_blank" rel="noopener" class="pp-btn-ig">
+        📷 Ver en Instagram
+      </a>
+      <a href="https://wa.me/573188682376" target="_blank" rel="noopener" class="pp-btn-outline">
+        💬 Escribirnos
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══════════════════════════════ -->
+<section class="pp-section pp-contact" id="pp-contacto" aria-label="Contacto y ubicación">
+  <div class="pp-contact-inner">
+    <div data-reveal>
+      <span class="pp-kicker">✦ Visítanos</span>
+      <h2 class="pp-title">¿Dónde <em>encontrarnos?</em></h2>
+      <p class="pp-sub">Estamos en Usaquén, Bogotá. También puedes escribirnos o pedir domicilio.</p>
+      <div class="pp-contact-info" style="margin-top:28px">
+        <div class="pp-contact-item">
+          <div class="pp-contact-item-icon">📍</div>
           <div>
-            <span class="pp-section-kicker">Colección</span>
-            <h2 class="pp-section-title">Nuestros <em>productos</em></h2>
-          </div>
-          <a
-            href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
-            class="pp-section-link"
-            target="_blank"
-            rel="noopener"
-          >
-            Ver todo →
-          </a>
-        </div>
-
-        <div class="pp-products-grid">
-          <a
-            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/colores-faber-castell-x-24"
-            class="pp-product-card pp-reveal"
-          >
-            <div class="pp-product-img">
-              <img
-                src="https://static.wixstatic.com/media/ad000c_593b2c00dd834e218290476e388a8c56~mv2.png/v1/fill/w_600,h_450,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ad000c_593b2c00dd834e218290476e388a8c56~mv2.png"
-                alt="Colores Faber-Castell x24"
-                loading="lazy"
-              />
-              <span class="pp-badge pp-badge-new">Nuevo</span>
-            </div>
-            <div class="pp-product-body">
-              <span class="pp-product-name">Colores Faber-Castell x 24</span>
-              <div class="pp-product-price">$8.000 COP</div>
-              <span class="pp-product-action">Ver producto →</span>
-            </div>
-          </a>
-
-          <a
-            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/resaltadores-color-pastel-pague-6x5"
-            class="pp-product-card pp-reveal"
-          >
-            <div class="pp-product-img">
-              <img
-                src="https://static.wixstatic.com/media/ad000c_28577a2288574d2a8d93aada2afd0a26~mv2.png/v1/fill/w_600,h_450,al_c,q_85,enc_avif,quality_auto/ad000c_28577a2288574d2a8d93aada2afd0a26~mv2.png"
-                alt="Resaltadores color pastel"
-                loading="lazy"
-              />
-              <span class="pp-badge pp-badge-off">Promo 6x5</span>
-            </div>
-            <div class="pp-product-body">
-              <span class="pp-product-name">Resaltadores color pastel</span>
-              <div class="pp-product-price">$40.000 COP</div>
-              <span class="pp-product-action">Ver producto →</span>
-            </div>
-          </a>
-
-          <a
-            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/aud%C3%ADfonos-de-diadema-nia"
-            class="pp-product-card pp-reveal"
-          >
-            <div class="pp-product-img">
-              <img
-                src="https://static.wixstatic.com/media/ad000c_0d292e6874b549e884d24f3eb45c52fa~mv2.png/v1/fill/w_600,h_552,al_c,q_85,enc_avif,quality_auto/ad000c_0d292e6874b549e884d24f3eb45c52fa~mv2.png"
-                alt="Audífonos de diadema NIA"
-                loading="lazy"
-              />
-            </div>
-            <div class="pp-product-body">
-              <span class="pp-product-name">Audífonos de diadema NIA</span>
-              <div class="pp-product-price">$15.000 COP</div>
-              <span class="pp-product-action">Ver producto →</span>
-            </div>
-          </a>
-
-          <a
-            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/set-de-walkie-talkie"
-            class="pp-product-card pp-reveal"
-          >
-            <div class="pp-product-img">
-              <img
-                src="https://static.wixstatic.com/media/ad000c_70dcee54ea3e45bb8d2b6e92988b1ba8~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ad000c_70dcee54ea3e45bb8d2b6e92988b1ba8~mv2.jpg"
-                alt="Set de walkie-talkie"
-                loading="lazy"
-              />
-              <span class="pp-badge pp-badge-top">Más vendido</span>
-            </div>
-            <div class="pp-product-body">
-              <span class="pp-product-name">Set de walkie-talkie</span>
-              <div class="pp-product-price">$10.000 COP</div>
-              <span class="pp-product-action">Ver producto →</span>
-            </div>
-          </a>
-
-          <a
-            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/tinta-original-para-impresora-epson"
-            class="pp-product-card pp-reveal"
-          >
-            <div class="pp-product-img">
-              <img
-                src="https://static.wixstatic.com/media/ad000c_c93debb9aff7451b809e1aba36353768~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/ad000c_c93debb9aff7451b809e1aba36353768~mv2.jpg"
-                alt="Tinta original EPSON"
-                loading="lazy"
-              />
-            </div>
-            <div class="pp-product-body">
-              <span class="pp-product-name">Tinta original para impresora EPSON</span>
-              <div class="pp-product-price">$85.000 COP</div>
-              <span class="pp-product-action">Ver producto →</span>
-            </div>
-          </a>
-
-          <a
-            href="https://papirospapeleria.wixsite.com/my-site-1/product-page/dispensador-de-cinta-tama%C3%B1o-48-mm-gruesa"
-            class="pp-product-card pp-reveal"
-          >
-            <div class="pp-product-img">
-              <img
-                src="https://static.wixstatic.com/media/ad000c_c93debb9aff7471b809e1aba36353768~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/ad000c_c93debb9aff7471b809e1aba36353768~mv2.jpg"
-                alt="Dispensador de cinta 48 mm"
-                loading="lazy"
-              />
-            </div>
-            <div class="pp-product-body">
-              <span class="pp-product-name">Dispensador de cinta 48 mm</span>
-              <div class="pp-product-price">$25.000 COP</div>
-              <span class="pp-product-action">Ver producto →</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="pp-center-cta pp-reveal">
-          <a
-            href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
-            class="pp-btn-primary"
-            target="_blank"
-            rel="noopener"
-          >
-            Ver todos los productos →
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="pp-deals" id="ofertas">
-      <div class="pp-deals-inner">
-        <div class="pp-reveal">
-          <span class="pp-deals-kicker">Oferta exclusiva</span>
-          <h2 class="pp-deals-title">Descuentos <em>imperdibles</em> en Rappi</h2>
-          <p class="pp-deals-sub">
-            Descubre las promociones exclusivas que tenemos para ti. Aprovecha esta oportunidad única para adquirir
-            productos de calidad a precios increíbles.
-          </p>
-          <div class="pp-deals-actions">
-            <a
-              href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc"
-              class="pp-btn-rappi"
-              target="_blank"
-              rel="noopener"
-            >
-              Pedir en Rappi
-            </a>
-            <a
-              href="https://papirospapeleria.wixsite.com/my-site-1/category/all-products"
-              class="pp-btn-outline"
-              target="_blank"
-              rel="noopener"
-            >
-              Ver tienda completa
-            </a>
+            <p class="pp-contact-item-label">Dirección</p>
+            <p class="pp-contact-item-value">Av 19 #154-55, Usaquén<br>Bogotá D.C., Colombia</p>
           </div>
         </div>
-
-        <div class="pp-deals-visual pp-reveal">
-          <div class="pp-deals-stat">
-            <span class="pp-deals-stat-num">%</span>
-            <span class="pp-deals-stat-lbl">Descuentos activos</span>
+        <div class="pp-contact-item">
+          <div class="pp-contact-item-icon">💬</div>
+          <div>
+            <p class="pp-contact-item-label">WhatsApp / Teléfono</p>
+            <p class="pp-contact-item-value"><a href="https://wa.me/573188682376">318 868 2376</a></p>
           </div>
-          <div class="pp-deals-stat">
-            <span class="pp-deals-stat-num">🛵</span>
-            <span class="pp-deals-stat-lbl">Envío rápido</span>
+        </div>
+        <div class="pp-contact-item">
+          <div class="pp-contact-item-icon">✉️</div>
+          <div>
+            <p class="pp-contact-item-label">Correo electrónico</p>
+            <p class="pp-contact-item-value"><a href="mailto:papirospapeleria@gmail.com">papirospapeleria@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="pp-contact-item">
+          <div class="pp-contact-item-icon">🛵</div>
+          <div>
+            <p class="pp-contact-item-label">Domicilios</p>
+            <p class="pp-contact-item-value">
+              <a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener">Rappi</a> ·
+              <a href="https://didi-food.com/es-CO/store/pc/order" target="_blank" rel="noopener">DiDi Food</a> ·
+              <a href="https://www.mercadolibre.com.co/publicaciones#label=active" target="_blank" rel="noopener">Mercado Libre</a>
+            </p>
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="pp-section pp-contact" id="contacto">
-      <div class="pp-container">
-        <div class="pp-section-header pp-reveal">
-          <span class="pp-section-kicker">Contacto</span>
-          <h2 class="pp-section-title">Listo para <em>crecer</em> contigo</h2>
-          <p class="pp-section-sub">
-            Esta base ya está adaptada al repo y lista para seguir evolucionando con WhatsApp, formulario o Supabase.
-          </p>
+      <div class="pp-hours">
+        <p class="pp-hours-title">Horario de atención</p>
+        <div class="pp-hours-row">
+          <span class="pp-hours-day">Lunes – Viernes</span>
+          <span class="pp-hours-time">8:00 am – 7:00 pm</span>
+        </div>
+        <div class="pp-hours-row">
+          <span class="pp-hours-day">Sábados</span>
+          <span class="pp-hours-time">9:00 am – 5:00 pm</span>
+        </div>
+        <div class="pp-hours-row">
+          <span class="pp-hours-day">Domingos y festivos</span>
+          <span class="pp-hours-time">Cerrado</span>
         </div>
       </div>
-    </section>
+      <div class="pp-map">
+        <iframe
+          src="https://maps.google.com/maps?q=Av+19+%23154-55+Usaquen+Bogota+Colombia&output=embed&hl=es"
+          title="Ubicación Papiros Papelería"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          aria-label="Mapa de ubicación">
+        </iframe>
+      </div>
+    </div>
+    <div class="pp-form-wrap" data-reveal style="transition-delay:.15s">
+      <h3 class="pp-form-title">Escríbenos <em>hoy</em></h3>
+      <p class="pp-form-sub">Te respondemos lo antes posible.</p>
+      <form class="pp-form" id="pp-contact-form" novalidate aria-label="Formulario de contacto">
+        <div class="pp-form-row">
+          <div class="pp-field">
+            <label for="pp-nombre">Nombre</label>
+            <input type="text" id="pp-nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="pp-field">
+            <label for="pp-telefono">Teléfono</label>
+            <input type="tel" id="pp-telefono" name="telefono" placeholder="300 000 0000">
+          </div>
+        </div>
+        <div class="pp-field">
+          <label for="pp-email">Correo electrónico</label>
+          <input type="email" id="pp-email" name="email" placeholder="correo@ejemplo.com" required>
+        </div>
+        <div class="pp-field">
+          <label for="pp-asunto">¿En qué te podemos ayudar?</label>
+          <select id="pp-asunto" name="asunto">
+            <option value="">Selecciona un tema…</option>
+            <option>Consulta de productos</option>
+            <option>Domicilios y envíos</option>
+            <option>Precios y cotizaciones</option>
+            <option>Pedido personalizado</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="pp-field">
+          <label for="pp-mensaje">Mensaje</label>
+          <textarea id="pp-mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte…" rows="4" style="resize:vertical;min-height:100px;width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s" required></textarea>
+        </div>
+        <button type="submit" class="pp-form-submit">Enviar mensaje ✉️</button>
+        <p class="pp-form-note">O escríbenos por <a href="https://wa.me/573188682376" target="_blank" rel="noopener">WhatsApp al 318 868 2376</a></p>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <script>
-      (function () {
-        var nav = document.getElementById("pp-nav");
-        var btn = document.getElementById("pp-hamburger");
-        var menu = document.getElementById("pp-mobile-menu");
-        var reveals = document.querySelectorAll(".pp-reveal");
+<!-- ═══ FOOTER ════════════════════════════════ -->
+<footer class="pp-footer" aria-label="Pie de página">
+  <div class="pp-footer-inner">
+    <div class="pp-footer-top">
+      <div>
+        <p class="pp-footer-brand-name">PAPIROS</p>
+        <p class="pp-footer-brand-sub">Papelería</p>
+        <p class="pp-footer-desc">Tu papelería de confianza en Usaquén, Bogotá. Artículos de oficina, tecnología, scrapbooking y más.</p>
+        <div class="pp-footer-social">
+          <a href="https://www.instagram.com/papirospapeleria" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+          <a href="https://wa.me/573188682376" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+          <a href="mailto:papirospapeleria@gmail.com" aria-label="Correo">✉️</a>
+          <a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener" aria-label="Rappi">🛵</a>
+        </div>
+      </div>
+      <div class="pp-footer-col">
+        <p class="pp-footer-col-title">Tienda</p>
+        <ul>
+          <li><a href="#catalogo">Todos los productos</a></li>
+          <li><a href="#catalogo" onclick="filterCatalog('papeleria')">Papelería</a></li>
+          <li><a href="#catalogo" onclick="filterCatalog('tecnologia')">Tecnología</a></li>
+          <li><a href="#catalogo" onclick="filterCatalog('jugueteria')">Juguetería</a></li>
+          <li><a href="#catalogo" onclick="filterCatalog('miscelanea')">Miscelánea</a></li>
+        </ul>
+      </div>
+      <div class="pp-footer-col">
+        <p class="pp-footer-col-title">Domicilios</p>
+        <ul>
+          <li><a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener">Rappi</a></li>
+          <li><a href="https://didi-food.com/es-CO/store/pc/order" target="_blank" rel="noopener">DiDi Food</a></li>
+          <li><a href="https://www.mercadolibre.com.co/publicaciones#label=active" target="_blank" rel="noopener">Mercado Libre</a></li>
+          <li><a href="https://wa.me/573188682376" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div class="pp-footer-col">
+        <p class="pp-footer-col-title">Contacto</p>
+        <ul>
+          <li><a href="https://maps.google.com/?q=Av+19+154-55+Usaquen+Bogota" target="_blank" rel="noopener">Av 19 #154-55, Usaquén</a></li>
+          <li><a href="https://wa.me/573188682376">318 868 2376</a></li>
+          <li><a href="mailto:papirospapeleria@gmail.com">papirospapeleria@gmail.com</a></li>
+          <li><a href="#pp-contacto">Formulario</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pp-footer-bottom">
+      <p class="pp-footer-copy">© 2026 Papiros Papelería — Todos los derechos reservados.</p>
+      <div class="pp-footer-links">
+        <a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener">🛵 Rappi</a>
+        <a href="https://didi-food.com/es-CO/store/pc/order" target="_blank" rel="noopener">🚗 DiDi</a>
+        <a href="https://www.mercadolibre.com.co/publicaciones#label=active" target="_blank" rel="noopener">🛒 MercadoLibre</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-        window.addEventListener(
-          "scroll",
-          function () {
-            nav.classList.toggle("scrolled", window.scrollY > 20);
-          },
-          { passive: true }
-        );
+<!-- ═══ JAVASCRIPT ════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
 
-        btn.addEventListener("click", function () {
-          menu.classList.toggle("open");
-        });
+  /* ── Helpers ── */
+  var $ = function(sel, scope) { return (scope || document).querySelector(sel); };
+  var $$ = function(sel, scope) { return Array.from((scope || document).querySelectorAll(sel)); };
+  function escHTML(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function formatCOP(n) {
+    return '$' + Number(n).toLocaleString('es-CO');
+  }
+  function safe(fn, name) {
+    try { fn(); } catch(e) { console.warn('[' + name + ']', e); }
+  }
 
-        var io = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                io.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.05 }
-        );
+  /* ── Products Data ── */
+  var IMGS = {
+    watercolor: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=300&fit=crop',
+    notebook:   'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=300&fit=crop',
+    agenda:     'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=400&h=300&fit=crop',
+    stationery: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=300&fit=crop',
+    art:        'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=300&fit=crop',
+    spray:      'https://images.unsplash.com/photo-1561144257-e32e8756f695?w=400&h=300&fit=crop',
+    clay:       'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=300&fit=crop',
+    earbuds:    'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=300&fit=crop',
+    headphones: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop',
+    speaker:    'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop',
+    ringlight:  'https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=400&h=300&fit=crop',
+    chess:      'https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=400&h=300&fit=crop',
+    bow:        'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=300&fit=crop',
+    piggybank:  'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop',
+    party:      'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=300&fit=crop',
+    books:      'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=300&fit=crop',
+    cotton:     'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&h=300&fit=crop'
+  };
 
-        reveals.forEach(function (el) {
-          io.observe(el);
-        });
+  var PRODUCTS = [
+    /* ── PAPELERÍA ── */
+    {id:'p01',cat:'papeleria',name:'Acuarela X 12 colores + pincel M&G',price:12500,img:IMGS.watercolor,emoji:'🎨'},
+    {id:'p02',cat:'papeleria',name:'Acuarela maries No.e1325 pequeña x 12',price:21000,img:IMGS.watercolor,emoji:'🎨'},
+    {id:'p03',cat:'papeleria',name:'Acuarela metalizada x12 colores',price:15000,img:IMGS.watercolor,emoji:'✨'},
+    {id:'p04',cat:'papeleria',name:'Agenda argollada con notas adhesivas y esfero',price:10000,img:IMGS.notebook,emoji:'📓'},
+    {id:'p05',cat:'papeleria',name:'Agenda permanente 15 x 21 cms',price:39000,img:IMGS.agenda,emoji:'📅'},
+    {id:'p06',cat:'papeleria',name:'Agenda planeador lukis con post it',price:59000,img:IMGS.agenda,emoji:'🗓️'},
+    {id:'p07',cat:'papeleria',name:'Agenda tipo diario con candado',price:28000,img:IMGS.notebook,emoji:'🔒'},
+    {id:'p08',cat:'papeleria',name:'Archivador fuelle carta 13 bolsillos',price:27000,img:IMGS.stationery,emoji:'📂'},
+    {id:'p09',cat:'papeleria',name:'Archivador Carta 13 Bolsillos Klipp',price:27000,img:IMGS.stationery,emoji:'📁'},
+    {id:'p10',cat:'papeleria',name:'Arcilla horneable roja kilo',price:8000,img:IMGS.clay,emoji:'🏺'},
+    {id:'p11',cat:'papeleria',name:'Alambre dulce rollo',price:12000,img:IMGS.art,emoji:'🌀'},
+    {id:'p12',cat:'papeleria',name:'Aerosol colores surtidos',price:13000,img:IMGS.spray,emoji:'🎨'},
+    {id:'p13',cat:'papeleria',name:'Acetato pliego calibre 4',price:10000,img:IMGS.stationery,emoji:'📄'},
+    {id:'p14',cat:'papeleria',name:'Afilaminas 2mm',price:2500,img:IMGS.stationery,emoji:'✏️'},
+    {id:'p15',cat:'papeleria',name:'Almohadilla dactilar prevent security',price:11000,img:IMGS.stationery,emoji:'🖊️'},
+    {id:'p16',cat:'papeleria',name:'Aceite de linaza franco 60cm',price:8000,img:IMGS.art,emoji:'🖌️'},
+    /* ── TECNOLOGÍA ── */
+    {id:'t01',cat:'tecnologia',name:'Audífono bluetooth (Wireless Earbuds) OCZU',price:78000,img:IMGS.earbuds,emoji:'🎧'},
+    {id:'t02',cat:'tecnologia',name:'Audifono Bt Diadema Tipo Airpods Max 1',price:120000,img:IMGS.headphones,emoji:'🎧'},
+    {id:'t03',cat:'tecnologia',name:'Audifono bluetooth y60',price:49000,img:IMGS.headphones,emoji:'🎧'},
+    {id:'t04',cat:'tecnologia',name:'Audifono awm200',price:10000,img:IMGS.earbuds,emoji:'🎵'},
+    {id:'t05',cat:'tecnologia',name:'Adaptador 1 puerto USB 3.4 amperios speed',price:18000,img:IMGS.stationery,emoji:'🔌'},
+    {id:'t06',cat:'tecnologia',name:'Adaptador Toma Corriente Europeo Universal',price:20000,img:IMGS.stationery,emoji:'🔌'},
+    {id:'t07',cat:'tecnologia',name:'Aro de luz 33 cms varios tonos',price:159000,img:IMGS.ringlight,emoji:'💡'},
+    {id:'t08',cat:'tecnologia',name:'Altavoz Multifunción USB',price:79000,img:IMGS.speaker,emoji:'🔊'},
+    /* ── JUGUETERÍA ── */
+    {id:'j01',cat:'jugueteria',name:'Ajedrez en caja de madera',price:60000,img:IMGS.chess,emoji:'♟️'},
+    {id:'j02',cat:'jugueteria',name:'Ajedrez grande magnetico chess',price:54000,img:IMGS.chess,emoji:'♟️'},
+    {id:'j03',cat:'jugueteria',name:'Ajedrez mini magnetico',price:6000,img:IMGS.chess,emoji:'♟️'},
+    {id:'j04',cat:'jugueteria',name:'Arco crossbow ref 218-6D',price:80000,img:IMGS.bow,emoji:'🏹'},
+    {id:'j05',cat:'jugueteria',name:'Arco lanza dardos ref JH1009',price:50000,img:IMGS.bow,emoji:'🎯'},
+    {id:'j06',cat:'jugueteria',name:'Arcilla de nube',price:25000,img:IMGS.clay,emoji:'☁️'},
+    {id:'j07',cat:'jugueteria',name:'Armotodo gigante x 56 piezas',price:55000,img:IMGS.art,emoji:'🧩'},
+    /* ── MISCELÁNEA ── */
+    {id:'m01',cat:'miscelanea',name:'Aspiradora de escritorio',price:34000,img:IMGS.stationery,emoji:'🌀'},
+    {id:'m02',cat:'miscelanea',name:'Arete topo economico',price:2000,img:IMGS.stationery,emoji:'💎'},
+    {id:'m03',cat:'miscelanea',name:'Alcancia pequeña carton',price:2000,img:IMGS.piggybank,emoji:'🐷'},
+    {id:'m04',cat:'miscelanea',name:'Algodon higietex 15gr',price:3000,img:IMGS.cotton,emoji:'🌿'},
+    {id:'m05',cat:'miscelanea',name:'Aplique en silicona figura navidad',price:12000,img:IMGS.stationery,emoji:'⭐'},
+    {id:'m06',cat:'miscelanea',name:'Armonica En Madera 13 CM',price:6000,img:IMGS.stationery,emoji:'🎵'},
+    /* ── FIESTA ── */
+    {id:'f01',cat:'fiesta',name:'Antifaz',price:5000,img:IMGS.party,emoji:'🎭'},
+    {id:'f02',cat:'fiesta',name:'Atril plegable 1.20',price:100000,img:IMGS.party,emoji:'🎪'},
+    /* ── LIBROS ── */
+    {id:'l01',cat:'libros',name:'Aprendiendo con Disney Frozen II',price:10000,img:IMGS.books,emoji:'📖'},
+    /* ── DULCERÍA ── */
+    {id:'d01',cat:'dulceria',name:'Dulces variados x paquete',price:5000,img:IMGS.stationery,emoji:'🍬'},
+    {id:'d02',cat:'dulceria',name:'Chocolatinas surtidas x paquete',price:3000,img:IMGS.stationery,emoji:'🍫'}
+  ];
 
-        setTimeout(function () {
-          reveals.forEach(function (el) {
-            el.classList.add("visible");
-          });
-        }, 6000);
+  /* ── Cart State ── */
+  var cart = [];
+  try {
+    var saved = localStorage.getItem('pp_cart');
+    if (saved) cart = JSON.parse(saved);
+  } catch(e) {}
 
-        function notifyHeight() {
-          if (window.parent !== window) {
-            window.parent.postMessage(
-              { action: "pp-height", height: document.documentElement.scrollHeight },
-              "*"
-            );
-          }
-        }
+  function saveCart() {
+    try { localStorage.setItem('pp_cart', JSON.stringify(cart)); } catch(e) {}
+  }
 
-        window.addEventListener("load", notifyHeight);
-        window.addEventListener("resize", notifyHeight);
-      })();
-    </script>
-  </body>
+  function getCartItem(id) {
+    return cart.find(function(i) { return i.id === id; });
+  }
+
+  function addToCart(id) {
+    var prod = PRODUCTS.find(function(p) { return p.id === id; });
+    if (!prod) return;
+    var item = getCartItem(id);
+    if (item) {
+      item.qty++;
+    } else {
+      cart.push({id: id, qty: 1});
+    }
+    saveCart();
+    updateCartUI();
+    animateBadge();
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(function(i) { return i.id !== id; });
+    saveCart();
+    updateCartUI();
+  }
+
+  function changeQty(id, delta) {
+    var item = getCartItem(id);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) removeFromCart(id);
+    else { saveCart(); updateCartUI(); }
+  }
+
+  function getCartTotal() {
+    return cart.reduce(function(sum, item) {
+      var prod = PRODUCTS.find(function(p) { return p.id === item.id; });
+      return sum + (prod ? prod.price * item.qty : 0);
+    }, 0);
+  }
+
+  function getCartCount() {
+    return cart.reduce(function(sum, item) { return sum + item.qty; }, 0);
+  }
+
+  function updateCartUI() {
+    var count = getCartCount();
+    var badge = $('#pp-cart-badge');
+    if (badge) {
+      badge.textContent = count;
+      badge.classList.toggle('visible', count > 0);
+    }
+    renderCartItems();
+    var foot = $('#pp-cart-foot');
+    var totalEl = $('#pp-cart-total');
+    if (foot) foot.style.display = cart.length ? 'block' : 'none';
+    if (totalEl) totalEl.textContent = formatCOP(getCartTotal());
+    var empty = $('#pp-cart-empty');
+    if (empty) empty.style.display = cart.length ? 'none' : 'block';
+  }
+
+  function renderCartItems() {
+    var container = $('#pp-cart-items');
+    if (!container) return;
+    var existing = $$('.pp-cart-item', container);
+    existing.forEach(function(el) { el.remove(); });
+    cart.forEach(function(item) {
+      var prod = PRODUCTS.find(function(p) { return p.id === item.id; });
+      if (!prod) return;
+      var div = document.createElement('div');
+      div.className = 'pp-cart-item';
+      div.dataset.itemId = item.id;
+      div.innerHTML =
+        '<div class="pp-cart-item-img">' +
+          '<img src="' + escHTML(prod.img) + '" alt="' + escHTML(prod.name) + '" loading="lazy" onerror="this.parentNode.innerHTML=\'<span style=font-size:24px>' + prod.emoji + '</span>\'">' +
+        '</div>' +
+        '<div class="pp-cart-item-info">' +
+          '<p class="pp-cart-item-name">' + escHTML(prod.name) + '</p>' +
+          '<p class="pp-cart-item-price">' + formatCOP(prod.price) + '</p>' +
+          '<div class="pp-cart-item-controls">' +
+            '<button class="pp-qty-btn" onclick="ppChangeQty(\'' + item.id + '\',-1)" aria-label="Restar">−</button>' +
+            '<span class="pp-qty-num">' + item.qty + '</span>' +
+            '<button class="pp-qty-btn" onclick="ppChangeQty(\'' + item.id + '\',1)" aria-label="Sumar">+</button>' +
+            '<button class="pp-cart-remove" onclick="ppRemoveItem(\'' + item.id + '\')" aria-label="Eliminar">🗑</button>' +
+          '</div>' +
+        '</div>';
+      container.appendChild(div);
+    });
+  }
+
+  function animateBadge() {
+    var badge = $('#pp-cart-badge');
+    if (!badge) return;
+    badge.classList.remove('bounce');
+    void badge.offsetWidth;
+    badge.classList.add('bounce');
+  }
+
+  /* expose to global for inline handlers */
+  window.ppChangeQty = changeQty;
+  window.ppRemoveItem = removeFromCart;
+
+  /* ── Cart Drawer ── */
+  function openCart() {
+    var drawer = $('#pp-cart-drawer');
+    var overlay = $('#pp-cart-overlay');
+    if (drawer) { drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
+    if (overlay) { overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); }
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCart() {
+    var drawer = $('#pp-cart-drawer');
+    var overlay = $('#pp-cart-overlay');
+    if (drawer) { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); }
+    if (overlay) { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); }
+    document.body.style.overflow = '';
+  }
+
+  function initCart() {
+    var cartBtn = $('#pp-cart-btn');
+    var cartClose = $('#pp-cart-close');
+    var overlay = $('#pp-cart-overlay');
+    var checkout = $('#pp-cart-checkout');
+    if (cartBtn) cartBtn.addEventListener('click', openCart);
+    if (cartClose) cartClose.addEventListener('click', closeCart);
+    if (overlay) overlay.addEventListener('click', closeCart);
+    if (checkout) checkout.addEventListener('click', function() { closeCart(); openPayment(); });
+    updateCartUI();
+  }
+
+  /* ── Payment Modal ── */
+  var payStep = 0;
+  var payMethod = '';
+
+  function openPayment() {
+    if (!cart.length) { alert('Agrega productos al carrito primero.'); return; }
+    payStep = 0;
+    payMethod = '';
+    updatePaymentStep();
+    renderPaySummary();
+    var overlay = $('#pp-pay-overlay');
+    if (overlay) { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  }
+
+  function closePayment() {
+    var overlay = $('#pp-pay-overlay');
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function renderPaySummary() {
+    var cont = $('#pp-pay-summary-items');
+    var tot = $('#pp-pay-total-val');
+    if (!cont) return;
+    cont.innerHTML = cart.map(function(item) {
+      var prod = PRODUCTS.find(function(p) { return p.id === item.id; });
+      if (!prod) return '';
+      return '<div class="pp-pay-summary-item"><span>' + escHTML(prod.name) + ' × ' + item.qty + '</span><span>' + formatCOP(prod.price * item.qty) + '</span></div>';
+    }).join('');
+    if (tot) tot.textContent = formatCOP(getCartTotal());
+  }
+
+  function updatePaymentStep() {
+    for (var i = 0; i < 4; i++) {
+      var step = $('#pay-step-' + i);
+      if (step) step.classList.toggle('active', i === payStep);
+      var dot = document.querySelector('[data-step="' + i + '"]');
+      if (dot) {
+        dot.classList.toggle('active', i === payStep);
+        dot.classList.toggle('done', i < payStep);
+      }
+    }
+  }
+
+  window.payNext = function() {
+    if (payStep < 3) { payStep++; updatePaymentStep(); }
+  };
+
+  window.payBack = function() {
+    if (payStep > 0) { payStep--; updatePaymentStep(); }
+  };
+
+  window.selectMethod = function(el, method) {
+    $$('.pp-pay-method').forEach(function(m) { m.classList.remove('selected'); });
+    el.classList.add('selected');
+    payMethod = method;
+  };
+
+  window.payConfirm = function() {
+    if (!payMethod) { alert('Por favor selecciona un método de pago.'); return; }
+    var orderNum = 'PP-' + Math.floor(Math.random() * 9000 + 1000);
+    var orderEl = $('#pp-pay-order-num');
+    if (orderEl) orderEl.textContent = 'Pedido #' + orderNum;
+    var nombre = $('#pay-nombre') ? $('#pay-nombre').value : '';
+    var dir = $('#pay-dir') ? $('#pay-dir').value : '';
+    var tel = $('#pay-tel') ? $('#pay-tel').value : '';
+    var summary = cart.map(function(item) {
+      var prod = PRODUCTS.find(function(p) { return p.id === item.id; });
+      return prod ? prod.name + ' x' + item.qty : '';
+    }).filter(Boolean).join(', ');
+    var msg = encodeURIComponent(
+      '¡Hola Papiros! Quiero confirmar mi pedido #' + orderNum +
+      '\nProductos: ' + summary +
+      '\nTotal: ' + formatCOP(getCartTotal()) +
+      '\nNombre: ' + (nombre || 'No indicado') +
+      '\nDirección: ' + (dir || 'No indicada') +
+      '\nTeléfono: ' + (tel || 'No indicado') +
+      '\nMétodo de pago: ' + payMethod
+    );
+    var waBtn = $('#pp-pay-wa-btn');
+    if (waBtn) waBtn.setAttribute('onclick', 'window.open("https://wa.me/573188682376?text=' + msg + '","_blank")');
+    payStep = 3;
+    updatePaymentStep();
+    cart = [];
+    saveCart();
+    updateCartUI();
+  };
+
+  function initPayment() {
+    var closeBtn = $('#pp-pay-close');
+    if (closeBtn) closeBtn.addEventListener('click', closePayment);
+    var overlay = $('#pp-pay-overlay');
+    if (overlay) overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closePayment();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePayment();
+    });
+  }
+
+  /* ── Catalog Render & Filter ── */
+  function renderCatalog(filter) {
+    var grid = $('#pp-prods-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    var filtered = filter && filter !== 'all'
+      ? PRODUCTS.filter(function(p) { return p.cat === filter; })
+      : PRODUCTS;
+    filtered.forEach(function(prod, i) {
+      var card = document.createElement('article');
+      card.className = 'pp-prod-card';
+      card.setAttribute('data-cat', prod.cat);
+      card.innerHTML =
+        '<div class="pp-prod-img">' +
+          '<img src="' + escHTML(prod.img) + '" alt="' + escHTML(prod.name) + '" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=\'<div class=pp-prod-ph>' + prod.emoji + '</div>\'">' +
+          '<span class="pp-prod-badge pp-badge-' + escHTML(prod.cat) + '">' + catLabel(prod.cat) + '</span>' +
+        '</div>' +
+        '<div class="pp-prod-body">' +
+          '<p class="pp-prod-name">' + escHTML(prod.name) + '</p>' +
+          '<p class="pp-prod-price">' + formatCOP(prod.price) + '</p>' +
+          '<button class="pp-prod-add" onclick="ppAddToCart(\'' + prod.id + '\')" aria-label="Agregar ' + escHTML(prod.name) + ' al carrito">+ Agregar</button>' +
+        '</div>';
+      grid.appendChild(card);
+    });
+  }
+
+  function catLabel(cat) {
+    var labels = {papeleria:'📎 Papelería',tecnologia:'📱 Tecnología',jugueteria:'🎲 Juguetería',miscelanea:'🎨 Miscelánea',fiesta:'🎉 Fiesta',libros:'📚 Libros',dulceria:'🍬 Dulcería'};
+    return labels[cat] || cat;
+  }
+
+  window.filterCatalog = function(cat) {
+    renderCatalog(cat);
+    $$('.pp-filter-pill').forEach(function(pill) {
+      pill.classList.toggle('active', pill.dataset.pill === cat);
+    });
+    $$('.pp-cat-card').forEach(function(card) {
+      card.classList.toggle('active-filter', card.dataset.filter === cat);
+    });
+    var catalogEl = $('#catalogo');
+    if (catalogEl && cat !== 'all') {
+      setTimeout(function() {
+        catalogEl.scrollIntoView({behavior:'smooth', block:'start'});
+      }, 100);
+    }
+  };
+
+  window.ppAddToCart = function(id) { addToCart(id); };
+
+  /* ── Nav ── */
+  function initNav() {
+    var nav = $('#pp-nav');
+    if (!nav) return;
+    function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 20); }
+    onScroll();
+    window.addEventListener('scroll', onScroll, {passive:true});
+  }
+
+  /* ── Mobile Menu ── */
+  function initMobileMenu() {
+    var btn = $('#pp-hamburger');
+    var menu = $('#pp-mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function() {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      var spans = btn.querySelectorAll('span');
+      spans[0].style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
+      spans[1].style.opacity = open ? '0' : '1';
+      spans[2].style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
+    });
+  }
+
+  window.closeMobileMenu = function() {
+    var menu = $('#pp-mobile-menu');
+    var btn = $('#pp-hamburger');
+    if (menu) menu.classList.remove('open');
+    if (btn) {
+      btn.setAttribute('aria-expanded','false');
+      btn.querySelectorAll('span').forEach(function(s) { s.style.transform=''; s.style.opacity=''; });
+    }
+  };
+
+  /* ── Scroll Reveals ── */
+  function initReveals() {
+    var els = $$('[data-reveal]');
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('is-revealed'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.04, rootMargin:'0px 0px -3% 0px'});
+    els.forEach(function(el) { io.observe(el); });
+    setTimeout(function() {
+      $$('[data-reveal]').forEach(function(el) {
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('is-revealed');
+      });
+    }, 5000);
+  }
+
+  /* ── Contact Form ── */
+  function initContactForm() {
+    var form = $('#pp-contact-form');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var nombre = $('#pp-nombre').value.trim();
+      var email = $('#pp-email').value.trim();
+      var mensaje = $('#pp-mensaje').value.trim();
+      if (!nombre || !email || !mensaje) { alert('Por favor completa los campos obligatorios.'); return; }
+      var asunto = $('#pp-asunto') ? $('#pp-asunto').value : '';
+      var tel = $('#pp-telefono') ? $('#pp-telefono').value : '';
+      var body = 'Nombre: ' + nombre + '\nEmail: ' + email + (tel ? '\nTel: ' + tel : '') + (asunto ? '\nAsunto: ' + asunto : '') + '\n\n' + mensaje;
+      window.location.href = 'mailto:papirospapeleria@gmail.com?subject=' + encodeURIComponent('Contacto web — ' + nombre) + '&body=' + encodeURIComponent(body);
+    });
+  }
+
+  /* ── Smooth anchor scroll ── */
+  function initSmoothScroll() {
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 76, behavior:'smooth'});
+    });
+  }
+
+  /* ── Boot ── */
+  function boot() {
+    safe(initNav,          'nav');
+    safe(initMobileMenu,   'mobile');
+    safe(initCart,         'cart');
+    safe(initPayment,      'payment');
+    safe(initReveals,      'reveals');
+    safe(initContactForm,  'form');
+    safe(initSmoothScroll, 'scroll');
+    safe(function() { renderCatalog('all'); }, 'catalog');
+    document.documentElement.classList.add('is-ready');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
+})();
+</script>
+</body>
 </html>
