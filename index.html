@@ -762,8 +762,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
         <span class="pp-cat-name">Libros</span>
       </div>
       <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('dulceria')" data-filter="dulceria">
-        <div class="pp-cat-icon ic5">🍬</div>
-        <span class="pp-cat-name">Dulcería</span>
+        <div class="pp-cat-icon ic5">🎨</div>
+        <span class="pp-cat-name">Arte</span>
       </div>
     </div>
   </div>
@@ -788,7 +788,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       <button class="pp-filter-pill" onclick="filterCatalog('miscelanea')" data-pill="miscelanea">🎨 Miscelánea</button>
       <button class="pp-filter-pill" onclick="filterCatalog('fiesta')" data-pill="fiesta">🎉 Fiesta</button>
       <button class="pp-filter-pill" onclick="filterCatalog('libros')" data-pill="libros">📚 Libros</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('dulceria')" data-pill="dulceria">🍬 Dulcería</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('dulceria')" data-pill="dulceria">🎨 Arte</button>
     </div>
     <div class="pp-prods-grid" id="pp-prods-grid" aria-live="polite">
       <!-- Rendered by JS -->
@@ -1348,7 +1348,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   }
 
   function catLabel(cat) {
-    var labels = {papeleria:'📎 Papelería',tecnologia:'📱 Tecnología',jugueteria:'🎲 Juguetería',miscelanea:'🎨 Miscelánea',fiesta:'🎉 Fiesta',libros:'📚 Libros',dulceria:'🍬 Dulcería'};
+    var labels = {papeleria:'📎 Papelería',tecnologia:'📱 Tecnología',jugueteria:'🎲 Juguetería',miscelanea:'🎨 Miscelánea',fiesta:'🎉 Fiesta',libros:'📚 Libros',dulceria:'🎨 Arte'};
     return labels[cat] || cat;
   }
 
