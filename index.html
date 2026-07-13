@@ -262,6 +262,18 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-catalog-mascot{position:absolute;top:40px;right:-30px;width:180px;height:auto;opacity:.9;pointer-events:none;z-index:0}
 @media(max-width:1200px){.pp-catalog-mascot{display:none}}
 .pp-catalog-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:32px}
+.pp-search-wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:20px}
+.pp-search-box{flex:1;min-width:240px;position:relative;display:flex;align-items:center}
+.pp-search-icon{position:absolute;left:16px;font-size:15px;opacity:.5;pointer-events:none}
+.pp-search-input{width:100%;padding:13px 16px 13px 42px;border-radius:100px;border:1.5px solid var(--line);background:var(--white);color:var(--ink);font-family:var(--f-body);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s}
+.pp-search-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(240,90,0,.12)}
+.pp-search-input::-webkit-search-cancel-button{cursor:pointer}
+.pp-price-filter{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pp-price-filter label{font-size:12px;font-weight:600;color:var(--ink-mute);letter-spacing:.04em}
+.pp-price-input{width:100px;padding:11px 12px;border-radius:100px;border:1.5px solid var(--line);background:var(--white);color:var(--ink);font-family:var(--f-body);font-size:13px;outline:none;transition:border-color .2s,box-shadow .2s}
+.pp-price-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(240,90,0,.12)}
+.pp-price-sep{color:var(--ink-mute);font-size:13px}
+.pp-catalog-empty{text-align:center;padding:60px 20px;color:var(--ink-mute);font-size:14px;grid-column:1/-1}
 .pp-filter-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
 .pp-filter-pill{padding:8px 18px;border-radius:100px;border:1.5px solid var(--line);font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:border-color .2s,background .2s,color .2s;background:transparent}
 .pp-filter-pill:hover{border-color:var(--orange);color:var(--orange)}
@@ -405,6 +417,9 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   .pp-hero-grid{grid-template-columns:repeat(2,1fr)}
   .pp-pay-methods{grid-template-columns:1fr 1fr}
   .pp-field-row{grid-template-columns:1fr}
+  .pp-search-wrap{flex-direction:column;align-items:stretch}
+  .pp-price-filter{justify-content:space-between}
+  .pp-price-input{flex:1;width:auto}
 }
 @media(max-width:380px){
   .pp-prods-grid{grid-template-columns:1fr}
@@ -779,6 +794,18 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
         <h2 class="pp-title">Catálogo de <em>Productos</em></h2>
       </div>
       <a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener" style="font-size:13px;font-weight:600;color:var(--orange);border-bottom:1.5px solid currentColor;padding-bottom:1px">Ver tienda completa →</a>
+    </div>
+    <div class="pp-search-wrap" data-reveal>
+      <div class="pp-search-box">
+        <span class="pp-search-icon" aria-hidden="true">🔍</span>
+        <input type="search" id="pp-search-input" class="pp-search-input" placeholder="Buscar productos… (ej. agenda, pintura, audifono)" aria-label="Buscar productos">
+      </div>
+      <div class="pp-price-filter">
+        <label for="pp-price-min">Precio</label>
+        <input type="number" id="pp-price-min" class="pp-price-input" placeholder="Mín" min="0" step="1000" inputmode="numeric">
+        <span class="pp-price-sep">–</span>
+        <input type="number" id="pp-price-max" class="pp-price-input" placeholder="Máx" min="0" step="1000" inputmode="numeric">
+      </div>
     </div>
     <div class="pp-filter-wrap" role="group" aria-label="Filtros de categoría">
       <button class="pp-filter-pill active" onclick="filterCatalog('all')" data-pill="all">🏪 Todos</button>
@@ -1374,14 +1401,70 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   }
 
   /* ── Catalog Render & Filter ── */
-  function renderCatalog(filter) {
+  var catalogState = {cat: 'all', query: '', min: null, max: null};
+
+  function normalizeText(s) {
+    return String(s == null ? '' : s)
+      .toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  function levenshtein(a, b) {
+    var m = a.length, n = b.length;
+    if (!m) return n;
+    if (!n) return m;
+    var row = [];
+    for (var j = 0; j <= n; j++) row[j] = j;
+    for (var i = 1; i <= m; i++) {
+      var prev = row[0];
+      row[0] = i;
+      for (var k = 1; k <= n; k++) {
+        var tmp = row[k];
+        row[k] = a[i - 1] === b[k - 1]
+          ? prev
+          : 1 + Math.min(prev, row[k], row[k - 1]);
+        prev = tmp;
+      }
+    }
+    return row[n];
+  }
+
+  function fuzzyMatch(text, query) {
+    var q = normalizeText(query).trim();
+    if (!q) return true;
+    var normText = normalizeText(text);
+    var terms = q.split(/\s+/).filter(Boolean);
+    var words = normText.split(/\s+/).filter(Boolean);
+    return terms.every(function(term) {
+      if (normText.indexOf(term) !== -1) return true;
+      var maxDist = term.length > 5 ? 2 : 1;
+      return words.some(function(w) {
+        if (w.indexOf(term) === 0 || term.indexOf(w) === 0) return true;
+        return levenshtein(w, term) <= maxDist;
+      });
+    });
+  }
+
+  function getFilteredProducts() {
+    return PRODUCTS.filter(function(p) {
+      if (catalogState.cat !== 'all' && p.cat !== catalogState.cat) return false;
+      if (catalogState.min != null && p.price < catalogState.min) return false;
+      if (catalogState.max != null && p.price > catalogState.max) return false;
+      if (catalogState.query && !fuzzyMatch(p.name, catalogState.query)) return false;
+      return true;
+    });
+  }
+
+  function renderCatalog() {
     var grid = $('#pp-prods-grid');
     if (!grid) return;
     grid.innerHTML = '';
-    var filtered = filter && filter !== 'all'
-      ? PRODUCTS.filter(function(p) { return p.cat === filter; })
-      : PRODUCTS;
-    filtered.forEach(function(prod, i) {
+    var filtered = getFilteredProducts();
+    if (!filtered.length) {
+      grid.innerHTML = '<div class="pp-catalog-empty">😕 No encontramos productos con esos filtros. Intenta con otra búsqueda o rango de precio.</div>';
+      return;
+    }
+    filtered.forEach(function(prod) {
       var card = document.createElement('article');
       card.className = 'pp-prod-card';
       card.setAttribute('data-cat', prod.cat);
@@ -1405,7 +1488,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   }
 
   window.filterCatalog = function(cat) {
-    renderCatalog(cat);
+    catalogState.cat = cat;
+    renderCatalog();
     $$('.pp-filter-pill').forEach(function(pill) {
       pill.classList.toggle('active', pill.dataset.pill === cat);
     });
@@ -1419,6 +1503,36 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       }, 100);
     }
   };
+
+  function debounce(fn, wait) {
+    var t;
+    return function() {
+      var args = arguments, ctx = this;
+      clearTimeout(t);
+      t = setTimeout(function() { fn.apply(ctx, args); }, wait);
+    };
+  }
+
+  function initCatalogFilters() {
+    var searchInput = $('#pp-search-input');
+    var minInput = $('#pp-price-min');
+    var maxInput = $('#pp-price-max');
+    if (searchInput) {
+      searchInput.addEventListener('input', debounce(function() {
+        catalogState.query = searchInput.value;
+        renderCatalog();
+      }, 200));
+    }
+    function onPriceChange() {
+      var minVal = minInput && minInput.value !== '' ? Number(minInput.value) : null;
+      var maxVal = maxInput && maxInput.value !== '' ? Number(maxInput.value) : null;
+      catalogState.min = minVal != null && !isNaN(minVal) ? minVal : null;
+      catalogState.max = maxVal != null && !isNaN(maxVal) ? maxVal : null;
+      renderCatalog();
+    }
+    if (minInput) minInput.addEventListener('input', debounce(onPriceChange, 200));
+    if (maxInput) maxInput.addEventListener('input', debounce(onPriceChange, 200));
+  }
 
   window.ppAddToCart = function(id) { addToCart(id); };
 
@@ -1512,7 +1626,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     safe(initReveals,      'reveals');
     safe(initContactForm,  'form');
     safe(initSmoothScroll, 'scroll');
-    safe(function() { renderCatalog('all'); }, 'catalog');
+    safe(initCatalogFilters, 'catalogFilters');
+    safe(renderCatalog, 'catalog');
     document.documentElement.classList.add('is-ready');
   }
 
