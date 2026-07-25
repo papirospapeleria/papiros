@@ -48,6 +48,10 @@ There's no payment processor or cart integration. Visitors reach out via WhatsAp
 
 The site links out to third-party delivery platforms (Rappi, DiDi Food, Mercado Libre) and WhatsApp — these are plain `<a>` links to external storefronts, not API integrations.
 
+## Git workflow
+
+Every change made in this repo should be committed and pushed to `origin/main` right away (this repo has no branches/PR workflow — Vercel deploys straight from `main`). Don't leave changes uncommitted/unpushed at the end of a task unless the user says otherwise.
+
 ## Conventions in the existing code
 
 - CSS class prefix `pp-` (e.g. `.pp-nav`, `.pp-cart-drawer`, `.pp-pay-modal`) — follow this when adding new UI elements.
