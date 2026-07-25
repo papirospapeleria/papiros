@@ -25,24 +25,24 @@ Everything is wired through one self-invoking function with a `boot()` entry poi
 
 - `initNav` — sticky nav scroll state
 - `initMobileMenu` — hamburger menu toggle
-- `initCart` — cart drawer open/close, wires checkout button to the payment modal
-- `initPayment` — multi-step payment modal (4 steps, tracked via `payStep`/`payMethod`)
 - `initReveals` — `IntersectionObserver`-based scroll reveal for `[data-reveal]` elements
 - `initContactForm` — builds a `mailto:` link from form fields (no backend/API call)
 - `initSmoothScroll` — intercepts in-page `#anchor` clicks for smooth scrolling
-- `renderCatalog('all')` — renders the product grid from the `PRODUCTS` array
+- `initCatalogFilters` — wires the search input, price range inputs, and category pills
+- `renderCatalog()` — renders the product grid from the `PRODUCTS` array
 
-### Product catalog & cart
+There is no cart or checkout flow — the site is a pure catalog/showcase. Ordering happens off-platform via WhatsApp or the third-party delivery apps (Rappi, DiDi Food).
+
+### Product catalog
 
 - `PRODUCTS` is a hardcoded array of objects (`id`, `cat`, `name`, `price`, `img`, `emoji`) grouped by category in comments (papelería, tecnología, juguetería, miscelánea, fiesta, libros, dulcería). `img` URLs point to Unsplash placeholders via the `IMGS` lookup, not real product photos.
-- Cart state (`cart`, array of `{id, qty}`) is persisted to `localStorage` under key `pp_cart`. There is no backend — everything is client-side.
 - `formatCOP(n)` formats prices as Colombian pesos via `Number.toLocaleString('es-CO')`.
-- Inline `onclick` handlers (e.g. `ppChangeQty`, `ppRemoveItem`) call functions exposed on `window` — keep that pattern when touching cart-item rendering (`renderCartItems`), since markup is built via string concatenation (`innerHTML`), not templating.
 - User-supplied content (product names, etc.) is escaped via `escHTML()` before being injected into `innerHTML` — preserve this when adding new dynamic HTML to avoid XSS.
+- Product cards display name and price only (no add-to-cart action).
 
-### Checkout flow
+### Contact flow
 
-There's no payment processor integration. The payment modal walks the user through steps and ends by deep-linking to WhatsApp (`wa.me/573188682376`) with a pre-filled order message, or via `mailto:papirospapeleria@gmail.com` for the contact form. Real order fulfillment happens off-platform (WhatsApp/manual), not through this codebase.
+There's no payment processor or cart integration. Visitors reach out via WhatsApp deep links (`wa.me/573188682376`) or the contact form, which builds a `mailto:papirospapeleria@gmail.com` link from the form fields. Real order fulfillment happens off-platform (WhatsApp/manual, or via Rappi/DiDi Food), not through this codebase.
 
 ### External delivery integrations
 

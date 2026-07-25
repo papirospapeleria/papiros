@@ -78,12 +78,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-nav-links a:hover{color:var(--orange)}
 .pp-nav-links a:hover::after{transform:scaleX(1)}
 .pp-nav-right{display:flex;align-items:center;gap:12px}
-.pp-nav-cart{position:relative;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);color:var(--ink-soft);transition:border-color .2s,color .2s;font-size:18px;cursor:pointer}
-.pp-nav-cart:hover{border-color:var(--orange);color:var(--orange)}
-.pp-cart-badge{position:absolute;top:-4px;right:-4px;background:var(--orange);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0);transition:opacity .2s,transform .3s var(--ease-out)}
-.pp-cart-badge.visible{opacity:1;transform:scale(1)}
-.pp-cart-badge.bounce{animation:cartBounce .4s var(--ease-out)}
-@keyframes cartBounce{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
 .pp-nav-wa{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:100px;background:var(--green-wa);color:#fff;font-size:13px;font-weight:600;transition:opacity .2s,transform .2s}
 .pp-nav-wa:hover{opacity:.9;transform:translateY(-1px)}
 .pp-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
@@ -96,87 +90,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-mobile-menu.open{display:flex}
 .pp-mobile-menu a{font-size:16px;font-weight:500;color:var(--ink-soft);padding:12px 0;border-bottom:1px solid var(--line)}
 .pp-mobile-menu a:last-child{border:none}
-
-/* ============================================================
-   CART DRAWER
-   ============================================================ */
-.pp-cart-overlay{position:fixed;inset:0;background:rgba(26,14,5,.45);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
-.pp-cart-overlay.open{opacity:1;pointer-events:auto}
-.pp-cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--white);z-index:301;transform:translateX(100%);transition:transform .4s var(--ease-out);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(26,14,5,.12)}
-.pp-cart-drawer.open{transform:translateX(0)}
-.pp-cart-head{display:flex;align-items:center;justify-content:space-between;padding:24px;border-bottom:1px solid var(--line)}
-.pp-cart-head h2{font-family:var(--f-display);font-size:20px;font-weight:700}
-.pp-cart-close{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:border-color .2s,background .2s}
-.pp-cart-close:hover{border-color:var(--orange);background:var(--orange-pale)}
-.pp-cart-items{flex:1;overflow-y:auto;padding:16px 24px}
-.pp-cart-empty{text-align:center;padding:60px 0;color:var(--ink-mute)}
-.pp-cart-empty-icon{font-size:48px;margin-bottom:12px}
-.pp-cart-empty p{font-size:14px}
-.pp-cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
-.pp-cart-item:last-child{border:none}
-.pp-cart-item-img{width:60px;height:60px;border-radius:10px;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;overflow:hidden}
-.pp-cart-item-img img{width:100%;height:100%;object-fit:cover}
-.pp-cart-item-info{flex:1;min-width:0}
-.pp-cart-item-name{font-size:13px;font-weight:600;line-height:1.35;color:var(--ink)}
-.pp-cart-item-price{font-size:14px;font-weight:700;color:var(--orange);margin-top:4px}
-.pp-cart-item-controls{display:flex;align-items:center;gap:8px;margin-top:8px}
-.pp-qty-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:border-color .2s,background .2s;font-weight:700}
-.pp-qty-btn:hover{border-color:var(--orange);background:var(--orange-pale)}
-.pp-qty-num{font-size:13px;font-weight:600;min-width:20px;text-align:center}
-.pp-cart-remove{margin-left:auto;font-size:16px;color:var(--ink-mute);cursor:pointer;transition:color .2s;padding:4px}
-.pp-cart-remove:hover{color:#c0392b}
-.pp-cart-foot{padding:20px 24px;border-top:1px solid var(--line)}
-.pp-cart-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.pp-cart-total-label{font-size:14px;color:var(--ink-mute)}
-.pp-cart-total-val{font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--orange)}
-.pp-cart-checkout{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border-radius:100px;background:var(--orange);color:#fff;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:background .2s,transform .2s,box-shadow .2s}
-.pp-cart-checkout:hover{background:var(--orange-h);transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,90,0,.35)}
-.pp-cart-wa-hint{text-align:center;font-size:12px;color:var(--ink-mute);margin-top:10px}
-
-/* ============================================================
-   PAYMENT MODAL
-   ============================================================ */
-.pp-pay-overlay{position:fixed;inset:0;background:rgba(26,14,5,.6);z-index:400;display:none;align-items:center;justify-content:center;padding:16px}
-.pp-pay-overlay.open{display:flex}
-.pp-pay-modal{background:var(--white);border-radius:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 30px 80px rgba(26,14,5,.25)}
-.pp-pay-head{padding:24px 28px 0;display:flex;align-items:center;justify-content:space-between}
-.pp-pay-head h2{font-family:var(--f-display);font-size:20px;font-weight:700}
-.pp-pay-close{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;flex-shrink:0}
-.pp-pay-progress{display:flex;gap:6px;padding:20px 28px 0}
-.pp-pay-step-dot{flex:1;height:4px;border-radius:2px;background:var(--bg-2);transition:background .3s}
-.pp-pay-step-dot.active{background:var(--orange)}
-.pp-pay-step-dot.done{background:#2a6e4a}
-.pp-pay-body{padding:24px 28px 28px}
-.pp-pay-step{display:none}
-.pp-pay-step.active{display:block}
-.pp-pay-step-title{font-family:var(--f-display);font-size:17px;font-weight:700;margin-bottom:16px}
-.pp-pay-summary-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
-.pp-pay-summary-item:last-child{border:none}
-.pp-pay-summary-total{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;font-weight:700;font-size:16px}
-.pp-pay-summary-total span:last-child{color:var(--orange);font-size:18px}
-.pp-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.pp-field label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute)}
-.pp-field input,.pp-field select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s}
-.pp-field input:focus,.pp-field select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(240,90,0,.12)}
-.pp-field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.pp-pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
-.pp-pay-method{border:2px solid var(--line);border-radius:12px;padding:14px 12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color .2s,background .2s;text-align:center}
-.pp-pay-method:hover{border-color:var(--orange);background:var(--orange-pale)}
-.pp-pay-method.selected{border-color:var(--orange);background:var(--orange-pale)}
-.pp-pay-method-icon{font-size:28px}
-.pp-pay-method-name{font-size:12px;font-weight:600;color:var(--ink-soft)}
-.pp-pay-actions{display:flex;gap:10px;margin-top:20px}
-.pp-pay-back{flex:1;padding:13px;border-radius:100px;border:1.5px solid var(--line);color:var(--ink-soft);font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s}
-.pp-pay-back:hover{border-color:var(--orange);color:var(--orange)}
-.pp-pay-next{flex:2;padding:13px;border-radius:100px;background:var(--orange);color:#fff;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:background .2s,transform .2s}
-.pp-pay-next:hover{background:var(--orange-h);transform:translateY(-2px)}
-.pp-pay-success{text-align:center;padding:20px 0}
-.pp-pay-success-icon{font-size:64px;margin-bottom:16px}
-.pp-pay-success h3{font-family:var(--f-display);font-size:22px;font-weight:700;margin-bottom:8px}
-.pp-pay-success p{font-size:14px;color:var(--ink-mute);line-height:1.6;max-width:320px;margin:0 auto 20px}
-.pp-pay-success-order{background:var(--bg-2);border-radius:12px;padding:12px 16px;font-size:13px;margin-bottom:20px;color:var(--ink-soft)}
-.pp-pay-success-wa{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:100px;background:var(--green-wa);color:#fff;font-size:14px;font-weight:700;cursor:pointer;border:none;width:100%;justify-content:center;transition:opacity .2s}
-.pp-pay-success-wa:hover{opacity:.9}
 
 /* ============================================================
    HERO
@@ -298,8 +211,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-prod-body{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column;gap:6px}
 .pp-prod-name{font-size:14px;font-weight:600;line-height:1.35;color:var(--ink)}
 .pp-prod-price{font-family:var(--f-display);font-size:17px;font-weight:700;color:var(--orange);margin-top:auto;padding-top:8px}
-.pp-prod-add{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:100px;background:var(--orange-pale);color:var(--orange);font-size:12px;font-weight:600;border:none;cursor:pointer;transition:background .2s,color .2s;align-self:flex-start;margin-top:10px}
-.pp-prod-add:hover{background:var(--orange);color:#fff}
 .pp-catalog-cta{text-align:center;margin-top:48px}
 .pp-btn-orange{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:100px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:background .2s,transform .25s var(--ease),box-shadow .25s;border:none;cursor:pointer}
 .pp-btn-orange:hover{background:var(--orange-h);transform:translateY(-3px);box-shadow:0 10px 28px rgba(240,90,0,.35)}
@@ -415,8 +326,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   .pp-form-row{grid-template-columns:1fr}
   .pp-insta-btns{flex-direction:column;align-items:center}
   .pp-hero-grid{grid-template-columns:repeat(2,1fr)}
-  .pp-pay-methods{grid-template-columns:1fr 1fr}
-  .pp-field-row{grid-template-columns:1fr}
   .pp-search-wrap{flex-direction:column;align-items:stretch}
   .pp-price-filter{justify-content:space-between}
   .pp-price-input{flex:1;width:auto}
@@ -454,10 +363,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       <li><a href="#pp-contacto">Contacto</a></li>
     </ul>
     <div class="pp-nav-right">
-      <button class="pp-nav-cart" id="pp-cart-btn" aria-label="Ver carrito" title="Carrito de compras">
-        🛒
-        <span class="pp-cart-badge" id="pp-cart-badge" aria-live="polite">0</span>
-      </button>
       <a href="https://wa.me/573188682376" target="_blank" rel="noopener" class="pp-nav-wa">
         💬 WhatsApp
       </a>
@@ -475,136 +380,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   <a href="#pp-domicilios" onclick="closeMobileMenu()">Domicilios</a>
   <a href="#pp-contacto" onclick="closeMobileMenu()">Contacto</a>
   <a href="https://wa.me/573188682376" target="_blank" rel="noopener" style="margin-top:8px;background:var(--green-wa);color:#fff;text-align:center;border-radius:100px;padding:13px 20px;font-weight:600">💬 WhatsApp</a>
-</div>
-
-<!-- ═══ CART OVERLAY ══════════════════════════ -->
-<div class="pp-cart-overlay" id="pp-cart-overlay" aria-hidden="true"></div>
-
-<!-- ═══ CART DRAWER ═══════════════════════════ -->
-<aside class="pp-cart-drawer" id="pp-cart-drawer" aria-label="Carrito de compras" aria-hidden="true">
-  <div class="pp-cart-head">
-    <h2>Tu Carrito 🛒</h2>
-    <button class="pp-cart-close" id="pp-cart-close" aria-label="Cerrar carrito">✕</button>
-  </div>
-  <div class="pp-cart-items" id="pp-cart-items">
-    <div class="pp-cart-empty" id="pp-cart-empty">
-      <div class="pp-cart-empty-icon">🛒</div>
-      <p>Tu carrito está vacío.</p>
-      <p style="margin-top:6px;font-size:12px">¡Agrega productos para empezar!</p>
-    </div>
-  </div>
-  <div class="pp-cart-foot" id="pp-cart-foot" style="display:none">
-    <div class="pp-cart-total-row">
-      <span class="pp-cart-total-label">Subtotal</span>
-      <span class="pp-cart-total-val" id="pp-cart-total">$0</span>
-    </div>
-    <button class="pp-cart-checkout" id="pp-cart-checkout">
-      Ir a Pagar &nbsp;→
-    </button>
-    <p class="pp-cart-wa-hint">También puedes pedir por <a href="https://wa.me/573188682376" style="color:var(--orange);font-weight:600">WhatsApp</a></p>
-  </div>
-</aside>
-
-<!-- ═══ PAYMENT MODAL ══════════════════════════ -->
-<div class="pp-pay-overlay" id="pp-pay-overlay" role="dialog" aria-modal="true" aria-label="Portal de pago">
-  <div class="pp-pay-modal" id="pp-pay-modal">
-    <div class="pp-pay-head">
-      <h2>Finalizar Compra</h2>
-      <button class="pp-pay-close" id="pp-pay-close" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="pp-pay-progress" id="pp-pay-progress">
-      <div class="pp-pay-step-dot active" data-step="0"></div>
-      <div class="pp-pay-step-dot" data-step="1"></div>
-      <div class="pp-pay-step-dot" data-step="2"></div>
-      <div class="pp-pay-step-dot" data-step="3"></div>
-    </div>
-    <div class="pp-pay-body">
-      <!-- Step 0: Summary -->
-      <div class="pp-pay-step active" id="pay-step-0">
-        <p class="pp-pay-step-title">📋 Resumen del Pedido</p>
-        <div id="pp-pay-summary-items"></div>
-        <div class="pp-pay-summary-total">
-          <span>Total</span>
-          <span id="pp-pay-total-val">$0</span>
-        </div>
-        <div class="pp-pay-actions">
-          <button class="pp-pay-next" onclick="payNext()">Continuar →</button>
-        </div>
-      </div>
-      <!-- Step 1: Shipping -->
-      <div class="pp-pay-step" id="pay-step-1">
-        <p class="pp-pay-step-title">🚚 Datos de Envío</p>
-        <div class="pp-field">
-          <label for="pay-nombre">Nombre completo</label>
-          <input type="text" id="pay-nombre" placeholder="Tu nombre">
-        </div>
-        <div class="pp-field-row">
-          <div class="pp-field">
-            <label for="pay-tel">Teléfono</label>
-            <input type="tel" id="pay-tel" placeholder="300 000 0000">
-          </div>
-          <div class="pp-field">
-            <label for="pay-ciudad">Ciudad</label>
-            <input type="text" id="pay-ciudad" placeholder="Bogotá" value="Bogotá">
-          </div>
-        </div>
-        <div class="pp-field">
-          <label for="pay-dir">Dirección</label>
-          <input type="text" id="pay-dir" placeholder="Calle / Carrera / Apto">
-        </div>
-        <div class="pp-pay-actions">
-          <button class="pp-pay-back" onclick="payBack()">← Volver</button>
-          <button class="pp-pay-next" onclick="payNext()">Continuar →</button>
-        </div>
-      </div>
-      <!-- Step 2: Payment method -->
-      <div class="pp-pay-step" id="pay-step-2">
-        <p class="pp-pay-step-title">💳 Método de Pago</p>
-        <div class="pp-pay-methods">
-          <div class="pp-pay-method" onclick="selectMethod(this,'nequi')">
-            <span class="pp-pay-method-icon">📱</span>
-            <span class="pp-pay-method-name">Nequi</span>
-          </div>
-          <div class="pp-pay-method" onclick="selectMethod(this,'daviplata')">
-            <span class="pp-pay-method-icon">💜</span>
-            <span class="pp-pay-method-name">Daviplata</span>
-          </div>
-          <div class="pp-pay-method" onclick="selectMethod(this,'pse')">
-            <span class="pp-pay-method-icon">🏦</span>
-            <span class="pp-pay-method-name">PSE</span>
-          </div>
-          <div class="pp-pay-method" onclick="selectMethod(this,'contraentrega')">
-            <span class="pp-pay-method-icon">💵</span>
-            <span class="pp-pay-method-name">Contraentrega</span>
-          </div>
-          <div class="pp-pay-method" onclick="selectMethod(this,'tarjeta')">
-            <span class="pp-pay-method-icon">💳</span>
-            <span class="pp-pay-method-name">Tarjeta</span>
-          </div>
-          <div class="pp-pay-method" onclick="selectMethod(this,'rappi')">
-            <span class="pp-pay-method-icon">🛵</span>
-            <span class="pp-pay-method-name">Rappi Pay</span>
-          </div>
-        </div>
-        <div class="pp-pay-actions">
-          <button class="pp-pay-back" onclick="payBack()">← Volver</button>
-          <button class="pp-pay-next" onclick="payConfirm()">Confirmar Pago ✓</button>
-        </div>
-      </div>
-      <!-- Step 3: Confirmation -->
-      <div class="pp-pay-step" id="pay-step-3">
-        <div class="pp-pay-success">
-          <div class="pp-pay-success-icon">✅</div>
-          <h3>¡Pedido Recibido!</h3>
-          <p>Tu pedido fue registrado. Te contactaremos al WhatsApp para confirmar y coordinar la entrega.</p>
-          <div class="pp-pay-success-order" id="pp-pay-order-num">Pedido #PP-0000</div>
-          <button class="pp-pay-success-wa" id="pp-pay-wa-btn">
-            💬 Confirmar por WhatsApp
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- ═══ HERO ══════════════════════════════════ -->
@@ -1148,246 +923,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     {id:'a54',cat:'dulceria',name:'Trementina x 60 cm franco',price:8000,img:IMGS.art,emoji:'🎨'}
   ];
 
-  /* ── Cart State ── */
-  var cart = [];
-  try {
-    var saved = localStorage.getItem('pp_cart');
-    if (saved) cart = JSON.parse(saved);
-  } catch(e) {}
-
-  function saveCart() {
-    try { localStorage.setItem('pp_cart', JSON.stringify(cart)); } catch(e) {}
-  }
-
-  function getCartItem(id) {
-    return cart.find(function(i) { return i.id === id; });
-  }
-
-  function addToCart(id) {
-    var prod = PRODUCTS.find(function(p) { return p.id === id; });
-    if (!prod) return;
-    var item = getCartItem(id);
-    if (item) {
-      item.qty++;
-    } else {
-      cart.push({id: id, qty: 1});
-    }
-    saveCart();
-    updateCartUI();
-    animateBadge();
-  }
-
-  function removeFromCart(id) {
-    cart = cart.filter(function(i) { return i.id !== id; });
-    saveCart();
-    updateCartUI();
-  }
-
-  function changeQty(id, delta) {
-    var item = getCartItem(id);
-    if (!item) return;
-    item.qty += delta;
-    if (item.qty <= 0) removeFromCart(id);
-    else { saveCart(); updateCartUI(); }
-  }
-
-  function getCartTotal() {
-    return cart.reduce(function(sum, item) {
-      var prod = PRODUCTS.find(function(p) { return p.id === item.id; });
-      return sum + (prod ? prod.price * item.qty : 0);
-    }, 0);
-  }
-
-  function getCartCount() {
-    return cart.reduce(function(sum, item) { return sum + item.qty; }, 0);
-  }
-
-  function updateCartUI() {
-    var count = getCartCount();
-    var badge = $('#pp-cart-badge');
-    if (badge) {
-      badge.textContent = count;
-      badge.classList.toggle('visible', count > 0);
-    }
-    renderCartItems();
-    var foot = $('#pp-cart-foot');
-    var totalEl = $('#pp-cart-total');
-    if (foot) foot.style.display = cart.length ? 'block' : 'none';
-    if (totalEl) totalEl.textContent = formatCOP(getCartTotal());
-    var empty = $('#pp-cart-empty');
-    if (empty) empty.style.display = cart.length ? 'none' : 'block';
-  }
-
-  function renderCartItems() {
-    var container = $('#pp-cart-items');
-    if (!container) return;
-    var existing = $$('.pp-cart-item', container);
-    existing.forEach(function(el) { el.remove(); });
-    cart.forEach(function(item) {
-      var prod = PRODUCTS.find(function(p) { return p.id === item.id; });
-      if (!prod) return;
-      var div = document.createElement('div');
-      div.className = 'pp-cart-item';
-      div.dataset.itemId = item.id;
-      div.innerHTML =
-        '<div class="pp-cart-item-img">' +
-          '<img src="' + escHTML(prod.img) + '" alt="' + escHTML(prod.name) + '" loading="lazy" onerror="this.parentNode.innerHTML=\'<span style=font-size:24px>' + prod.emoji + '</span>\'">' +
-        '</div>' +
-        '<div class="pp-cart-item-info">' +
-          '<p class="pp-cart-item-name">' + escHTML(prod.name) + '</p>' +
-          '<p class="pp-cart-item-price">' + formatCOP(prod.price) + '</p>' +
-          '<div class="pp-cart-item-controls">' +
-            '<button class="pp-qty-btn" onclick="ppChangeQty(\'' + item.id + '\',-1)" aria-label="Restar">−</button>' +
-            '<span class="pp-qty-num">' + item.qty + '</span>' +
-            '<button class="pp-qty-btn" onclick="ppChangeQty(\'' + item.id + '\',1)" aria-label="Sumar">+</button>' +
-            '<button class="pp-cart-remove" onclick="ppRemoveItem(\'' + item.id + '\')" aria-label="Eliminar">🗑</button>' +
-          '</div>' +
-        '</div>';
-      container.appendChild(div);
-    });
-  }
-
-  function animateBadge() {
-    var badge = $('#pp-cart-badge');
-    if (!badge) return;
-    badge.classList.remove('bounce');
-    void badge.offsetWidth;
-    badge.classList.add('bounce');
-  }
-
-  /* expose to global for inline handlers */
-  window.ppChangeQty = changeQty;
-  window.ppRemoveItem = removeFromCart;
-
-  /* ── Cart Drawer ── */
-  function openCart() {
-    var drawer = $('#pp-cart-drawer');
-    var overlay = $('#pp-cart-overlay');
-    if (drawer) { drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
-    if (overlay) { overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); }
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeCart() {
-    var drawer = $('#pp-cart-drawer');
-    var overlay = $('#pp-cart-overlay');
-    if (drawer) { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); }
-    if (overlay) { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); }
-    document.body.style.overflow = '';
-  }
-
-  function initCart() {
-    var cartBtn = $('#pp-cart-btn');
-    var cartClose = $('#pp-cart-close');
-    var overlay = $('#pp-cart-overlay');
-    var checkout = $('#pp-cart-checkout');
-    if (cartBtn) cartBtn.addEventListener('click', openCart);
-    if (cartClose) cartClose.addEventListener('click', closeCart);
-    if (overlay) overlay.addEventListener('click', closeCart);
-    if (checkout) checkout.addEventListener('click', function() { closeCart(); openPayment(); });
-    updateCartUI();
-  }
-
-  /* ── Payment Modal ── */
-  var payStep = 0;
-  var payMethod = '';
-
-  function openPayment() {
-    if (!cart.length) { alert('Agrega productos al carrito primero.'); return; }
-    payStep = 0;
-    payMethod = '';
-    updatePaymentStep();
-    renderPaySummary();
-    var overlay = $('#pp-pay-overlay');
-    if (overlay) { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  }
-
-  function closePayment() {
-    var overlay = $('#pp-pay-overlay');
-    if (overlay) overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function renderPaySummary() {
-    var cont = $('#pp-pay-summary-items');
-    var tot = $('#pp-pay-total-val');
-    if (!cont) return;
-    cont.innerHTML = cart.map(function(item) {
-      var prod = PRODUCTS.find(function(p) { return p.id === item.id; });
-      if (!prod) return '';
-      return '<div class="pp-pay-summary-item"><span>' + escHTML(prod.name) + ' × ' + item.qty + '</span><span>' + formatCOP(prod.price * item.qty) + '</span></div>';
-    }).join('');
-    if (tot) tot.textContent = formatCOP(getCartTotal());
-  }
-
-  function updatePaymentStep() {
-    for (var i = 0; i < 4; i++) {
-      var step = $('#pay-step-' + i);
-      if (step) step.classList.toggle('active', i === payStep);
-      var dot = document.querySelector('[data-step="' + i + '"]');
-      if (dot) {
-        dot.classList.toggle('active', i === payStep);
-        dot.classList.toggle('done', i < payStep);
-      }
-    }
-  }
-
-  window.payNext = function() {
-    if (payStep < 3) { payStep++; updatePaymentStep(); }
-  };
-
-  window.payBack = function() {
-    if (payStep > 0) { payStep--; updatePaymentStep(); }
-  };
-
-  window.selectMethod = function(el, method) {
-    $$('.pp-pay-method').forEach(function(m) { m.classList.remove('selected'); });
-    el.classList.add('selected');
-    payMethod = method;
-  };
-
-  window.payConfirm = function() {
-    if (!payMethod) { alert('Por favor selecciona un método de pago.'); return; }
-    var orderNum = 'PP-' + Math.floor(Math.random() * 9000 + 1000);
-    var orderEl = $('#pp-pay-order-num');
-    if (orderEl) orderEl.textContent = 'Pedido #' + orderNum;
-    var nombre = $('#pay-nombre') ? $('#pay-nombre').value : '';
-    var dir = $('#pay-dir') ? $('#pay-dir').value : '';
-    var tel = $('#pay-tel') ? $('#pay-tel').value : '';
-    var summary = cart.map(function(item) {
-      var prod = PRODUCTS.find(function(p) { return p.id === item.id; });
-      return prod ? prod.name + ' x' + item.qty : '';
-    }).filter(Boolean).join(', ');
-    var msg = encodeURIComponent(
-      '¡Hola Papiros! Quiero confirmar mi pedido #' + orderNum +
-      '\nProductos: ' + summary +
-      '\nTotal: ' + formatCOP(getCartTotal()) +
-      '\nNombre: ' + (nombre || 'No indicado') +
-      '\nDirección: ' + (dir || 'No indicada') +
-      '\nTeléfono: ' + (tel || 'No indicado') +
-      '\nMétodo de pago: ' + payMethod
-    );
-    var waBtn = $('#pp-pay-wa-btn');
-    if (waBtn) waBtn.setAttribute('onclick', 'window.open("https://wa.me/573188682376?text=' + msg + '","_blank")');
-    payStep = 3;
-    updatePaymentStep();
-    cart = [];
-    saveCart();
-    updateCartUI();
-  };
-
-  function initPayment() {
-    var closeBtn = $('#pp-pay-close');
-    if (closeBtn) closeBtn.addEventListener('click', closePayment);
-    var overlay = $('#pp-pay-overlay');
-    if (overlay) overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) closePayment();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closePayment();
-    });
-  }
-
   /* ── Catalog Render & Filter ── */
   var catalogState = {cat: 'all', query: '', min: null, max: null};
 
@@ -1464,7 +999,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
         '<div class="pp-prod-body">' +
           '<p class="pp-prod-name">' + escHTML(prod.name) + '</p>' +
           '<p class="pp-prod-price">' + formatCOP(prod.price) + '</p>' +
-          '<button class="pp-prod-add" onclick="ppAddToCart(\'' + prod.id + '\')" aria-label="Agregar ' + escHTML(prod.name) + ' al carrito">+ Agregar</button>' +
         '</div>';
       grid.appendChild(card);
     });
@@ -1521,8 +1055,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     if (minInput) minInput.addEventListener('input', debounce(onPriceChange, 200));
     if (maxInput) maxInput.addEventListener('input', debounce(onPriceChange, 200));
   }
-
-  window.ppAddToCart = function(id) { addToCart(id); };
 
   /* ── Nav ── */
   function initNav() {
@@ -1609,8 +1141,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   function boot() {
     safe(initNav,          'nav');
     safe(initMobileMenu,   'mobile');
-    safe(initCart,         'cart');
-    safe(initPayment,      'payment');
     safe(initReveals,      'reveals');
     safe(initContactForm,  'form');
     safe(initSmoothScroll, 'scroll');
