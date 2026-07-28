@@ -191,6 +191,13 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-filter-pill{padding:8px 18px;border-radius:100px;border:1.5px solid var(--line);font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:border-color .2s,background .2s,color .2s;background:transparent}
 .pp-filter-pill:hover{border-color:var(--orange);color:var(--orange)}
 .pp-filter-pill.active{background:var(--orange);border-color:var(--orange);color:#fff}
+.pp-catalog-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;border-radius:var(--r-lg);border:1.5px dashed var(--line);background:var(--white);color:var(--ink-soft);font-family:var(--f-body);font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s;margin-bottom:8px}
+.pp-catalog-toggle:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-pale)}
+.pp-catalog-toggle-arrow{transition:transform .3s var(--ease);display:inline-block}
+.pp-catalog-toggle[aria-expanded="true"] .pp-catalog-toggle-arrow{transform:rotate(180deg)}
+.pp-catalog-collapse{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .4s var(--ease),opacity .3s ease}
+.pp-catalog-collapse.open{grid-template-rows:1fr;opacity:1}
+.pp-catalog-collapse > div{overflow:hidden;padding-top:32px}
 .pp-prods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
 .pp-prod-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s;cursor:pointer}
 .pp-prod-card[hidden]{display:none}
@@ -581,13 +588,20 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       <button class="pp-filter-pill" onclick="filterCatalog('libros')" data-pill="libros">📚 Libros</button>
       <button class="pp-filter-pill" onclick="filterCatalog('dulceria')" data-pill="dulceria">🎨 Arte</button>
     </div>
-    <div class="pp-prods-grid" id="pp-prods-grid" aria-live="polite">
-      <!-- Rendered by JS -->
-    </div>
-    <div class="pp-catalog-cta" data-reveal>
-      <a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener" class="pp-btn-orange">
-        Ver todos los productos en Rappi &nbsp;→
-      </a>
+    <button type="button" class="pp-catalog-toggle" id="pp-catalog-toggle" onclick="toggleCatalog()" aria-expanded="false" aria-controls="pp-catalog-collapse">
+      Ver catálogo completo <span class="pp-catalog-toggle-arrow">▾</span>
+    </button>
+    <div class="pp-catalog-collapse" id="pp-catalog-collapse">
+      <div>
+        <div class="pp-prods-grid" id="pp-prods-grid" aria-live="polite">
+          <!-- Rendered by JS -->
+        </div>
+        <div class="pp-catalog-cta">
+          <a href="https://www.rappi.com.co/tiendas/900172590-papiros-papeleria-mt-enc" target="_blank" rel="noopener" class="pp-btn-orange">
+            Ver todos los productos en Rappi &nbsp;→
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1009,6 +1023,16 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     return labels[cat] || cat;
   }
 
+  window.toggleCatalog = function(forceOpen) {
+    var wrap = $('#pp-catalog-collapse');
+    var btn = $('#pp-catalog-toggle');
+    if (!wrap || !btn) return;
+    var open = typeof forceOpen === 'boolean' ? forceOpen : !wrap.classList.contains('open');
+    wrap.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.childNodes[0].nodeValue = open ? 'Ocultar catálogo ' : 'Ver catálogo completo ';
+  };
+
   window.filterCatalog = function(cat) {
     catalogState.cat = cat;
     renderCatalog();
@@ -1018,6 +1042,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     $$('.pp-cat-card').forEach(function(card) {
       card.classList.toggle('active-filter', card.dataset.filter === cat);
     });
+    toggleCatalog(true);
     var catalogEl = $('#catalogo');
     if (catalogEl && cat !== 'all') {
       setTimeout(function() {
@@ -1043,6 +1068,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       searchInput.addEventListener('input', debounce(function() {
         catalogState.query = searchInput.value;
         renderCatalog();
+        if (searchInput.value.trim()) toggleCatalog(true);
       }, 200));
     }
     function onPriceChange() {
@@ -1051,6 +1077,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       catalogState.min = minVal != null && !isNaN(minVal) ? minVal : null;
       catalogState.max = maxVal != null && !isNaN(maxVal) ? maxVal : null;
       renderCatalog();
+      if (catalogState.min != null || catalogState.max != null) toggleCatalog(true);
     }
     if (minInput) minInput.addEventListener('input', debounce(onPriceChange, 200));
     if (maxInput) maxInput.addEventListener('input', debounce(onPriceChange, 200));
