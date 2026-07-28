@@ -189,7 +189,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-price-sep{color:var(--ink-mute);font-size:13px}
 .pp-catalog-empty{text-align:center;padding:60px 20px;color:var(--ink-mute);font-size:14px;grid-column:1/-1}
 .pp-filter-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
-.pp-filter-pill{padding:8px 18px;border-radius:100px;border:1.5px solid var(--line);font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:border-color .2s,background .2s,color .2s;background:transparent}
+.pp-filter-pill{padding:8px 18px;border-radius:100px;border:1.5px solid var(--line);font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:border-color .2s,background .2s,color .2s;background:transparent;display:inline-flex;align-items:center;gap:6px}
+.pp-filter-pill img{width:16px;height:16px;border-radius:50%;object-fit:cover}
 .pp-filter-pill:hover{border-color:var(--orange);color:var(--orange)}
 .pp-filter-pill.active{background:var(--orange);border-color:var(--orange);color:#fff}
 .pp-catalog-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;border-radius:var(--r-lg);border:1.5px dashed var(--line);background:var(--white);color:var(--ink-soft);font-family:var(--f-body);font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s;margin-bottom:8px}
@@ -602,7 +603,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       <button class="pp-filter-pill" onclick="filterCatalog('miscelanea')" data-pill="miscelanea">🎨 Miscelánea</button>
       <button class="pp-filter-pill" onclick="filterCatalog('fiesta')" data-pill="fiesta">🎉 Fiesta</button>
       <button class="pp-filter-pill" onclick="filterCatalog('scrapbooking')" data-pill="scrapbooking">📚 Scrapbooking</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('arte')" data-pill="arte">🎨 Arte</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('arte')" data-pill="arte"><img src="assets/cat-arte.png" alt=""> Arte</button>
     </div>
     <button type="button" class="pp-catalog-toggle" id="pp-catalog-toggle" onclick="toggleCatalog()" aria-expanded="false" aria-controls="pp-catalog-collapse">
       Ver catálogo completo <span class="pp-catalog-toggle-arrow">▾</span>
