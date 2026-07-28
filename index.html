@@ -164,7 +164,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-cat-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 14px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;transition:transform .28s var(--ease),box-shadow .28s,border-color .2s}
 .pp-cat-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(240,90,0,.14);border-color:#ffd4b8}
 .pp-cat-card.active-filter{border-color:var(--orange);background:var(--orange-pale)}
-.pp-cat-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.pp-cat-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden}
+.pp-cat-icon img{width:100%;height:100%;object-fit:cover}
 .ic1{background:var(--orange-pale)}.ic2{background:#fff8e0}.ic3{background:#e8f5ee}.ic4{background:#f5e8f0}.ic5{background:#f0f5e8}.ic6{background:#e8f0f5}.ic7{background:#fce8e8}.ic8{background:#e8f0fc}
 .pp-cat-name{font-size:12.5px;font-weight:600;text-align:center;color:var(--ink-soft)}
 
@@ -564,7 +565,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
         <span class="pp-cat-name">Scrapbooking</span>
       </div>
       <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('arte')" data-filter="arte">
-        <div class="pp-cat-icon ic5">🎨</div>
+        <div class="pp-cat-icon ic5"><img src="assets/cat-arte.png" alt="Arte" loading="lazy"></div>
         <span class="pp-cat-name">Arte</span>
       </div>
     </div>
