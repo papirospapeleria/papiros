@@ -206,6 +206,19 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
 .pp-prod-card:hover .pp-prod-img img{transform:scale(1.07)}
 .pp-prod-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:52px}
+.pp-prod-img{cursor:zoom-in}
+
+/* ============================================================
+   IMAGE LIGHTBOX
+   ============================================================ */
+.pp-lightbox{position:fixed;inset:0;background:rgba(26,14,5,.85);z-index:600;display:none;align-items:center;justify-content:center;padding:40px 20px}
+.pp-lightbox.open{display:flex}
+.pp-lightbox-inner{position:relative;max-width:min(720px,92vw);max-height:88vh;display:flex;flex-direction:column;align-items:center}
+.pp-lightbox-inner img{max-width:100%;max-height:70vh;object-fit:contain;border-radius:16px;background:var(--white);box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.pp-lightbox-ph{width:min(480px,80vw);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:96px;background:var(--white);border-radius:16px}
+.pp-lightbox-caption{color:#fff;text-align:center;margin-top:16px;font-size:15px;font-weight:600;max-width:90%}
+.pp-lightbox-close{position:absolute;top:-18px;right:-18px;width:40px;height:40px;border-radius:50%;background:var(--white);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+@media(max-width:600px){.pp-lightbox-close{top:-14px;right:0}}
 .pp-prod-badge{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 .pp-badge-papeleria{background:var(--orange-pale);color:var(--orange)}
 .pp-badge-tecnologia{background:#e8f0f5;color:#1a5276}
@@ -348,6 +361,15 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 <body>
 
 <a href="#catalogo" class="skip-link">Saltar al contenido</a>
+
+<!-- ═══ IMAGE LIGHTBOX ════════════════════════ -->
+<div class="pp-lightbox" id="pp-lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <div class="pp-lightbox-inner">
+    <button class="pp-lightbox-close" id="pp-lightbox-close" aria-label="Cerrar">✕</button>
+    <div id="pp-lightbox-media"></div>
+    <p class="pp-lightbox-caption" id="pp-lightbox-caption"></p>
+  </div>
+</div>
 
 <!-- ═══ WHATSAPP FAB ══════════════════════════ -->
 <div class="pp-wa-fab" aria-label="Contactar por WhatsApp">
@@ -1007,7 +1029,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       card.className = 'pp-prod-card';
       card.setAttribute('data-cat', prod.cat);
       card.innerHTML =
-        '<div class="pp-prod-img">' +
+        '<div class="pp-prod-img" onclick="ppOpenLightbox(\'' + prod.id + '\')">' +
           '<img src="' + escHTML(prod.img) + '" alt="' + escHTML(prod.name) + '" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=\'<div class=pp-prod-ph>' + prod.emoji + '</div>\'">' +
           '<span class="pp-prod-badge pp-badge-' + escHTML(prod.cat) + '">' + catLabel(prod.cat) + '</span>' +
         '</div>' +
@@ -1023,6 +1045,38 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   function catLabel(cat) {
     var labels = {papeleria:'📎 Papelería',tecnologia:'📱 Tecnología',jugueteria:'🎲 Juguetería',miscelanea:'🎨 Miscelánea',fiesta:'🎉 Fiesta',libros:'📚 Libros',dulceria:'🎨 Arte'};
     return labels[cat] || cat;
+  }
+
+  /* ── Image Lightbox ── */
+  function closeLightbox() {
+    var lb = $('#pp-lightbox');
+    if (lb) lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  window.ppOpenLightbox = function(id) {
+    var prod = PRODUCTS.find(function(p) { return p.id === id; });
+    if (!prod) return;
+    var media = $('#pp-lightbox-media');
+    var caption = $('#pp-lightbox-caption');
+    if (media) {
+      media.innerHTML = '<img src="' + escHTML(prod.img) + '" alt="' + escHTML(prod.name) + '" onerror="this.parentNode.innerHTML=\'<div class=pp-lightbox-ph>' + prod.emoji + '</div>\'">';
+    }
+    if (caption) caption.textContent = prod.name;
+    var lb = $('#pp-lightbox');
+    if (lb) { lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  };
+
+  function initLightbox() {
+    var lb = $('#pp-lightbox');
+    var closeBtn = $('#pp-lightbox-close');
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (lb) lb.addEventListener('click', function(e) {
+      if (e.target === lb) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
   }
 
   window.toggleCatalog = function(forceOpen) {
@@ -1175,6 +1229,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     safe(initSmoothScroll, 'scroll');
     safe(initCatalogFilters, 'catalogFilters');
     safe(renderCatalog, 'catalog');
+    safe(initLightbox, 'lightbox');
     document.documentElement.classList.add('is-ready');
   }
 
