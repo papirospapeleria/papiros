@@ -31,9 +31,9 @@ Everything is wired through one self-invoking function with a `boot()` entry poi
 - `initContactForm` — builds a `mailto:` link from form fields (no backend/API call)
 - `initSmoothScroll` — intercepts in-page `#anchor` clicks for smooth scrolling
 - `initCatalogFilters` — wires the search input, price range inputs, and category pills
+- `renderCatalog()` — renders the product grid from the `PRODUCTS` array
 
 The product grid is collapsed by default behind a "Ver catálogo completo" toggle (`toggleCatalog()`); selecting a category, typing a search term, or setting a price bound auto-expands it.
-- `renderCatalog()` — renders the product grid from the `PRODUCTS` array
 
 There is no cart or checkout flow — the site is a pure catalog/showcase. Ordering happens off-platform via WhatsApp or the third-party delivery apps (Rappi, DiDi Food).
 
