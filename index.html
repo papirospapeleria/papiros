@@ -222,7 +222,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-prod-badge{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 .pp-badge-papeleria{background:var(--orange-pale);color:var(--orange)}
 .pp-badge-tecnologia{background:#e8f0f5;color:#1a5276}
-.pp-badge-jugueteria{background:#e8f5ee;color:#1a6a3e}
 .pp-badge-miscelanea{background:#f5e8f0;color:#6c3483}
 .pp-badge-fiesta{background:#fce8e8;color:#c0392b}
 .pp-badge-libros{background:#fff8e0;color:#7d6608}
@@ -456,7 +455,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   <div class="pp-ticker-track">
     <span>✦ Artículos de Oficina</span><span>·</span>
     <span>✦ Tecnología</span><span>·</span>
-    <span>✦ Juguetería</span><span>·</span>
     <span>✦ Miscelánea</span><span>·</span>
     <span>✦ Papelería Escolar</span><span>·</span>
     <span>✦ Colores &amp; Arte</span><span>·</span>
@@ -464,7 +462,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     <span>✦ Scrapbooking</span><span>·</span>
     <span>✦ Artículos de Oficina</span><span>·</span>
     <span>✦ Tecnología</span><span>·</span>
-    <span>✦ Juguetería</span><span>·</span>
     <span>✦ Miscelánea</span><span>·</span>
     <span>✦ Papelería Escolar</span><span>·</span>
     <span>✦ Colores &amp; Arte</span><span>·</span>
@@ -554,10 +551,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
         <div class="pp-cat-icon ic6">📱</div>
         <span class="pp-cat-name">Tecnología</span>
       </div>
-      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('jugueteria')" data-filter="jugueteria">
-        <div class="pp-cat-icon ic3">🎲</div>
-        <span class="pp-cat-name">Juguetería</span>
-      </div>
       <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('miscelanea')" data-filter="miscelanea">
         <div class="pp-cat-icon ic4">🎨</div>
         <span class="pp-cat-name">Miscelánea</span>
@@ -605,7 +598,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       <button class="pp-filter-pill active" onclick="filterCatalog('all')" data-pill="all">🏪 Todos</button>
       <button class="pp-filter-pill" onclick="filterCatalog('papeleria')" data-pill="papeleria">📎 Papelería</button>
       <button class="pp-filter-pill" onclick="filterCatalog('tecnologia')" data-pill="tecnologia">📱 Tecnología</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('jugueteria')" data-pill="jugueteria">🎲 Juguetería</button>
       <button class="pp-filter-pill" onclick="filterCatalog('miscelanea')" data-pill="miscelanea">🎨 Miscelánea</button>
       <button class="pp-filter-pill" onclick="filterCatalog('fiesta')" data-pill="fiesta">🎉 Fiesta</button>
       <button class="pp-filter-pill" onclick="filterCatalog('libros')" data-pill="libros">📚 Libros</button>
@@ -781,7 +773,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
           <li><a href="#catalogo">Todos los productos</a></li>
           <li><a href="#catalogo" onclick="filterCatalog('papeleria')">Papelería</a></li>
           <li><a href="#catalogo" onclick="filterCatalog('tecnologia')">Tecnología</a></li>
-          <li><a href="#catalogo" onclick="filterCatalog('jugueteria')">Juguetería</a></li>
           <li><a href="#catalogo" onclick="filterCatalog('miscelanea')">Miscelánea</a></li>
         </ul>
       </div>
@@ -874,13 +865,12 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     {id:'t02',cat:'tecnologia',name:'Audifono Bt Diadema Tipo Airpods Max 1',price:120000,img:'assets/en-construccion.png',emoji:'🎧',code:'6920230309145'},
     {id:'t05',cat:'tecnologia',name:'Adaptador 1 puerto USB 3.4 amperios speed',price:18000,img:'assets/en-construccion.png',emoji:'🔌',code:'7707478108520'},
     {id:'t06',cat:'tecnologia',name:'Adaptador Toma Corriente Europeo Universal',price:20000,img:'assets/en-construccion.png',emoji:'🔌',code:'6972047609222'},
-    /* ── JUGUETERÍA ── */
-    {id:'j03',cat:'jugueteria',name:'Ajedrez mini magnetico',price:6000,img:'assets/en-construccion.png',emoji:'♟️',code:'6991202016613'},
-    {id:'j04',cat:'jugueteria',name:'Arco crossbow ref 218-6D',price:80000,img:'assets/en-construccion.png',emoji:'🏹',code:'6934240803074'},
-    {id:'j06',cat:'jugueteria',name:'Arcilla de nube',price:25000,img:'assets/en-construccion.png',emoji:'☁️',code:'6930518958125'},
     /* ── MISCELÁNEA ── */
     {id:'m01',cat:'miscelanea',name:'Aspiradora de escritorio',price:34000,img:'assets/en-construccion.png',emoji:'🌀',code:'6920210512312'},
     {id:'m04',cat:'miscelanea',name:'Algodon higietex 15gr',price:3000,img:'assets/en-construccion.png',emoji:'🌿',code:'7702208145981'},
+    {id:'j03',cat:'miscelanea',name:'Ajedrez mini magnetico',price:6000,img:'assets/en-construccion.png',emoji:'♟️',code:'6991202016613'},
+    {id:'j04',cat:'miscelanea',name:'Arco crossbow ref 218-6D',price:80000,img:'assets/en-construccion.png',emoji:'🏹',code:'6934240803074'},
+    {id:'j06',cat:'miscelanea',name:'Arcilla de nube',price:25000,img:'assets/en-construccion.png',emoji:'☁️',code:'6930518958125'},
     /* ── FIESTA ── */
     {id:'f01',cat:'fiesta',name:'Antifaz',price:5000,img:'assets/en-construccion.png',emoji:'🎭',code:'77094124067157'},
     /* ── ARTE ── */
@@ -1020,7 +1010,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   }
 
   function catLabel(cat) {
-    var labels = {papeleria:'📎 Papelería',tecnologia:'📱 Tecnología',jugueteria:'🎲 Juguetería',miscelanea:'🎨 Miscelánea',fiesta:'🎉 Fiesta',libros:'📚 Libros',arte:'🎨 Arte'};
+    var labels = {papeleria:'📎 Papelería',tecnologia:'📱 Tecnología',miscelanea:'🎨 Miscelánea',fiesta:'🎉 Fiesta',libros:'📚 Libros',arte:'🎨 Arte'};
     return labels[cat] || cat;
   }
 
