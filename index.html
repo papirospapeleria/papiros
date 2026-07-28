@@ -226,7 +226,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-badge-miscelanea{background:#f5e8f0;color:#6c3483}
 .pp-badge-fiesta{background:#fce8e8;color:#c0392b}
 .pp-badge-libros{background:#fff8e0;color:#7d6608}
-.pp-badge-dulceria{background:#fde8e8;color:#922b21}
+.pp-badge-arte{background:#fde8e8;color:#922b21}
 .pp-badge-navidad{background:#e8f5ee;color:#1a6a3e}
 .pp-prod-body{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column;gap:6px}
 .pp-prod-name{font-size:14px;font-weight:600;line-height:1.35;color:var(--ink)}
@@ -570,7 +570,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
         <div class="pp-cat-icon ic8">📚</div>
         <span class="pp-cat-name">Libros</span>
       </div>
-      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('dulceria')" data-filter="dulceria">
+      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('arte')" data-filter="arte">
         <div class="pp-cat-icon ic5">🎨</div>
         <span class="pp-cat-name">Arte</span>
       </div>
@@ -609,7 +609,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       <button class="pp-filter-pill" onclick="filterCatalog('miscelanea')" data-pill="miscelanea">🎨 Miscelánea</button>
       <button class="pp-filter-pill" onclick="filterCatalog('fiesta')" data-pill="fiesta">🎉 Fiesta</button>
       <button class="pp-filter-pill" onclick="filterCatalog('libros')" data-pill="libros">📚 Libros</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('dulceria')" data-pill="dulceria">🎨 Arte</button>
+      <button class="pp-filter-pill" onclick="filterCatalog('arte')" data-pill="arte">🎨 Arte</button>
     </div>
     <button type="button" class="pp-catalog-toggle" id="pp-catalog-toggle" onclick="toggleCatalog()" aria-expanded="false" aria-controls="pp-catalog-collapse">
       Ver catálogo completo <span class="pp-catalog-toggle-arrow">▾</span>
@@ -884,57 +884,57 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     /* ── FIESTA ── */
     {id:'f01',cat:'fiesta',name:'Antifaz',price:5000,img:IMGS.party,emoji:'🎭',code:'77094124067157'},
     /* ── ARTE ── */
-    {id:'a01',cat:'dulceria',name:'Aceite de linaza 120cm franco',price:13000,img:'assets/7707227481560.webp',emoji:'🎨',code:'7707227481560'},
-    {id:'a02',cat:'dulceria',name:'Aceite de linaza franco o Play Art 60cm',price:8000,img:'assets/7707227481553.webp',emoji:'🎨',code:'7707227481553'},
-    {id:'a03',cat:'dulceria',name:'Aerosol esmerilado ultramate Franco',price:28000,img:'assets/7707227486886.jpg',emoji:'🎨',code:'7707227486886'},
-    {id:'a04',cat:'dulceria',name:'Aerosol plata Franco',price:45000,img:'assets/7707227486695.webp',emoji:'🎨',code:'7707227486695'},
-    {id:'a05',cat:'dulceria',name:'Aerosol transparente brillante Franco',price:28000,img:'assets/7707227486480.webp',emoji:'🎨',code:'7707227486480'},
-    {id:'a06',cat:'dulceria',name:'Aerosol transparente mate Franco',price:28000,img:'assets/7707227486497.jfif',emoji:'🎨',code:'7707227486497'},
-    {id:'a07',cat:'dulceria',name:'Barniz Acuoso 120ml Franco Arte',price:10000,img:'assets/7707227480303.webp',emoji:'🎨',code:'7707227480303'},
-    {id:'a08',cat:'dulceria',name:'Barniz aerosol brillante NO oleo',price:50000,img:'assets/7707227487012.jfif',emoji:'🎨',code:'7707227487012'},
-    {id:'a09',cat:'dulceria',name:'Barniz aerosol brillante oleo',price:50000,img:'assets/7707227486992.jfif',emoji:'🎨',code:'7707227486992'},
-    {id:'a10',cat:'dulceria',name:'Barniz aerosol mate NO oleo',price:50000,img:'assets/7707227487005.webp',emoji:'🎨',code:'7707227487005'},
-    {id:'a11',cat:'dulceria',name:'Barniz aerosol mate oleo',price:50000,img:'assets/7707227487029.webp',emoji:'🎨',code:'7707227487029'},
-    {id:'a13',cat:'dulceria',name:'Borrador maleable Franco',price:7000,img:'assets/7707227484639.webp',emoji:'🎨',code:'7707227484639'},
-    {id:'a14',cat:'dulceria',name:'Disolvente X 120 ml franco',price:10000,img:'assets/7707227488514.webp',emoji:'🎨',code:'7707227488514'},
-    {id:'a15',cat:'dulceria',name:'Gesso franco 120 ml',price:16000,img:'assets/7707227483304.webp',emoji:'🎨',code:'7707227483304'},
-    {id:'a16',cat:'dulceria',name:'Gesso negro 120 ml franco',price:16000,img:'assets/7707227487746.webp',emoji:'🎨',code:'7707227487746'},
-    {id:'a17',cat:'dulceria',name:'Hojillas metalizadas 14x14 cm x 25 hojillas oro',price:21000,img:'assets/7707227484325.webp',emoji:'🎨',code:'7707227484325'},
-    {id:'a18',cat:'dulceria',name:'Hojillas metalizadas 14x14 cm x 25 hojillas plata',price:21000,img:'assets/7707227484394.png',emoji:'🎨',code:'7707227484394'},
-    {id:'a19',cat:'dulceria',name:'Linaza 250 ml franco',price:24000,img:'assets/7707227480365.webp',emoji:'🎨',code:'7707227480365'},
-    {id:'a20',cat:'dulceria',name:'Nieve artificial aerosol 120 ml franco',price:24000,img:'assets/7707227486220.jfif',emoji:'🎨',code:'7707227486220'},
-    {id:'a21',cat:'dulceria',name:'Nieve artificial aerosol 300ml franco',price:40000,img:'assets/7707227485520.jfif',emoji:'🎨',code:'7707227485520'},
-    {id:'a22',cat:'dulceria',name:'Papel foil 31 x 100 cm dorado',price:21000,img:'assets/7707227488460.webp',emoji:'🎨',code:'7707227488460'},
-    {id:'a23',cat:'dulceria',name:'Papel foil 31 x 100 cm plata',price:21000,img:'assets/7707227488477.jfif',emoji:'🎨',code:'7707227488477'},
-    {id:'a24',cat:'dulceria',name:'Pegamento para tela 120 ml franco',price:12000,img:'assets/7707227486060.jfif',emoji:'🎨',code:'7707227486060'},
-    {id:'a25',cat:'dulceria',name:'Pintura acrílica 30 ml dorado escarchado',price:8000,img:'assets/7707759482097.webp',emoji:'🎨',code:'7707759482097'},
-    {id:'a26',cat:'dulceria',name:'Pintura acrílica amarillo primario 60 ml Franco',price:6000,img:'assets/7707227480877.jfif',emoji:'🎨',code:'7707227480877'},
-    {id:'a27',cat:'dulceria',name:'Pintura acrílica azul primario 60 ml Franco',price:6000,img:'assets/7707227481058.webp',emoji:'🎨',code:'7707227481058'},
-    {id:'a29',cat:'dulceria',name:'Pintura acrílica blanco metalizado 60ml Franco',price:12000,img:'assets/7707227481171.webp',emoji:'🎨',code:'7707227481171'},
-    {id:'a30',cat:'dulceria',name:'Pintura acrílica lila 60 ml Franco',price:6000,img:'assets/7707227480815.webp',emoji:'🎨',code:'7707227480815'},
-    {id:'a31',cat:'dulceria',name:'Pintura acrílica magenta 60 ml Franco',price:8000,img:'assets/7707227481010.jpg',emoji:'🎨',code:'7707227481010'},
-    {id:'a32',cat:'dulceria',name:'Pintura acrílica negro 60 ml Franco',price:6000,img:'assets/7707227481294.jpg',emoji:'🎨',code:'7707227481294'},
-    {id:'a33',cat:'dulceria',name:'Pintura acrílica negro metalizado 60ml Franco',price:13000,img:'assets/7707227488408.png',emoji:'🎨',code:'7707227488408'},
-    {id:'a34',cat:'dulceria',name:'Pintura acrílica ocre 60 ml Franco',price:6000,img:'assets/7707227481225.webp',emoji:'🎨',code:'7707227481225'},
-    {id:'a35',cat:'dulceria',name:'Pintura acrílica oro 60 ml Franco',price:14000,img:'assets/7707227487814.jpg',emoji:'🎨',code:'7707227487814'},
-    {id:'a36',cat:'dulceria',name:'Pintura acrílica plata 60 ml Franco',price:13000,img:'assets/7707227481331.jpg',emoji:'🎨',code:'7707227481331'},
-    {id:'a37',cat:'dulceria',name:'Pintura acrílica turquesa 60 ml Franco',price:6000,img:'assets/7707227486275.jpg',emoji:'🎨',code:'7707227486275'},
-    {id:'a38',cat:'dulceria',name:'Pintura acrílica verde limón 60 ml Franco',price:6000,img:'assets/7707227485575.jfif',emoji:'🎨',code:'7707227485575'},
-    {id:'a39',cat:'dulceria',name:'Pintura acrílica verde navidad 60 ml Franco',price:6000,img:'assets/7707227481133.jfif',emoji:'🎨',code:'7707227481133'},
-    {id:'a40',cat:'dulceria',name:'Pintura acrílica verde oliva 60 ml Franco',price:6000,img:'assets/7707227485568.jpg',emoji:'🎨',code:'7707227485568'},
-    {id:'a41',cat:'dulceria',name:'Pintura acrílica violeta 60 ml Franco',price:6000,img:'assets/7707227480969.jfif',emoji:'🎨',code:'7707227480969'},
-    {id:'a42',cat:'dulceria',name:'Pintura acrílica 30 ml oro 24k puro',price:8000,img:'assets/7707759482141.webp',emoji:'🎨',code:'7707759482141'},
-    {id:'a43',cat:'dulceria',name:'Pintura metálica plata 60ml Franco',price:14000,img:'assets/7590015040472.webp',emoji:'🎨',code:'7590015040472'},
-    {id:'a44',cat:'dulceria',name:'Pintura para tela blanca 30 ml franco',price:4000,img:'assets/7707227481454.jfif',emoji:'🎨',code:'7707227481454'},
-    {id:'a45',cat:'dulceria',name:'Pintura para tela metalizada oro 30 ml franco',price:6000,img:'assets/7707227487067.png',emoji:'🎨',code:'7707227487067'},
-    {id:'a46',cat:'dulceria',name:'Pintura para tela metalizada plata 30 ml franco',price:6000,img:'assets/7707227487951.jfif',emoji:'🎨',code:'7707227487951'},
-    {id:'a47',cat:'dulceria',name:'Recuperador de pintura 120 ml Franco',price:5000,img:'assets/7707759484336.webp',emoji:'🎨',code:'7707759484336'},
-    {id:'a48',cat:'dulceria',name:'Resina 60 ML franco',price:22000,img:'assets/7707227480433.webp',emoji:'🎨',code:'7707227480433'},
-    {id:'a50',cat:'dulceria',name:'Resina duo franco 120 ml',price:42000,img:'assets/7707227481621.webp',emoji:'🎨',code:'7707227481621'},
-    {id:'a51',cat:'dulceria',name:'Sellador Lijable Franco arte 120ml tapa poros',price:12000,img:'assets/7707227480297.webp',emoji:'🎨',code:'7707227480297'},
-    {id:'a52',cat:'dulceria',name:'Trementina 120cc franco',price:11000,img:'assets/7707227481546.jpg',emoji:'🎨',code:'7707227481546'},
-    {id:'a53',cat:'dulceria',name:'Trementina 250 ml franco',price:22000,img:'assets/7707227480358.webp',emoji:'🎨',code:'7707227480358'},
-    {id:'a54',cat:'dulceria',name:'Trementina x 60 cm franco',price:8000,img:'assets/7707227481539.webp',emoji:'🎨',code:'7707227481539'}
+    {id:'a01',cat:'arte',name:'Aceite de linaza 120cm franco',price:13000,img:'assets/7707227481560.webp',emoji:'🎨',code:'7707227481560'},
+    {id:'a02',cat:'arte',name:'Aceite de linaza franco o Play Art 60cm',price:8000,img:'assets/7707227481553.webp',emoji:'🎨',code:'7707227481553'},
+    {id:'a03',cat:'arte',name:'Aerosol esmerilado ultramate Franco',price:28000,img:'assets/7707227486886.jpg',emoji:'🎨',code:'7707227486886'},
+    {id:'a04',cat:'arte',name:'Aerosol plata Franco',price:45000,img:'assets/7707227486695.webp',emoji:'🎨',code:'7707227486695'},
+    {id:'a05',cat:'arte',name:'Aerosol transparente brillante Franco',price:28000,img:'assets/7707227486480.webp',emoji:'🎨',code:'7707227486480'},
+    {id:'a06',cat:'arte',name:'Aerosol transparente mate Franco',price:28000,img:'assets/7707227486497.jfif',emoji:'🎨',code:'7707227486497'},
+    {id:'a07',cat:'arte',name:'Barniz Acuoso 120ml Franco Arte',price:10000,img:'assets/7707227480303.webp',emoji:'🎨',code:'7707227480303'},
+    {id:'a08',cat:'arte',name:'Barniz aerosol brillante NO oleo',price:50000,img:'assets/7707227487012.jfif',emoji:'🎨',code:'7707227487012'},
+    {id:'a09',cat:'arte',name:'Barniz aerosol brillante oleo',price:50000,img:'assets/7707227486992.jfif',emoji:'🎨',code:'7707227486992'},
+    {id:'a10',cat:'arte',name:'Barniz aerosol mate NO oleo',price:50000,img:'assets/7707227487005.webp',emoji:'🎨',code:'7707227487005'},
+    {id:'a11',cat:'arte',name:'Barniz aerosol mate oleo',price:50000,img:'assets/7707227487029.webp',emoji:'🎨',code:'7707227487029'},
+    {id:'a13',cat:'arte',name:'Borrador maleable Franco',price:7000,img:'assets/7707227484639.webp',emoji:'🎨',code:'7707227484639'},
+    {id:'a14',cat:'arte',name:'Disolvente X 120 ml franco',price:10000,img:'assets/7707227488514.webp',emoji:'🎨',code:'7707227488514'},
+    {id:'a15',cat:'arte',name:'Gesso franco 120 ml',price:16000,img:'assets/7707227483304.webp',emoji:'🎨',code:'7707227483304'},
+    {id:'a16',cat:'arte',name:'Gesso negro 120 ml franco',price:16000,img:'assets/7707227487746.webp',emoji:'🎨',code:'7707227487746'},
+    {id:'a17',cat:'arte',name:'Hojillas metalizadas 14x14 cm x 25 hojillas oro',price:21000,img:'assets/7707227484325.webp',emoji:'🎨',code:'7707227484325'},
+    {id:'a18',cat:'arte',name:'Hojillas metalizadas 14x14 cm x 25 hojillas plata',price:21000,img:'assets/7707227484394.png',emoji:'🎨',code:'7707227484394'},
+    {id:'a19',cat:'arte',name:'Linaza 250 ml franco',price:24000,img:'assets/7707227480365.webp',emoji:'🎨',code:'7707227480365'},
+    {id:'a20',cat:'arte',name:'Nieve artificial aerosol 120 ml franco',price:24000,img:'assets/7707227486220.jfif',emoji:'🎨',code:'7707227486220'},
+    {id:'a21',cat:'arte',name:'Nieve artificial aerosol 300ml franco',price:40000,img:'assets/7707227485520.jfif',emoji:'🎨',code:'7707227485520'},
+    {id:'a22',cat:'arte',name:'Papel foil 31 x 100 cm dorado',price:21000,img:'assets/7707227488460.webp',emoji:'🎨',code:'7707227488460'},
+    {id:'a23',cat:'arte',name:'Papel foil 31 x 100 cm plata',price:21000,img:'assets/7707227488477.jfif',emoji:'🎨',code:'7707227488477'},
+    {id:'a24',cat:'arte',name:'Pegamento para tela 120 ml franco',price:12000,img:'assets/7707227486060.jfif',emoji:'🎨',code:'7707227486060'},
+    {id:'a25',cat:'arte',name:'Pintura acrílica 30 ml dorado escarchado',price:8000,img:'assets/7707759482097.webp',emoji:'🎨',code:'7707759482097'},
+    {id:'a26',cat:'arte',name:'Pintura acrílica amarillo primario 60 ml Franco',price:6000,img:'assets/7707227480877.jfif',emoji:'🎨',code:'7707227480877'},
+    {id:'a27',cat:'arte',name:'Pintura acrílica azul primario 60 ml Franco',price:6000,img:'assets/7707227481058.webp',emoji:'🎨',code:'7707227481058'},
+    {id:'a29',cat:'arte',name:'Pintura acrílica blanco metalizado 60ml Franco',price:12000,img:'assets/7707227481171.webp',emoji:'🎨',code:'7707227481171'},
+    {id:'a30',cat:'arte',name:'Pintura acrílica lila 60 ml Franco',price:6000,img:'assets/7707227480815.webp',emoji:'🎨',code:'7707227480815'},
+    {id:'a31',cat:'arte',name:'Pintura acrílica magenta 60 ml Franco',price:8000,img:'assets/7707227481010.jpg',emoji:'🎨',code:'7707227481010'},
+    {id:'a32',cat:'arte',name:'Pintura acrílica negro 60 ml Franco',price:6000,img:'assets/7707227481294.jpg',emoji:'🎨',code:'7707227481294'},
+    {id:'a33',cat:'arte',name:'Pintura acrílica negro metalizado 60ml Franco',price:13000,img:'assets/7707227488408.png',emoji:'🎨',code:'7707227488408'},
+    {id:'a34',cat:'arte',name:'Pintura acrílica ocre 60 ml Franco',price:6000,img:'assets/7707227481225.webp',emoji:'🎨',code:'7707227481225'},
+    {id:'a35',cat:'arte',name:'Pintura acrílica oro 60 ml Franco',price:14000,img:'assets/7707227487814.jpg',emoji:'🎨',code:'7707227487814'},
+    {id:'a36',cat:'arte',name:'Pintura acrílica plata 60 ml Franco',price:13000,img:'assets/7707227481331.jpg',emoji:'🎨',code:'7707227481331'},
+    {id:'a37',cat:'arte',name:'Pintura acrílica turquesa 60 ml Franco',price:6000,img:'assets/7707227486275.jpg',emoji:'🎨',code:'7707227486275'},
+    {id:'a38',cat:'arte',name:'Pintura acrílica verde limón 60 ml Franco',price:6000,img:'assets/7707227485575.jfif',emoji:'🎨',code:'7707227485575'},
+    {id:'a39',cat:'arte',name:'Pintura acrílica verde navidad 60 ml Franco',price:6000,img:'assets/7707227481133.jfif',emoji:'🎨',code:'7707227481133'},
+    {id:'a40',cat:'arte',name:'Pintura acrílica verde oliva 60 ml Franco',price:6000,img:'assets/7707227485568.jpg',emoji:'🎨',code:'7707227485568'},
+    {id:'a41',cat:'arte',name:'Pintura acrílica violeta 60 ml Franco',price:6000,img:'assets/7707227480969.jfif',emoji:'🎨',code:'7707227480969'},
+    {id:'a42',cat:'arte',name:'Pintura acrílica 30 ml oro 24k puro',price:8000,img:'assets/7707759482141.webp',emoji:'🎨',code:'7707759482141'},
+    {id:'a43',cat:'arte',name:'Pintura metálica plata 60ml Franco',price:14000,img:'assets/7590015040472.webp',emoji:'🎨',code:'7590015040472'},
+    {id:'a44',cat:'arte',name:'Pintura para tela blanca 30 ml franco',price:4000,img:'assets/7707227481454.jfif',emoji:'🎨',code:'7707227481454'},
+    {id:'a45',cat:'arte',name:'Pintura para tela metalizada oro 30 ml franco',price:6000,img:'assets/7707227487067.png',emoji:'🎨',code:'7707227487067'},
+    {id:'a46',cat:'arte',name:'Pintura para tela metalizada plata 30 ml franco',price:6000,img:'assets/7707227487951.jfif',emoji:'🎨',code:'7707227487951'},
+    {id:'a47',cat:'arte',name:'Recuperador de pintura 120 ml Franco',price:5000,img:'assets/7707759484336.webp',emoji:'🎨',code:'7707759484336'},
+    {id:'a48',cat:'arte',name:'Resina 60 ML franco',price:22000,img:'assets/7707227480433.webp',emoji:'🎨',code:'7707227480433'},
+    {id:'a50',cat:'arte',name:'Resina duo franco 120 ml',price:42000,img:'assets/7707227481621.webp',emoji:'🎨',code:'7707227481621'},
+    {id:'a51',cat:'arte',name:'Sellador Lijable Franco arte 120ml tapa poros',price:12000,img:'assets/7707227480297.webp',emoji:'🎨',code:'7707227480297'},
+    {id:'a52',cat:'arte',name:'Trementina 120cc franco',price:11000,img:'assets/7707227481546.jpg',emoji:'🎨',code:'7707227481546'},
+    {id:'a53',cat:'arte',name:'Trementina 250 ml franco',price:22000,img:'assets/7707227480358.webp',emoji:'🎨',code:'7707227480358'},
+    {id:'a54',cat:'arte',name:'Trementina x 60 cm franco',price:8000,img:'assets/7707227481539.webp',emoji:'🎨',code:'7707227481539'}
   ];
 
   /* ── Catalog Render & Filter ── */
@@ -1020,7 +1020,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   }
 
   function catLabel(cat) {
-    var labels = {papeleria:'📎 Papelería',tecnologia:'📱 Tecnología',jugueteria:'🎲 Juguetería',miscelanea:'🎨 Miscelánea',fiesta:'🎉 Fiesta',libros:'📚 Libros',dulceria:'🎨 Arte'};
+    var labels = {papeleria:'📎 Papelería',tecnologia:'📱 Tecnología',jugueteria:'🎲 Juguetería',miscelanea:'🎨 Miscelánea',fiesta:'🎉 Fiesta',libros:'📚 Libros',arte:'🎨 Arte'};
     return labels[cat] || cat;
   }
 
