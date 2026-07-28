@@ -217,6 +217,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-badge-navidad{background:#e8f5ee;color:#1a6a3e}
 .pp-prod-body{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column;gap:6px}
 .pp-prod-name{font-size:14px;font-weight:600;line-height:1.35;color:var(--ink)}
+.pp-prod-code{font-size:11px;font-weight:600;color:var(--orange);margin-top:2px}
 .pp-prod-price{font-family:var(--f-display);font-size:17px;font-weight:700;color:var(--orange);margin-top:auto;padding-top:8px}
 .pp-catalog-cta{text-align:center;margin-top:48px}
 .pp-btn-orange{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:100px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:background .2s,transform .25s var(--ease),box-shadow .25s;border:none;cursor:pointer}
@@ -833,7 +834,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 
   var PRODUCTS = [
     /* ── PAPELERÍA ── */
-    {id:'p01',cat:'papeleria',name:'Acuarela X 12 colores + pincel M&G',price:12500,img:IMGS.watercolor,emoji:'🎨'},
+    {id:'p01',cat:'papeleria',name:'Acuarela X 12 colores + pincel M&G',price:12500,img:IMGS.watercolor,emoji:'🎨',code:'6942109501160'},
     {id:'p02',cat:'papeleria',name:'Acuarela maries No.e1325 pequeña x 12',price:21000,img:IMGS.watercolor,emoji:'🎨'},
     {id:'p03',cat:'papeleria',name:'Acuarela metalizada x12 colores',price:15000,img:IMGS.watercolor,emoji:'✨'},
     {id:'p04',cat:'papeleria',name:'Agenda argollada con notas adhesivas y esfero',price:10000,img:IMGS.notebook,emoji:'📓'},
@@ -1012,6 +1013,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
         '</div>' +
         '<div class="pp-prod-body">' +
           '<p class="pp-prod-name">' + escHTML(prod.name) + '</p>' +
+          (prod.code ? '<p class="pp-prod-code">Código: ' + escHTML(prod.code) + '</p>' : '') +
           '<p class="pp-prod-price">' + formatCOP(prod.price) + '</p>' +
         '</div>';
       grid.appendChild(card);
