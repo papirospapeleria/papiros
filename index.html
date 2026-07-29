@@ -124,6 +124,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
 .pp-hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;max-width:440px}
 .pp-hero-tile{aspect-ratio:1;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:clamp(28px,4vw,40px);background:var(--white);border:1px solid var(--line);transition:transform .4s var(--ease),box-shadow .4s;animation:tileFloat var(--dur,3s) ease-in-out infinite;animation-delay:var(--del,0s)}
+.pp-hero-grid-photo .pp-hero-tile{background-image:url('assets/fachada-cropped.jpg');background-size:300% 300%;background-repeat:no-repeat}
 .pp-hero-tile:hover{transform:scale(1.08);box-shadow:0 12px 30px rgba(240,90,0,.18)}
 @keyframes tileFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .pp-hero-badge{position:absolute;bottom:-12px;left:-12px;background:var(--orange);color:#fff;padding:16px 20px;border-radius:16px;box-shadow:0 12px 32px rgba(240,90,0,.35);text-align:center;line-height:1.2;z-index:2}
@@ -353,7 +354,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   .pp-hero{min-height:auto}
   .pp-hero::before{width:100%;height:40%;top:auto;bottom:0;clip-path:none;opacity:.5}
   .pp-hero-visual{order:-1}
-  .pp-hero-grid{max-width:100%;grid-template-columns:repeat(5,1fr);gap:8px}
+  .pp-hero-grid{max-width:100%;grid-template-columns:repeat(3,1fr);gap:8px}
   .pp-hero-tile{border-radius:12px;font-size:clamp(20px,5vw,28px)}
   .pp-hero-badge{bottom:-8px;left:-8px;padding:10px 14px}
   .pp-hero-badge-num{font-size:20px}
@@ -368,7 +369,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   .pp-footer-bottom{flex-direction:column;align-items:flex-start}
   .pp-form-row{grid-template-columns:1fr}
   .pp-insta-btns{flex-direction:column;align-items:center}
-  .pp-hero-grid{grid-template-columns:repeat(2,1fr)}
   .pp-search-wrap{flex-direction:column;align-items:stretch}
   .pp-price-filter{justify-content:space-between}
   .pp-price-input{flex:1;width:auto}
@@ -462,16 +462,16 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       </div>
     </div>
     <div class="pp-hero-visual" data-reveal style="transition-delay:.2s">
-      <div class="pp-hero-grid">
-        <div class="pp-hero-tile" style="--dur:3.2s;--del:0s">🖍️</div>
-        <div class="pp-hero-tile" style="--dur:2.8s;--del:.3s">📱</div>
-        <div class="pp-hero-tile" style="--dur:3.5s;--del:.6s">🎨</div>
-        <div class="pp-hero-tile" style="--dur:3.0s;--del:.2s">📚</div>
-        <div class="pp-hero-tile" style="--dur:2.6s;--del:.5s">✂️</div>
-        <div class="pp-hero-tile" style="--dur:3.3s;--del:.1s">🖊️</div>
-        <div class="pp-hero-tile" style="--dur:2.9s;--del:.4s">🎲</div>
-        <div class="pp-hero-tile" style="--dur:3.1s;--del:.7s">🎉</div>
-        <div class="pp-hero-tile" style="--dur:2.7s;--del:.35s">📎</div>
+      <div class="pp-hero-grid pp-hero-grid-photo">
+        <div class="pp-hero-tile" style="--dur:3.2s;--del:0s;background-position:0% 0%"></div>
+        <div class="pp-hero-tile" style="--dur:2.8s;--del:.3s;background-position:50% 0%"></div>
+        <div class="pp-hero-tile" style="--dur:3.5s;--del:.6s;background-position:100% 0%"></div>
+        <div class="pp-hero-tile" style="--dur:3.0s;--del:.2s;background-position:0% 50%"></div>
+        <div class="pp-hero-tile" style="--dur:2.6s;--del:.5s;background-position:50% 50%"></div>
+        <div class="pp-hero-tile" style="--dur:3.3s;--del:.1s;background-position:100% 50%"></div>
+        <div class="pp-hero-tile" style="--dur:2.9s;--del:.4s;background-position:0% 100%"></div>
+        <div class="pp-hero-tile" style="--dur:3.1s;--del:.7s;background-position:50% 100%"></div>
+        <div class="pp-hero-tile" style="--dur:2.7s;--del:.35s;background-position:100% 100%"></div>
       </div>
       <div class="pp-hero-badge">
         <span class="pp-hero-badge-num">+5000</span>
