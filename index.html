@@ -67,13 +67,13 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
    ============================================================ */
 .pp-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(16px,4vw,48px);transition:background .35s var(--ease),box-shadow .35s var(--ease)}
 .pp-nav.scrolled{background:rgba(255,250,247,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
-.pp-nav-inner{max-width:1200px;margin:0 auto;height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.pp-nav-inner{max-width:1200px;margin:0 auto;height:240px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .pp-logo{text-decoration:none;display:flex;flex-direction:column;line-height:1.1}
-.pp-logo-img{height:34px;width:auto;object-fit:contain;mix-blend-mode:multiply}
+.pp-logo-img{width:6cm;height:6cm;min-width:6cm;min-height:3cm;object-fit:contain}
 .pp-logo-main{font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--orange);letter-spacing:.04em}
 .pp-logo-sub{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-top:1px}
 .pp-nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-.pp-nav-links a{font-size:13.5px;font-weight:500;letter-spacing:.02em;color:var(--ink-soft);position:relative;transition:color .2s}
+.pp-nav-links a{font-size:16px;font-weight:600;letter-spacing:.02em;color:#000;position:relative;transition:color .2s}
 .pp-nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
 .pp-nav-links a:hover{color:var(--orange)}
 .pp-nav-links a:hover::after{transform:scaleX(1)}
@@ -86,7 +86,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 /* ============================================================
    MOBILE MENU
    ============================================================ */
-.pp-mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:199;background:rgba(255,250,247,.98);backdrop-filter:blur(20px);padding:20px clamp(16px,4vw,48px) 28px;flex-direction:column;gap:4px;border-bottom:1px solid var(--line)}
+.pp-mobile-menu{display:none;position:fixed;top:240px;left:0;right:0;z-index:199;background:rgba(255,250,247,.98);backdrop-filter:blur(20px);padding:20px clamp(16px,4vw,48px) 28px;flex-direction:column;gap:4px;border-bottom:1px solid var(--line)}
 .pp-mobile-menu.open{display:flex}
 .pp-mobile-menu a{font-size:16px;font-weight:500;color:var(--ink-soft);padding:12px 0;border-bottom:1px solid var(--line)}
 .pp-mobile-menu a:last-child{border:none}
@@ -94,7 +94,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 /* ============================================================
    HERO
    ============================================================ */
-.pp-hero{min-height:100vh;padding-top:68px;background:var(--bg);display:flex;align-items:center;padding-inline:clamp(16px,4vw,48px);position:relative;overflow:hidden}
+.pp-hero{min-height:100vh;padding-top:240px;background:var(--bg);display:flex;align-items:center;padding-inline:clamp(16px,4vw,48px);position:relative;overflow:hidden}
 .pp-hero::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:linear-gradient(140deg,#f5ede4 0%,#f0dfd0 100%);clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);z-index:0}
 .pp-hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;padding-block:clamp(60px,8vh,100px)}
 .pp-hero-logo{height:160px;width:auto;object-fit:contain;mix-blend-mode:multiply;margin-bottom:16px}
@@ -385,7 +385,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 <nav class="pp-nav" id="pp-nav" aria-label="Navegación principal">
   <div class="pp-nav-inner">
     <a href="#inicio" class="pp-logo" aria-label="Papiros Papelería — inicio">
-      <img src="assets/logo-papiros.png" alt="Papiros Papelería" class="pp-logo-img">
+      <img src="assets/logo-basico.png" alt="Papiros Papelería" class="pp-logo-img">
     </a>
     <ul class="pp-nav-links" role="list">
       <li><a href="#inicio">Inicio</a></li>
@@ -1225,7 +1225,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       var target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 76, behavior:'smooth'});
+      window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 248, behavior:'smooth'});
     });
   }
 
