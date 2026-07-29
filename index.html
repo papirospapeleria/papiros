@@ -328,6 +328,10 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 @media(max-width:960px){
   .pp-nav-links,.pp-nav-wa{display:none}
   .pp-hamburger{display:flex}
+  .pp-logo-img{width:4cm;height:4cm;min-width:4cm;min-height:3cm}
+  .pp-nav-inner{height:170px}
+  .pp-mobile-menu{top:170px}
+  .pp-hero{padding-top:170px}
   .pp-hero-inner{grid-template-columns:1fr;gap:28px;padding-block:clamp(40px,5vh,60px)}
   .pp-hero{min-height:auto}
   .pp-hero::before{width:100%;height:40%;top:auto;bottom:0;clip-path:none;opacity:.5}
@@ -1225,7 +1229,9 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       var target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 248, behavior:'smooth'});
+      var navEl = $('#pp-nav');
+      var offset = navEl ? navEl.offsetHeight : 0;
+      window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - offset, behavior:'smooth'});
     });
   }
 
