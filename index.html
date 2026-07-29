@@ -271,6 +271,11 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-insta-grid-embed{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;border-radius:0;overflow:visible}
 .pp-insta-grid-embed .instagram-media{margin:0 !important;min-width:280px !important;width:100% !important;max-width:326px !important}
 .pp-insta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.pp-video{background:var(--bg);text-align:center}
+.pp-video-inner{max-width:800px;margin:0 auto}
+.pp-video-frame{aspect-ratio:16/9;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pp-video-frame video,.pp-video-frame iframe{width:100%;height:100%;border:0;object-fit:cover}
+.pp-video-placeholder{color:var(--ink-mute);font-size:15px;font-weight:500}
 .pp-btn-ig{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;background:linear-gradient(135deg,#f05a00 0%,#e61e71 100%);color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:opacity .2s,transform .2s}
 .pp-btn-ig:hover{opacity:.9;transform:translateY(-2px)}
 .pp-btn-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:100px;border:1.5px solid var(--line);color:var(--ink-soft);font-size:14px;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
@@ -660,12 +665,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     <h2 class="pp-insta-title">Estamos en <em>Instagram</em></h2>
     <p class="pp-insta-sub">Conoce nuestros productos, promociones y novedades. ¡Únete a nuestra comunidad!</p>
     <div class="pp-insta-grid pp-insta-grid-embed">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZ-pcKJFtgF/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZyYCniptQm/" data-instgrm-version="14"></blockquote>
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZh299kJjWT/" data-instgrm-version="14"></blockquote>
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZXgHMSFkio/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DaNwcj2phqN/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DaAu6H0Jztj/" data-instgrm-version="14"></blockquote>
     </div>
     <script async src="//www.instagram.com/embed.js"></script>
     <div class="pp-insta-btns">
@@ -675,6 +676,18 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       <a href="https://wa.me/573188682376" target="_blank" rel="noopener" class="pp-btn-outline">
         💬 Escribirnos
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VIDEO DESTACADO ════════════════════════ -->
+<section class="pp-video pp-section" aria-label="Video destacado">
+  <div class="pp-video-inner" data-reveal>
+    <span class="pp-kicker" style="display:block;text-align:center">✦ Conócenos</span>
+    <h2 class="pp-insta-title">Video <em>destacado</em></h2>
+    <p class="pp-insta-sub">Un vistazo rápido a Papiros Papelería.</p>
+    <div class="pp-video-frame">
+      <p class="pp-video-placeholder">🎬 Aquí va tu video destacado</p>
     </div>
   </div>
 </section>
