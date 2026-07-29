@@ -69,6 +69,13 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-nav.scrolled{background:rgba(255,250,247,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
 .pp-nav-inner{max-width:1200px;margin:0 auto;height:170px;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:height .35s var(--ease)}
 .pp-nav.scrolled .pp-nav-inner{height:64px}
+.pp-nav-search{max-width:1200px;margin:0 auto;max-height:70px;opacity:1;overflow:hidden;padding-bottom:16px;transition:max-height .35s var(--ease),opacity .25s ease,padding .35s var(--ease)}
+.pp-nav.scrolled .pp-nav-search{max-height:0;opacity:0;padding-bottom:0}
+.pp-nav-search-box{position:relative;display:flex;align-items:center}
+.pp-nav-search-icon{position:absolute;left:16px;font-size:15px;opacity:.5;pointer-events:none}
+.pp-nav-search-input{width:100%;padding:12px 16px 12px 42px;border-radius:100px;border:1.5px solid var(--line);background:var(--white);color:var(--ink);font-family:var(--f-body);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s}
+.pp-nav-search-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(240,90,0,.12)}
+.pp-nav-search-input::-webkit-search-cancel-button{cursor:pointer}
 .pp-logo{text-decoration:none;display:flex;flex-direction:column;line-height:1.1}
 .pp-logo-img{width:4cm;height:4cm;min-width:4cm;min-height:3cm;object-fit:contain;transition:width .35s var(--ease),height .35s var(--ease),min-width .35s var(--ease),min-height .35s var(--ease)}
 .pp-nav.scrolled .pp-logo-img{width:1cm;height:1cm;min-width:1cm;min-height:1cm}
@@ -94,7 +101,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 /* ============================================================
    MOBILE MENU
    ============================================================ */
-.pp-mobile-menu{display:none;position:fixed;top:170px;left:0;right:0;z-index:199;background:rgba(255,250,247,.98);backdrop-filter:blur(20px);padding:20px clamp(16px,4vw,48px) 28px;flex-direction:column;gap:4px;border-bottom:1px solid var(--line)}
+.pp-mobile-menu{display:none;position:fixed;top:240px;left:0;right:0;z-index:199;background:rgba(255,250,247,.98);backdrop-filter:blur(20px);padding:20px clamp(16px,4vw,48px) 28px;flex-direction:column;gap:4px;border-bottom:1px solid var(--line)}
 .pp-mobile-menu.open{display:flex}
 .pp-mobile-menu a{font-size:16px;font-weight:500;color:var(--ink-soft);padding:12px 0;border-bottom:1px solid var(--line)}
 .pp-mobile-menu a:last-child{border:none}
@@ -102,7 +109,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 /* ============================================================
    HERO
    ============================================================ */
-.pp-hero{min-height:100vh;padding-top:170px;background:var(--bg);display:flex;align-items:center;padding-inline:clamp(16px,4vw,48px);position:relative;overflow:hidden}
+.pp-hero{min-height:100vh;padding-top:240px;background:var(--bg);display:flex;align-items:center;padding-inline:clamp(16px,4vw,48px);position:relative;overflow:hidden}
 .pp-hero::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:linear-gradient(140deg,#f5ede4 0%,#f0dfd0 100%);clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);z-index:0}
 .pp-hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;padding-block:clamp(60px,8vh,100px)}
 .pp-hero-kicker{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
@@ -340,8 +347,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   .pp-hamburger{display:flex}
   .pp-logo-img{width:4cm;height:4cm;min-width:4cm;min-height:3cm}
   .pp-nav-inner{height:170px}
-  .pp-mobile-menu{top:170px}
-  .pp-hero{padding-top:170px}
+  .pp-mobile-menu{top:240px}
+  .pp-hero{padding-top:240px}
   .pp-hero-inner{grid-template-columns:1fr;gap:28px;padding-block:clamp(40px,5vh,60px)}
   .pp-hero{min-height:auto}
   .pp-hero::before{width:100%;height:40%;top:auto;bottom:0;clip-path:none;opacity:.5}
@@ -418,6 +425,12 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
       <button class="pp-hamburger" id="pp-hamburger" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
+    </div>
+  </div>
+  <div class="pp-nav-search">
+    <div class="pp-nav-search-box">
+      <span class="pp-nav-search-icon" aria-hidden="true">🔍</span>
+      <input type="search" id="pp-nav-search-input" class="pp-nav-search-input" placeholder="Buscar productos… (ej. agenda, pintura, audifono)" aria-label="Buscar productos">
     </div>
   </div>
 </nav>
@@ -1194,13 +1207,27 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 
   function initCatalogFilters() {
     var searchInput = $('#pp-search-input');
+    var navSearchInput = $('#pp-nav-search-input');
     var minInput = $('#pp-price-min');
     var maxInput = $('#pp-price-max');
     if (searchInput) {
       searchInput.addEventListener('input', debounce(function() {
         catalogState.query = searchInput.value;
+        if (navSearchInput) navSearchInput.value = searchInput.value;
         renderCatalog();
         if (searchInput.value.trim()) toggleCatalog(true);
+      }, 200));
+    }
+    if (navSearchInput) {
+      navSearchInput.addEventListener('input', debounce(function() {
+        catalogState.query = navSearchInput.value;
+        if (searchInput) searchInput.value = navSearchInput.value;
+        renderCatalog();
+        if (navSearchInput.value.trim()) {
+          toggleCatalog(true);
+          var catalogEl = $('#catalogo');
+          if (catalogEl) catalogEl.scrollIntoView({behavior:'smooth', block:'start'});
+        }
       }, 200));
     }
     function onPriceChange() {
