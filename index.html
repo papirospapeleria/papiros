@@ -67,9 +67,11 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
    ============================================================ */
 .pp-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(16px,4vw,48px);transition:background .35s var(--ease),box-shadow .35s var(--ease)}
 .pp-nav.scrolled{background:rgba(255,250,247,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
-.pp-nav-inner{max-width:1200px;margin:0 auto;height:170px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.pp-nav-inner{max-width:1200px;margin:0 auto;height:170px;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:height .35s var(--ease)}
+.pp-nav.scrolled .pp-nav-inner{height:64px}
 .pp-logo{text-decoration:none;display:flex;flex-direction:column;line-height:1.1}
-.pp-logo-img{width:4cm;height:4cm;min-width:4cm;min-height:3cm;object-fit:contain}
+.pp-logo-img{width:4cm;height:4cm;min-width:4cm;min-height:3cm;object-fit:contain;transition:width .35s var(--ease),height .35s var(--ease),min-width .35s var(--ease),min-height .35s var(--ease)}
+.pp-nav.scrolled .pp-logo-img{width:1cm;height:1cm;min-width:1cm;min-height:1cm}
 .pp-logo-main{font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--orange);letter-spacing:.04em}
 .pp-logo-sub{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-top:1px}
 .pp-nav-links{display:flex;align-items:center;gap:28px;list-style:none}
