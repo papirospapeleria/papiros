@@ -94,6 +94,10 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-like-badge.visible{opacity:1;transform:scale(1)}
 .pp-nav-wa{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:100px;background:var(--green-wa);color:#fff;font-size:13px;font-weight:600;transition:opacity .2s,transform .2s}
 .pp-nav-wa:hover{opacity:.9;transform:translateY(-1px)}
+.pp-nav-wa img{width:18px;height:18px;border-radius:50%;object-fit:cover}
+.pp-nav-social{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .2s,transform .2s;background:var(--white)}
+.pp-nav-social img{width:100%;height:100%;object-fit:cover}
+.pp-nav-social:hover{border-color:var(--orange);transform:translateY(-1px)}
 .pp-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .pp-hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
 
@@ -359,7 +363,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
    RESPONSIVE
    ============================================================ */
 @media(max-width:960px){
-  .pp-nav-links,.pp-nav-wa{display:none}
+  .pp-nav-links,.pp-nav-wa,.pp-nav-social{display:none}
   .pp-hamburger{display:flex}
   .pp-logo-img{width:4cm;height:4cm;min-width:4cm;min-height:3cm}
   .pp-nav-inner{height:170px}
@@ -434,8 +438,14 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
         <img src="assets/like-icon.jpg" alt="Me gusta">
         <span class="pp-like-badge" id="pp-like-badge" aria-live="polite">0</span>
       </button>
+      <a href="https://www.facebook.com/papiros.papeleria.2025?locale=es_LA" target="_blank" rel="noopener" class="pp-nav-social" aria-label="Facebook">
+        <img src="assets/icon-facebook.png" alt="Facebook">
+      </a>
+      <a href="https://www.tiktok.com/@papirospapeleria_?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="pp-nav-social" aria-label="TikTok">
+        <img src="assets/icon-tiktok.jfif" alt="TikTok">
+      </a>
       <a href="https://wa.me/573188682376" target="_blank" rel="noopener" class="pp-nav-wa">
-        💬 WhatsApp
+        <img src="assets/icon-whatsapp.png" alt=""> WhatsApp
       </a>
       <button class="pp-hamburger" id="pp-hamburger" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -456,7 +466,11 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   <a href="#catalogo" onclick="closeMobileMenu()">Catálogo</a>
   <a href="#pp-domicilios" onclick="closeMobileMenu()">Domicilios</a>
   <a href="#pp-contacto" onclick="closeMobileMenu()">Contacto</a>
-  <a href="https://wa.me/573188682376" target="_blank" rel="noopener" style="margin-top:8px;background:var(--green-wa);color:#fff;text-align:center;border-radius:100px;padding:13px 20px;font-weight:600">💬 WhatsApp</a>
+  <a href="https://wa.me/573188682376" target="_blank" rel="noopener" style="margin-top:8px;background:var(--green-wa);color:#fff;text-align:center;border-radius:100px;padding:13px 20px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px"><img src="assets/icon-whatsapp.png" alt="" style="width:20px;height:20px;border-radius:50%"> WhatsApp</a>
+  <div style="display:flex;gap:10px;justify-content:center;margin-top:14px">
+    <a href="https://www.facebook.com/papiros.papeleria.2025?locale=es_LA" target="_blank" rel="noopener" aria-label="Facebook" style="width:42px;height:42px;border-radius:50%;overflow:hidden;border:1.5px solid var(--line)"><img src="assets/icon-facebook.png" alt="Facebook" style="width:100%;height:100%;object-fit:cover"></a>
+    <a href="https://www.tiktok.com/@papirospapeleria_?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok" style="width:42px;height:42px;border-radius:50%;overflow:hidden;border:1.5px solid var(--line)"><img src="assets/icon-tiktok.jfif" alt="TikTok" style="width:100%;height:100%;object-fit:cover"></a>
+  </div>
 </div>
 
 <!-- ═══ HERO ══════════════════════════════════ -->
