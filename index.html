@@ -207,6 +207,11 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-filter-pill img{width:16px;height:16px;border-radius:50%;object-fit:cover}
 .pp-filter-pill:hover{border-color:var(--orange);color:var(--orange)}
 .pp-filter-pill.active{background:var(--orange);border-color:var(--orange);color:#fff}
+.pp-cat-icons-row{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-bottom:36px}
+.pp-cat-icon-btn{width:4cm;height:4cm;border-radius:50%;overflow:hidden;padding:0;border:3px solid transparent;cursor:pointer;background:var(--white);transition:border-color .2s,transform .25s var(--ease),box-shadow .25s}
+.pp-cat-icon-btn img{width:100%;height:100%;object-fit:cover}
+.pp-cat-icon-btn:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(26,14,5,.14)}
+.pp-cat-icon-btn.active{border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-pale)}
 .pp-catalog-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;border-radius:var(--r-lg);border:1.5px dashed var(--line);background:var(--white);color:var(--ink-soft);font-family:var(--f-body);font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s;margin-bottom:8px}
 .pp-catalog-toggle:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-pale)}
 .pp-catalog-toggle-arrow{transition:transform .3s var(--ease);display:inline-block}
@@ -571,49 +576,10 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 </section>
 
 <!-- ═══ CATEGORIES ════════════════════════════ -->
-<section class="pp-section pp-cats" aria-label="Categorías">
-  <img src="assets/mascota-picto.jpeg" alt="" class="pp-catalog-mascot" aria-hidden="true">
-  <div class="pp-container">
-    <div data-reveal>
-      <span class="pp-kicker">✦ Explora</span>
-      <h2 class="pp-title">Nuestras <em>categorías</em></h2>
-      <p class="pp-sub">Encuentra todo lo que necesitas para la oficina, el estudio y tu creatividad.</p>
-    </div>
-    <div class="pp-cats-grid" role="list" aria-label="Filtrar por categoría">
-      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('all')" data-filter="all">
-        <div class="pp-cat-icon ic1"><img src="assets/cat-todos.png" alt="Todos" loading="lazy"></div>
-        <span class="pp-cat-name">Todos</span>
-      </div>
-      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('arte')" data-filter="arte">
-        <div class="pp-cat-icon ic5"><img src="assets/cat-arte.png" alt="Arte" loading="lazy"></div>
-        <span class="pp-cat-name">Arte</span>
-      </div>
-      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('fiesta')" data-filter="fiesta">
-        <div class="pp-cat-icon ic7"><img src="assets/cat-fiesta.png" alt="Fiesta" loading="lazy"></div>
-        <span class="pp-cat-name">Fiesta</span>
-      </div>
-      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('miscelanea')" data-filter="miscelanea">
-        <div class="pp-cat-icon ic4"><img src="assets/cat-miscelanea.png" alt="Miscelánea" loading="lazy"></div>
-        <span class="pp-cat-name">Miscelánea</span>
-      </div>
-      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('papeleria')" data-filter="papeleria">
-        <div class="pp-cat-icon ic2"><img src="assets/cat-papeleria.png" alt="Papelería" loading="lazy"></div>
-        <span class="pp-cat-name">Papelería</span>
-      </div>
-      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('scrapbooking')" data-filter="scrapbooking">
-        <div class="pp-cat-icon ic8"><img src="assets/cat-scrapbooking.png" alt="Scrapbooking" loading="lazy"></div>
-        <span class="pp-cat-name">Scrapbooking</span>
-      </div>
-      <div class="pp-cat-card pp-reveal-stagger" role="listitem" onclick="filterCatalog('tecnologia')" data-filter="tecnologia">
-        <div class="pp-cat-icon ic6"><img src="assets/cat-tecnologia.png" alt="Tecnología" loading="lazy"></div>
-        <span class="pp-cat-name">Tecnología</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ CATALOG ═══════════════════════════════ -->
 <section class="pp-section pp-catalog" id="catalogo" aria-label="Catálogo de productos">
+  <img src="assets/mascota-picto.jpeg" alt="" class="pp-catalog-mascot" aria-hidden="true">
   <div class="pp-container">
     <div class="pp-catalog-header" data-reveal>
       <div>
@@ -634,14 +600,14 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
         <input type="number" id="pp-price-max" class="pp-price-input" placeholder="Máx" min="0" step="1000" inputmode="numeric">
       </div>
     </div>
-    <div class="pp-filter-wrap" role="group" aria-label="Filtros de categoría">
-      <button class="pp-filter-pill active" onclick="filterCatalog('all')" data-pill="all"><img src="assets/cat-todos.png" alt=""> Todos</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('arte')" data-pill="arte"><img src="assets/cat-arte.png" alt=""> Arte</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('fiesta')" data-pill="fiesta"><img src="assets/cat-fiesta.png" alt=""> Fiesta</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('miscelanea')" data-pill="miscelanea"><img src="assets/cat-miscelanea.png" alt=""> Miscelánea</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('papeleria')" data-pill="papeleria"><img src="assets/cat-papeleria.png" alt=""> Papelería</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('scrapbooking')" data-pill="scrapbooking"><img src="assets/cat-scrapbooking.png" alt=""> Scrapbooking</button>
-      <button class="pp-filter-pill" onclick="filterCatalog('tecnologia')" data-pill="tecnologia"><img src="assets/cat-tecnologia.png" alt=""> Tecnología</button>
+    <div class="pp-cat-icons-row" role="group" aria-label="Filtrar por categoría">
+      <button class="pp-cat-icon-btn active" onclick="filterCatalog('all')" data-pill="all" aria-label="Todos"><img src="assets/cat-todos.png" alt="Todos"></button>
+      <button class="pp-cat-icon-btn" onclick="filterCatalog('arte')" data-pill="arte" aria-label="Arte"><img src="assets/cat-arte.png" alt="Arte"></button>
+      <button class="pp-cat-icon-btn" onclick="filterCatalog('fiesta')" data-pill="fiesta" aria-label="Fiesta"><img src="assets/cat-fiesta.png" alt="Fiesta"></button>
+      <button class="pp-cat-icon-btn" onclick="filterCatalog('miscelanea')" data-pill="miscelanea" aria-label="Miscelánea"><img src="assets/cat-miscelanea.png" alt="Miscelánea"></button>
+      <button class="pp-cat-icon-btn" onclick="filterCatalog('papeleria')" data-pill="papeleria" aria-label="Papelería"><img src="assets/cat-papeleria.png" alt="Papelería"></button>
+      <button class="pp-cat-icon-btn" onclick="filterCatalog('scrapbooking')" data-pill="scrapbooking" aria-label="Scrapbooking"><img src="assets/cat-scrapbooking.png" alt="Scrapbooking"></button>
+      <button class="pp-cat-icon-btn" onclick="filterCatalog('tecnologia')" data-pill="tecnologia" aria-label="Tecnología"><img src="assets/cat-tecnologia.png" alt="Tecnología"></button>
     </div>
     <button type="button" class="pp-catalog-toggle" id="pp-catalog-toggle" onclick="toggleCatalog()" aria-expanded="false" aria-controls="pp-catalog-collapse">
       Ver catálogo completo <span class="pp-catalog-toggle-arrow">▾</span>
@@ -1216,11 +1182,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   window.filterCatalog = function(cat) {
     catalogState.cat = cat;
     renderCatalog();
-    $$('.pp-filter-pill').forEach(function(pill) {
+    $$('.pp-filter-pill, .pp-cat-icon-btn').forEach(function(pill) {
       pill.classList.toggle('active', pill.dataset.pill === cat);
-    });
-    $$('.pp-cat-card').forEach(function(card) {
-      card.classList.toggle('active-filter', card.dataset.filter === cat);
     });
     toggleCatalog(true);
     var catalogEl = $('#catalogo');
