@@ -63,6 +63,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 [data-reveal].is-revealed{opacity:1;transform:none}
 .pp-mensajes-featured[data-reveal]{opacity:0;transform:scale(.68) translateY(10px);transition:opacity 1s var(--ease-soft),transform 1.1s var(--ease-soft)}
 .pp-mensajes-featured[data-reveal].is-revealed{opacity:1;transform:scale(1) translateY(0)}
+.pp-mensajes-clickable{cursor:zoom-in}
 
 /* ============================================================
    NAV
@@ -668,7 +669,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   <div class="pp-mensajes-inner" data-reveal>
     <span class="pp-kicker" style="display:block;text-align:center">✦ Inspiración</span>
     <h2 class="pp-insta-title">Mensajes</h2>
-    <img src="assets/mensajes.jpg" alt="La papelería fue creada para llenarse de recuerdos, equivocarte, experimentar y crear. No dejes tus ideas guardadas, dales vida." class="pp-mensajes-img pp-mensajes-featured" data-reveal style="transition-delay:.15s">
+    <img src="assets/mensajes.jpg" alt="La papelería fue creada para llenarse de recuerdos, equivocarte, experimentar y crear. No dejes tus ideas guardadas, dales vida." class="pp-mensajes-img pp-mensajes-featured pp-mensajes-clickable" data-reveal style="transition-delay:.15s" onclick="ppOpenLightboxImg('assets/mensajes.jpg','Mensajes')">
   </div>
 </section>
 
@@ -1216,17 +1217,22 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     document.body.style.overflow = '';
   }
 
+  function ppOpenLightboxImg(src, caption) {
+    var media = $('#pp-lightbox-media');
+    var captionEl = $('#pp-lightbox-caption');
+    if (media) {
+      media.innerHTML = '<img src="' + escHTML(src) + '" alt="' + escHTML(caption || '') + '">';
+    }
+    if (captionEl) captionEl.textContent = caption || '';
+    var lb = $('#pp-lightbox');
+    if (lb) { lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  }
+  window.ppOpenLightboxImg = ppOpenLightboxImg;
+
   window.ppOpenLightbox = function(id) {
     var prod = PRODUCTS.find(function(p) { return p.id === id; });
     if (!prod) return;
-    var media = $('#pp-lightbox-media');
-    var caption = $('#pp-lightbox-caption');
-    if (media) {
-      media.innerHTML = '<img src="' + escHTML(prod.img) + '" alt="' + escHTML(prod.name) + '" onerror="this.parentNode.innerHTML=\'<div class=pp-lightbox-ph>' + prod.emoji + '</div>\'">';
-    }
-    if (caption) caption.textContent = prod.name;
-    var lb = $('#pp-lightbox');
-    if (lb) { lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    ppOpenLightboxImg(prod.img, prod.name);
   };
 
   function initLightbox() {
