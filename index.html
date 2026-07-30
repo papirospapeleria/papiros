@@ -64,6 +64,9 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-mensajes-featured[data-reveal]{opacity:0;transform:scale(.68) translateY(10px);transition:opacity 1s var(--ease-soft),transform 1.1s var(--ease-soft)}
 .pp-mensajes-featured[data-reveal].is-revealed{opacity:1;transform:scale(1) translateY(0)}
 .pp-mensajes-clickable{cursor:zoom-in}
+.pp-mensajes-zoom-wrap{position:relative;display:inline-block;margin-top:8px}
+.pp-mensajes-zoom-wrap .pp-mensajes-img{margin:0}
+.pp-mensajes-zoom-badge{position:absolute;bottom:14px;right:14px;width:42px;height:42px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 8px 20px rgba(240,90,0,.45);pointer-events:none}
 
 /* ============================================================
    NAV
@@ -291,7 +294,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-mensajes{background:var(--bg-2);text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .pp-mensajes-inner{max-width:900px;margin:0 auto}
 .pp-plantilla-wrap{position:relative;display:inline-block;max-width:100%}
-.pp-plantilla-text{position:absolute;left:10%;right:10%;top:15%;bottom:35%;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8px}
+.pp-plantilla-text{position:absolute;left:9%;right:8%;top:9%;bottom:30%;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8px}
 .pp-plantilla-text p{font-family:var(--f-body);font-size:clamp(16px,3.2vw,26px);font-weight:600;color:var(--ink);line-height:1.45}
 .pp-tips-carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 4px;-webkit-overflow-scrolling:touch}
 .pp-tips-slide{flex:0 0 100%;scroll-snap-align:center;display:flex;justify-content:center}
@@ -301,7 +304,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-delivery,.pp-catalog,.pp-mensajes,.pp-insta,.pp-video,.pp-contact{padding-top:1cm;padding-bottom:1cm}
 .pp-calendario-img{cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s}
 .pp-calendario-img:hover{transform:translateY(-4px);box-shadow:0 26px 60px rgba(26,14,5,.2)}
-.pp-calendario-hint{font-size:12.5px;color:var(--ink-mute);margin-top:12px}
+.pp-calendario-hint{font-size:13.5px;color:var(--ink);font-weight:700;margin-top:12px}
 .pp-notes-overlay{position:fixed;inset:0;background:rgba(26,14,5,.55);z-index:400;display:none;align-items:center;justify-content:center;padding:16px}
 .pp-notes-overlay.open{display:flex}
 .pp-notes-modal{background:var(--white);border-radius:20px;width:100%;max-width:420px;padding:24px;box-shadow:0 30px 80px rgba(26,14,5,.25)}
@@ -675,7 +678,10 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   <div class="pp-mensajes-inner" data-reveal>
     <span class="pp-kicker" style="display:block;text-align:center">✦ Inspiración</span>
     <h2 class="pp-insta-title">Mensajes</h2>
-    <img src="assets/mensajes.jpg" alt="La papelería fue creada para llenarse de recuerdos, equivocarte, experimentar y crear. No dejes tus ideas guardadas, dales vida." class="pp-mensajes-img pp-mensajes-featured pp-mensajes-clickable" data-reveal style="transition-delay:.15s" onclick="ppOpenLightboxImg('assets/mensajes.jpg','Mensajes')">
+    <div class="pp-mensajes-zoom-wrap pp-mensajes-clickable" onclick="ppOpenLightboxImg('assets/mensajes.jpg','Mensajes')">
+      <img src="assets/mensajes.jpg" alt="La papelería fue creada para llenarse de recuerdos, equivocarte, experimentar y crear. No dejes tus ideas guardadas, dales vida." class="pp-mensajes-img pp-mensajes-featured" data-reveal style="transition-delay:.15s">
+      <span class="pp-mensajes-zoom-badge">🔍</span>
+    </div>
   </div>
 </section>
 
