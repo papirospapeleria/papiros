@@ -164,14 +164,14 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-platform-desc{font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;flex:1}
 .pp-platform-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:100px;background:var(--orange);color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s,transform .2s;align-self:flex-start;margin-top:auto}
 .pp-platform-btn:hover{background:var(--orange-h);transform:translateY(-2px)}
-.pp-delivery-steps{border-top:1px solid rgba(255,255,255,.1);padding-top:48px}
-.pp-delivery-steps-title{font-family:var(--f-display);font-size:22px;font-weight:600;color:#fff;text-align:center;margin-bottom:36px}
+.pp-delivery-steps{border-top:1px solid rgba(255,255,255,.1);padding-top:28px}
+.pp-delivery-steps-title{font-family:var(--f-display);font-size:18px;font-weight:600;color:#fff;text-align:center;margin-bottom:20px}
 .pp-delivery-steps-title em{font-style:italic;color:var(--orange)}
-.pp-steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
-.pp-step{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
-.pp-step-num{width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.pp-step-icon{font-size:24px}
-.pp-step-txt{font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.5}
+.pp-steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.pp-step{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.pp-step-num{width:32px;height:32px;border-radius:50%;background:var(--orange);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pp-step-icon{font-size:18px}
+.pp-step-txt{font-size:12px;color:rgba(255,255,255,.7);line-height:1.4}
 .pp-step-txt strong{color:#fff}
 
 /* ============================================================
@@ -289,6 +289,9 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-mensajes-inner{max-width:480px;margin:0 auto}
 .pp-mensajes-inner.pp-mensajes-sm{max-width:340px}
 .pp-mensajes-inner.pp-mensajes-lg{max-width:760px}
+.pp-plantilla-wrap{position:relative}
+.pp-plantilla-text{position:absolute;left:10%;right:10%;top:15%;bottom:35%;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8px}
+.pp-plantilla-text p{font-family:var(--f-body);font-size:clamp(12px,1.7vw,18px);font-weight:600;color:var(--ink);line-height:1.5}
 .pp-mensajes-img{width:100%;height:auto;border-radius:var(--r-lg);box-shadow:0 20px 50px rgba(26,14,5,.14);margin-top:8px}
 .pp-btn-ig{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;background:linear-gradient(135deg,#f05a00 0%,#e61e71 100%);color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:opacity .2s,transform .2s}
 .pp-btn-ig:hover{opacity:.9;transform:translateY(-2px)}
@@ -696,6 +699,29 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     <span class="pp-kicker" style="display:block;text-align:center">✦ Próximamente</span>
     <p class="pp-insta-sub">Aquí estaremos — disponible a partir del 15 de agosto</p>
     <img src="assets/pronto-mercadolibre.jpg" alt="Muy pronto en Mercado Libre" class="pp-mensajes-img">
+  </div>
+</section>
+
+<!-- ═══ CALENDARIO ══════════════════════════════ -->
+<section class="pp-mensajes pp-section" aria-label="Calendario">
+  <div class="pp-mensajes-inner pp-mensajes-lg" data-reveal>
+    <span class="pp-kicker" style="display:block;text-align:center">✦ Calendario</span>
+    <h2 class="pp-insta-title">Este <em>mes</em></h2>
+    <img src="assets/calendario.png" alt="Calendario Agosto 2026 — Papiros Papelería" class="pp-mensajes-img">
+  </div>
+</section>
+
+<!-- ═══ PARA QUÉ SIRVE ══════════════════════════ -->
+<section class="pp-mensajes pp-section" aria-label="Para qué sirve">
+  <div class="pp-mensajes-inner pp-mensajes-lg" data-reveal>
+    <span class="pp-kicker" style="display:block;text-align:center">✦ Tips</span>
+    <h2 class="pp-insta-title">¿Para qué <em>sirve</em>?</h2>
+    <div class="pp-plantilla-wrap">
+      <img src="assets/plantilla.png" alt="" class="pp-mensajes-img">
+      <div class="pp-plantilla-text">
+        <p>El papel foil sirve para dar toques metalizados en objetos de madera, MDF, cerámica, yeso, resina o lienzo.</p>
+      </div>
+    </div>
   </div>
 </section>
 
