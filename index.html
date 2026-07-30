@@ -290,6 +290,19 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-plantilla-wrap{position:relative;display:inline-block;max-width:100%}
 .pp-plantilla-text{position:absolute;left:10%;right:10%;top:15%;bottom:35%;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8px}
 .pp-plantilla-text p{font-family:var(--f-body);font-size:clamp(16px,3.2vw,26px);font-weight:600;color:var(--ink);line-height:1.45}
+.pp-calendario-img{cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s}
+.pp-calendario-img:hover{transform:translateY(-4px);box-shadow:0 26px 60px rgba(26,14,5,.2)}
+.pp-calendario-hint{font-size:12.5px;color:var(--ink-mute);margin-top:12px}
+.pp-notes-overlay{position:fixed;inset:0;background:rgba(26,14,5,.55);z-index:400;display:none;align-items:center;justify-content:center;padding:16px}
+.pp-notes-overlay.open{display:flex}
+.pp-notes-modal{background:var(--white);border-radius:20px;width:100%;max-width:420px;padding:24px;box-shadow:0 30px 80px rgba(26,14,5,.25)}
+.pp-notes-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.pp-notes-head h3{font-family:var(--f-display);font-size:19px;font-weight:700;color:var(--orange)}
+.pp-notes-close{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:border-color .2s,background .2s}
+.pp-notes-close:hover{border-color:var(--orange);background:var(--orange-pale)}
+.pp-notes-textarea{width:100%;min-height:180px;padding:14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.6;resize:vertical;outline:none;transition:border-color .2s,box-shadow .2s}
+.pp-notes-textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(240,90,0,.12)}
+.pp-notes-footnote{font-size:11.5px;color:var(--ink-mute);margin-top:10px;text-align:center}
 .pp-mensajes-img{display:block;height:380px;width:auto;max-width:100%;max-height:60vw;object-fit:contain;border-radius:var(--r-lg);box-shadow:0 20px 50px rgba(26,14,5,.14);margin:8px auto 0}
 .pp-btn-ig{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;background:linear-gradient(135deg,#f05a00 0%,#e61e71 100%);color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:opacity .2s,transform .2s}
 .pp-btn-ig:hover{opacity:.9;transform:translateY(-2px)}
@@ -705,9 +718,22 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   <div class="pp-mensajes-inner" data-reveal>
     <span class="pp-kicker" style="display:block;text-align:center">✦ Calendario</span>
     <h2 class="pp-insta-title">Este <em>mes</em></h2>
-    <img src="assets/calendario.png" alt="Calendario Agosto 2026 — Papiros Papelería" class="pp-mensajes-img">
+    <img src="assets/calendario.png" alt="Calendario Agosto 2026 — Papiros Papelería" class="pp-mensajes-img pp-calendario-img" onclick="ppOpenNotes()">
+    <p class="pp-calendario-hint">✎ Toca el calendario para tomar una nota rápida</p>
   </div>
 </section>
+
+<!-- ═══ NOTAS RÁPIDAS (MODAL) ══════════════════ -->
+<div class="pp-notes-overlay" id="pp-notes-overlay" role="dialog" aria-modal="true" aria-label="Tomar una nota">
+  <div class="pp-notes-modal">
+    <div class="pp-notes-head">
+      <h3>Notas ♡</h3>
+      <button class="pp-notes-close" id="pp-notes-close" aria-label="Cerrar">✕</button>
+    </div>
+    <textarea class="pp-notes-textarea" id="pp-notes-textarea" placeholder="Escribe aquí tu nota…"></textarea>
+    <p class="pp-notes-footnote">Esta nota no se guarda — es solo para apuntar algo rápido mientras navegas.</p>
+  </div>
+</div>
 
 <!-- ═══ PARA QUÉ SIRVE ══════════════════════════ -->
 <section class="pp-mensajes pp-section" aria-label="Para qué sirve">
@@ -1212,6 +1238,34 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     });
   }
 
+  /* ── Quick Notes Modal ── */
+  function closeNotes() {
+    var overlay = $('#pp-notes-overlay');
+    var textarea = $('#pp-notes-textarea');
+    if (overlay) overlay.classList.remove('open');
+    if (textarea) textarea.value = '';
+    document.body.style.overflow = '';
+  }
+
+  window.ppOpenNotes = function() {
+    var overlay = $('#pp-notes-overlay');
+    if (overlay) { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    var textarea = $('#pp-notes-textarea');
+    if (textarea) setTimeout(function() { textarea.focus(); }, 100);
+  };
+
+  function initNotes() {
+    var overlay = $('#pp-notes-overlay');
+    var closeBtn = $('#pp-notes-close');
+    if (closeBtn) closeBtn.addEventListener('click', closeNotes);
+    if (overlay) overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeNotes();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeNotes();
+    });
+  }
+
   window.toggleCatalog = function(forceOpen) {
     var wrap = $('#pp-catalog-collapse');
     var btn = $('#pp-catalog-toggle');
@@ -1377,6 +1431,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
     safe(renderCatalog, 'catalog');
     safe(initLightbox, 'lightbox');
     safe(initLikes, 'likes');
+    safe(initNotes, 'notes');
     document.documentElement.classList.add('is-ready');
   }
 
