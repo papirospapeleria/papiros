@@ -293,6 +293,11 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-plantilla-wrap{position:relative;display:inline-block;max-width:100%}
 .pp-plantilla-text{position:absolute;left:10%;right:10%;top:15%;bottom:35%;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8px}
 .pp-plantilla-text p{font-family:var(--f-body);font-size:clamp(16px,3.2vw,26px);font-weight:600;color:var(--ink);line-height:1.45}
+.pp-tips-carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 4px;-webkit-overflow-scrolling:touch}
+.pp-tips-slide{flex:0 0 100%;scroll-snap-align:center;display:flex;justify-content:center}
+.pp-tips-hint{font-size:12.5px;color:var(--ink-mute);margin-top:12px}
+.pp-tips-caption{position:absolute;left:0;right:0;bottom:0;border-radius:0 0 var(--r-lg) var(--r-lg);background:linear-gradient(transparent,rgba(26,14,5,.82) 55%);padding:44px 16px 18px;display:flex;align-items:flex-end;justify-content:center}
+.pp-tips-caption p{color:#fff;font-family:var(--f-display);font-size:clamp(16px,2.6vw,22px);font-weight:700;text-align:center;line-height:1.35}
 .pp-calendario-img{cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s}
 .pp-calendario-img:hover{transform:translateY(-4px);box-shadow:0 26px 60px rgba(26,14,5,.2)}
 .pp-calendario-hint{font-size:12.5px;color:var(--ink-mute);margin-top:12px}
@@ -744,12 +749,25 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
   <div class="pp-mensajes-inner" data-reveal>
     <span class="pp-kicker" style="display:block;text-align:center">✦ Tips</span>
     <h2 class="pp-insta-title">¿Para qué <em>sirve</em>?</h2>
-    <div class="pp-plantilla-wrap">
-      <img src="assets/plantilla.png" alt="" class="pp-mensajes-img">
-      <div class="pp-plantilla-text">
-        <p>El papel foil sirve para dar toques metalizados en objetos de madera, MDF, cerámica, yeso, resina o lienzo.</p>
+    <div class="pp-tips-carousel">
+      <div class="pp-tips-slide">
+        <div class="pp-plantilla-wrap">
+          <img src="assets/plantilla.png" alt="" class="pp-mensajes-img">
+          <div class="pp-plantilla-text">
+            <p>El papel foil sirve para dar toques metalizados en objetos de madera, MDF, cerámica, yeso, resina o lienzo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pp-tips-slide">
+        <div class="pp-plantilla-wrap">
+          <img src="assets/tips2.jpg" alt="¿Tienes dudas? Pregúntanos más" class="pp-mensajes-img">
+          <div class="pp-tips-caption">
+            <p>¿Tienes dudas?<br>Pregúntanos más</p>
+          </div>
+        </div>
       </div>
     </div>
+    <p class="pp-tips-hint">← Desliza para ver más →</p>
   </div>
 </section>
 
