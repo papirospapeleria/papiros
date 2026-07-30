@@ -347,6 +347,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-form-sub{font-size:13px;color:var(--ink-mute);margin-bottom:24px}
 .pp-form{display:flex;flex-direction:column;gap:14px}
 .pp-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pp-form-consent{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--ink-soft);line-height:1.4;cursor:pointer}
+.pp-form-consent input{width:16px;height:16px;margin-top:1px;accent-color:var(--orange);cursor:pointer;flex-shrink:0}
 .pp-form-submit{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:100px;background:var(--orange);color:#fff;font-family:var(--f-body);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:background .2s,transform .25s var(--ease),box-shadow .25s;width:100%;margin-top:4px}
 .pp-form-submit:hover{background:var(--orange-h);transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,90,0,.35)}
 .pp-form-note{font-size:12px;color:var(--ink-mute);text-align:center}
@@ -876,6 +878,10 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
           <label for="pp-mensaje">Mensaje</label>
           <textarea id="pp-mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte…" rows="4" style="resize:vertical;min-height:100px;width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s" required></textarea>
         </div>
+        <label class="pp-form-consent">
+          <input type="checkbox" id="pp-consent" name="consent" required>
+          <span>Autorizo el tratamiento de datos de esta web</span>
+        </label>
         <button type="submit" class="pp-form-submit">Enviar mensaje ✉️</button>
         <p class="pp-form-note">O escríbenos por <a href="https://wa.me/573188682376" target="_blank" rel="noopener">WhatsApp al 318 868 2376</a></p>
       </form>
