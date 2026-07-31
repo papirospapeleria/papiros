@@ -727,7 +727,7 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
     <h2 class="pp-insta-title">Video <em>destacado</em></h2>
     <p class="pp-insta-sub">Un vistazo rápido a Papiros Papelería.</p>
     <div class="pp-video-frame">
-      <video src="assets/video-destacado.mp4" controls preload="metadata" playsinline></video>
+      <video id="pp-featured-video" src="assets/video-destacado.mp4" controls preload="metadata" playsinline muted loop></video>
     </div>
   </div>
 </section>
@@ -1440,6 +1440,21 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
     }, 5000);
   }
 
+  function initFeaturedVideo() {
+    var video = $('#pp-featured-video');
+    if (!video) return;
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          video.play().catch(function(){});
+        } else {
+          video.pause();
+        }
+      });
+    }, {threshold:0.5});
+    io.observe(video);
+  }
+
   function initThanksSpin() {
     var el = $('.pp-thanks-spin');
     if (!el) return;
@@ -1497,6 +1512,7 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
     safe(initLikes, 'likes');
     safe(initNotes, 'notes');
     safe(initThanksSpin, 'thanksSpin');
+    safe(initFeaturedVideo, 'featuredVideo');
     document.documentElement.classList.add('is-ready');
   }
 
