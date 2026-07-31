@@ -104,7 +104,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-nav-wa:hover{opacity:.9;transform:translateY(-1px)}
 .pp-nav-wa img{width:18px;height:18px;border-radius:50%;object-fit:cover}
 .pp-nav-social{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .2s,transform .2s;background:var(--white)}
-.pp-nav-social img{width:100%;height:100%;object-fit:cover}
+.pp-nav-social img{width:100%;height:100%;object-fit:cover;transition:filter .3s var(--ease),opacity .3s var(--ease);filter:brightness(.7);opacity:.75}
+.pp-nav-social:hover img{filter:brightness(1);opacity:1}
 .pp-nav-social:hover{border-color:var(--orange);transform:translateY(-1px)}
 .pp-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .pp-hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
