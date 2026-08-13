@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Papiros Papelería — a single static landing page for a stationery/office-supply store in Usaquén, Bogotá. No build step, no package manager, no framework. Deployed to Vercel as a static site (`.vercel/project.json` links it to project `papiros`).
 
-**Live deployment:** https://papiros-one.vercel.app/
+**Live deployment:** https://papiros-papeleria.vercel.app/
 
 ## Running locally
 
