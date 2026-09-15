@@ -308,13 +308,6 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 .pp-insta-title em{font-style:italic;color:var(--orange)}
 .pp-insta-sub{font-size:15px;font-weight:300;color:var(--ink-mute);margin-bottom:36px}
 .pp-insta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:36px;border-radius:16px;overflow:hidden}
-.pp-insta-tile{aspect-ratio:1;overflow:hidden;position:relative}
-.pp-insta-tile img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
-.pp-insta-tile:hover img{transform:scale(1.08)}
-.pp-insta-tile-ph{width:100%;height:100%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:36px}
-.pp-insta-grid-embed{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;border-radius:0;overflow:visible}
-.pp-insta-grid-embed .instagram-media{margin:0 !important;min-width:280px !important;width:100% !important;max-width:326px !important}
-.pp-insta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 .pp-video{background:var(--bg-2);text-align:center}
 section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{background:var(--bg)}
 .pp-video-inner{max-width:900px;margin:0 auto}
@@ -346,8 +339,6 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
 .pp-notes-textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(240,90,0,.12)}
 .pp-notes-footnote{font-size:11.5px;color:var(--ink-mute);margin-top:10px;text-align:center}
 .pp-mensajes-img{display:block;height:380px;width:auto;max-width:100%;max-height:60vw;object-fit:contain;border-radius:var(--r-lg);box-shadow:0 20px 50px rgba(26,14,5,.14);margin:8px auto 0}
-.pp-btn-ig{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;background:linear-gradient(135deg,#f05a00 0%,#e61e71 100%);color:#fff;font-size:14px;font-weight:600;text-decoration:none;transition:opacity .2s,transform .2s}
-.pp-btn-ig:hover{opacity:.9;transform:translateY(-2px)}
 .pp-btn-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:100px;border:1.5px solid var(--line);color:var(--ink-soft);font-size:14px;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
 .pp-btn-outline:hover{border-color:var(--orange);color:var(--orange)}
 
@@ -451,7 +442,6 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
   .pp-footer-top{grid-template-columns:1fr;gap:24px}
   .pp-footer-bottom{flex-direction:column;align-items:flex-start}
   .pp-form-row{grid-template-columns:1fr}
-  .pp-insta-btns{flex-direction:column;align-items:center}
   .pp-search-wrap{flex-direction:column;align-items:stretch}
   .pp-price-filter{justify-content:space-between}
   .pp-price-input{flex:1;width:auto}
@@ -731,28 +721,6 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
     <div class="pp-mensajes-zoom-wrap pp-mensajes-clickable" onclick="ppOpenLightboxImg('assets/mensajes.jpg','Mensajes')">
       <img src="assets/mensajes.jpg" alt="La papelería fue creada para llenarse de recuerdos, equivocarte, experimentar y crear. No dejes tus ideas guardadas, dales vida." class="pp-mensajes-img pp-mensajes-featured" data-reveal style="transition-delay:.15s">
       <span class="pp-mensajes-zoom-badge">🔍</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ INSTAGRAM ═════════════════════════════ -->
-<section class="pp-insta pp-section" aria-label="Instagram">
-  <div class="pp-insta-inner" data-reveal>
-    <span class="pp-kicker" style="display:block;text-align:center">✦ Síguenos</span>
-    <h2 class="pp-insta-title">Estamos en <em>Instagram</em></h2>
-    <p class="pp-insta-sub">Conoce nuestros productos, promociones y novedades. ¡Únete a nuestra comunidad!</p>
-    <div class="pp-insta-grid pp-insta-grid-embed">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZh299kJjWT/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZXgHMSFkio/" data-instgrm-version="14"></blockquote>
-    </div>
-    <script async src="//www.instagram.com/embed.js"></script>
-    <div class="pp-insta-btns">
-      <a href="https://www.instagram.com/papirospapeleria1/" target="_blank" rel="noopener" class="pp-btn-ig">
-        📷 Ver en Instagram
-      </a>
-      <a href="https://wa.me/573188682376" target="_blank" rel="noopener" class="pp-btn-outline">
-        💬 Escribirnos
-      </a>
     </div>
   </div>
 </section>
@@ -1215,7 +1183,17 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
     {id:'sb08',cat:'scrapbooking',name:'Stickers navidad rosa invernal',img:'assets/scrap-novedad-8.jpg',emoji:'📚'},
     {id:'sb09',cat:'scrapbooking',name:'Tiras PET navidad Dark Joy',img:'assets/scrap-novedad-9.jpg',emoji:'📚'},
     {id:'sb10',cat:'scrapbooking',name:'Stickers Día de Muertos',img:'assets/scrap-novedad-10.jpg',emoji:'📚'},
-    {id:'sb11',cat:'scrapbooking',name:'Stickers navidad vintage',img:'assets/scrap-novedad-11.jpg',emoji:'📚'}
+    {id:'sb11',cat:'scrapbooking',name:'Stickers navidad vintage',img:'assets/scrap-novedad-11.jpg',emoji:'📚'},
+    {id:'sb12',cat:'scrapbooking',name:'Papeles con textura pastel',img:'assets/scrap-novedad-12.jpg',emoji:'📚'},
+    {id:'sb13',cat:'scrapbooking',name:'Stickers de botones surtidos',img:'assets/scrap-novedad-13.jpg',emoji:'📚'},
+    {id:'sb14',cat:'scrapbooking',name:'Stickers de sellos de cera florales',img:'assets/scrap-novedad-14.jpg',emoji:'📚'},
+    {id:'sb15',cat:'scrapbooking',name:'Libro de stickers alfabeto vintage',img:'assets/scrap-novedad-15.jpg',emoji:'📚'},
+    {id:'sb16',cat:'scrapbooking',name:'Stickers ovejitas y conejos',img:'assets/scrap-novedad-16.jpg',emoji:'📚'},
+    {id:'sb17',cat:'scrapbooking',name:'Parches bordados de perritos',img:'assets/scrap-novedad-17.jpg',emoji:'📚'},
+    {id:'sb18',cat:'scrapbooking',name:'Parches bordados de pingüinos y osos polares',img:'assets/scrap-novedad-18.jpg',emoji:'📚'},
+    {id:'sb19',cat:'scrapbooking',name:'Stickers de animales del bosque',img:'assets/scrap-novedad-19.jpg',emoji:'📚'},
+    {id:'sb20',cat:'scrapbooking',name:'Stickers de gatos bordados',img:'assets/scrap-novedad-20.jpg',emoji:'📚'},
+    {id:'sb21',cat:'scrapbooking',name:'Stickers de osos bordados',img:'assets/scrap-novedad-21.jpg',emoji:'📚'}
   ];
 
   /* ── Favorites ("Me gusta") ── */
