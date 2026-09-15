@@ -345,7 +345,7 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
 .pp-favs-item-body{flex:1;min-width:0}
 .pp-favs-item-name{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.3}
 .pp-favs-item-price{font-size:12.5px;color:var(--orange);font-weight:700;margin-top:2px}
-.pp-favs-remove{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);background:none;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink-mute);cursor:pointer;flex-shrink:0;transition:border-color .2s,color .2s,background .2s}
+.pp-favs-remove{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);background:none;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--ink-mute);cursor:pointer;flex-shrink:0;transition:border-color .2s,color .2s,background .2s}
 .pp-favs-remove:hover{border-color:#d32f2f;color:#d32f2f;background:#fdecea}
 .pp-favs-empty{font-size:14px;color:var(--ink-mute);text-align:center;padding:24px 8px}
 .pp-favs-send{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 20px;border-radius:100px;background:var(--green-wa);color:#fff;font-size:14px;font-weight:700;text-decoration:none;transition:opacity .2s,transform .2s}
@@ -1287,7 +1287,7 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
           '<p class="pp-favs-item-name">' + escHTML(prod.name) + '</p>' +
           (prod.price ? '<p class="pp-favs-item-price">' + formatCOP(prod.price) + '</p>' : '') +
         '</div>' +
-        '<button class="pp-favs-remove" onclick="ppRemoveFav(\'' + prod.id + '\')" aria-label="Quitar ' + escHTML(prod.name) + '">✕</button>' +
+        '<button class="pp-favs-remove" onclick="ppRemoveFav(\'' + prod.id + '\')" aria-label="Quitar ' + escHTML(prod.name) + '" title="Quitar de favoritos">🗑️</button>' +
       '</div>';
     }).join('');
     var siteBase = 'https://papiros-papeleria.vercel.app/';
