@@ -121,7 +121,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.08}
 /* ============================================================
    MOBILE MENU
    ============================================================ */
-.pp-mobile-menu{display:none;position:fixed;top:240px;left:0;right:0;z-index:199;background:rgba(255,250,247,.98);backdrop-filter:blur(20px);padding:20px clamp(16px,4vw,48px) 28px;flex-direction:column;gap:4px;border-bottom:1px solid var(--line)}
+.pp-mobile-menu{display:none;position:fixed;top:240px;left:0;right:0;bottom:0;z-index:199;background:rgba(255,250,247,.98);backdrop-filter:blur(20px);padding:20px clamp(16px,4vw,48px) 28px;flex-direction:column;gap:4px;border-bottom:1px solid var(--line);overflow-y:auto}
 .pp-mobile-menu.open{display:flex}
 .pp-mobile-menu a{font-size:16px;font-weight:500;color:var(--ink-soft);padding:12px 0;border-bottom:1px solid var(--line)}
 .pp-mobile-menu a:last-child{border:none}
@@ -784,7 +784,7 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
 <div class="pp-notes-overlay" id="pp-favs-overlay" role="dialog" aria-modal="true" aria-label="Mis favoritos">
   <div class="pp-favs-modal">
     <div class="pp-notes-head">
-      <h3>Mis favoritos ♡</h3>
+      <h3 id="pp-favs-title">Mis favoritos ♡</h3>
       <button class="pp-notes-close" id="pp-favs-close" aria-label="Cerrar">✕</button>
     </div>
     <div class="pp-favs-list" id="pp-favs-list"></div>
@@ -1268,18 +1268,25 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
     document.body.style.overflow = '';
   }
 
-  function renderFavsModal() {
+  var SITE_BASE = 'https://papiros-papeleria.vercel.app/';
+
+  function renderFavsModal(sharedIds) {
     var list = $('#pp-favs-list');
     var sendBtn = $('#pp-favs-send');
+    var titleEl = $('#pp-favs-title');
     if (!list || !sendBtn) return;
-    var items = PRODUCTS.filter(function(p) { return isLiked(p.id); });
+    var readOnly = !!sharedIds;
+    var ids = readOnly ? sharedIds : liked;
+    var items = PRODUCTS.filter(function(p) { return ids.indexOf(p.id) !== -1; });
+    if (titleEl) titleEl.textContent = readOnly ? 'Pedido del cliente 🛍️' : 'Mis favoritos ♡';
     if (!items.length) {
-      list.innerHTML = '<p class="pp-favs-empty">🤍 Aún no tienes favoritos. Toca el corazón de cualquier producto para guardarlo aquí.</p>';
+      list.innerHTML = '<p class="pp-favs-empty">' + (readOnly
+        ? '😕 No encontramos los productos de este pedido — puede que ya no estén disponibles.'
+        : '🤍 Aún no tienes favoritos. Toca el corazón de cualquier producto para guardarlo aquí.') + '</p>';
       sendBtn.classList.add('disabled');
       sendBtn.href = '#';
       return;
     }
-    sendBtn.classList.remove('disabled');
     list.innerHTML = items.map(function(prod) {
       return '<div class="pp-favs-item">' +
         '<img src="' + escHTML(prod.img) + '" alt="' + escHTML(prod.name) + '" onclick="ppOpenLightbox(\'' + prod.id + '\')" onerror="this.src=\'assets/en-construccion.png\'">' +
@@ -1287,15 +1294,17 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
           '<p class="pp-favs-item-name">' + escHTML(prod.name) + '</p>' +
           (prod.price ? '<p class="pp-favs-item-price">' + formatCOP(prod.price) + '</p>' : '') +
         '</div>' +
-        '<button class="pp-favs-remove" onclick="ppRemoveFav(\'' + prod.id + '\')" aria-label="Quitar ' + escHTML(prod.name) + '" title="Quitar de favoritos">🗑️</button>' +
+        (readOnly ? '' : '<button class="pp-favs-remove" onclick="ppRemoveFav(\'' + prod.id + '\')" aria-label="Quitar ' + escHTML(prod.name) + '" title="Quitar de favoritos">🗑️</button>') +
       '</div>';
     }).join('');
-    var siteBase = 'https://papiros-papeleria.vercel.app/';
-    var lines = items.map(function(prod, i) {
-      var photoUrl = /^https?:\/\//.test(prod.img) ? prod.img : siteBase + prod.img;
-      return (i + 1) + '. ' + prod.name + (prod.price ? ' — ' + formatCOP(prod.price) : '') + '\nFoto: ' + photoUrl;
-    });
-    var msg = 'Hola, quisiera cotizar estos productos de mi lista de me gusta:\n\n' + lines.join('\n\n');
+    if (readOnly) {
+      sendBtn.classList.add('disabled');
+      sendBtn.href = '#';
+      return;
+    }
+    sendBtn.classList.remove('disabled');
+    var orderLink = SITE_BASE + '?pedido=' + items.map(function(p) { return p.id; }).join(',');
+    var msg = 'Hola, quisiera cotizar mi pedido. Aquí pueden ver los productos que seleccioné:\n' + orderLink;
     sendBtn.href = 'https://wa.me/573188682376?text=' + encodeURIComponent(msg);
   }
 
@@ -1310,11 +1319,19 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
     renderFavsModal();
   };
 
-  window.ppOpenFavs = function() {
-    renderFavsModal();
+  window.ppOpenFavs = function(sharedIds) {
+    renderFavsModal(sharedIds);
     var overlay = $('#pp-favs-overlay');
     if (overlay) { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
   };
+
+  function initSharedOrder() {
+    var params = new URLSearchParams(window.location.search);
+    var pedido = params.get('pedido');
+    if (!pedido) return;
+    var ids = pedido.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+    if (ids.length) ppOpenFavs(ids);
+  }
 
   function initFavsModal() {
     var overlay = $('#pp-favs-overlay');
@@ -1678,6 +1695,7 @@ section[aria-label="Próximamente"],section[aria-label="Para qué sirve"]{backgr
     safe(initLightbox, 'lightbox');
     safe(initLikes, 'likes');
     safe(initFavsModal, 'favsModal');
+    safe(initSharedOrder, 'sharedOrder');
     safe(initNotes, 'notes');
     safe(initThanksSpin, 'thanksSpin');
     safe(initFeaturedVideo, 'featuredVideo');
